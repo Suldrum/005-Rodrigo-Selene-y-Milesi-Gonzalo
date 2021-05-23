@@ -10,9 +10,8 @@ class Model {
     }
 
     public function create_connection() {
-
-        // Atencion: Modificar esto segun la instalacion:
-        $host = 'localhost';
+        //IMPORTANTE!! INDICAR EL PUERTO! PARA MySQL :3308 Y PARA MariaDB:3306
+        $host = 'localhost:3308';
         $userName = 'root';
         $password = '';
         $database = 'db_todo_list';
