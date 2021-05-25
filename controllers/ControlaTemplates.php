@@ -18,5 +18,10 @@ class ControlaTemplates {
     function showHome() {
         $this->view->showHomeVista();
     }  
+
+    function showPokedex(){
+        $pokemons = $this->model->getAll();
+        $this->view->ShowPokedexVista ($pokemons);
+    }
    
 }

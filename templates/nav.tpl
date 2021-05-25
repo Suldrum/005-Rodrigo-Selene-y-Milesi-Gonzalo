@@ -1,8 +1,8 @@
 <header>
     <nav>
         <ul>
-            <li><a class='navegacion' href="">Home</a></li>
-            <li><a class='navegacion' href="">Pokedex</a></li>
+            <li><a class='navegacion' href="home">Home</a></li>
+            <li><a class='navegacion' href="dexter">Pokedex</a></li>
         </ul>
         <ul>
             <!--SI HAY UN USUARIO ACTIVO-->
