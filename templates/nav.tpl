@@ -17,7 +17,7 @@
                     <a class="nav-item nav-link " href="login">Login<span class="sr-only"></span></a>
                 </div>
                 <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link " href="formRegistro">Registrar<span class="sr-only"></span></a>
+                    <a class="nav-item nav-link " href="registrar">Registrar<span class="sr-only"></span></a>
                 </div>
             {/if}
 

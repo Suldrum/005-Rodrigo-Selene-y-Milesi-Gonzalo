@@ -17,8 +17,8 @@ class UserController {
         $this->view->showLogin();
     }
 
-    public function showRegistrar() {
-        $this->view->showRegistrar();
+    public function showRegistro() {
+        $this->view->showRegistro();
     }    
 
     public function registrar() {

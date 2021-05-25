@@ -22,7 +22,13 @@ switch ($urlParts[0]) {
 		break;
 	case 'dexter':
 		$ControlaTemplates->showPokedex();
-		break;	
+		break;
+	case 'login':
+		$userController->showLogin();
+		break;
+	case 'registrar':
+			$userController->showRegistro();
+			break;			
 	default:
 		echo '<h1>Error 404 - Page not found </h1>';
 		break;
