@@ -17,9 +17,9 @@ switch ($urlParts[0]) {
 	case 'home':
 		$ControlaTemplates->showHome();
 		break;
-	case 'home':
+	/*case 'home':
 		$ControlaTemplates->showHome();
-		break;	
+		break;	*/
 	default:
 		echo '<h1>Error 404 - Page not found </h1>';
 		break;

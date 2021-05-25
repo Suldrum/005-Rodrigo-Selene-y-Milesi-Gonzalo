@@ -12,3 +12,4 @@
     <title>{$title}</title>
 </head>
 <body>
+{include 'templates/nav.tpl'}

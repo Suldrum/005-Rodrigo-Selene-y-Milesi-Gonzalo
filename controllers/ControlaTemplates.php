@@ -16,9 +16,7 @@ class ControlaTemplates {
 
     /*hay que seguir armandolo */
     function showHome() {
-        $task = $this->model->get($id);
-        $this->view->showDetail($task); 
-        
+        $this->view->showHomeVista();
     }  
    
 }
