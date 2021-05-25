@@ -23,9 +23,12 @@ class UserController {
 
     public function registrar() {
         $user = $_POST['username'];
+        $name= $_POST['name'];
+        $lastName= $_POST['lastName'];
+        $email= $_POST['email'];
         $pass = $_POST['password'];
-        $this->model->add($user, $pass);
-        header("Location: " . BASE_URL . 'tasks');
+        $this->model->add($name, $lastName, $username, $email, $pass);
+        header("Location: " . BASE_URL . 'home');
     }
 
     public function verify() {
@@ -36,7 +39,7 @@ class UserController {
 
             if (!empty($userDb) && password_verify($pass, $userDb->password)) {
                 AuthHelper::login($userDb);
-                header('Location: ' . BASE_URL . "tasks");
+                header('Location: ' . BASE_URL . "home");
             } else 
                 $this->view->showLogin("Login incorrecto, password o usuario incorrecto");
         } else {
@@ -46,7 +49,7 @@ class UserController {
 
     public function logout() {
         AuthHelper::logout();
-        header("Location: " . BASE_URL . 'login');
+        header("Location: " . BASE_URL . 'home');
     }
 
 }
