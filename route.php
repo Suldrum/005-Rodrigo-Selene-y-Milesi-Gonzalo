@@ -5,6 +5,9 @@ define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 
 require_once('controllers/ControlaTemplates.php');
 require_once('controllers/UserController.php');
+require_once('controllers/TipoElementalController.php');
+require_once('controllers/PokemonController.php');
+require_once('controllers/RegionController.php');
 
 if ($_GET['action'] == '')
 	$_GET['action'] = 'home';
