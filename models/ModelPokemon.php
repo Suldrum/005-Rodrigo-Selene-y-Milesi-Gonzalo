@@ -2,7 +2,7 @@
 
 require_once('Model.php');
 
-class ModelTemplates extends Model {
+class ModelPokemon extends Model {
 
     /**
      * @return array

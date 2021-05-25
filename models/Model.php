@@ -11,10 +11,10 @@ class Model {
 
     public function create_connection() {
         //IMPORTANTE!! INDICAR EL PUERTO! PARA MySQL :3308 Y PARA MariaDB:3306
-        $host = 'localhost:3308';
+        $host = 'localhost:3306';
         $userName = 'root';
         $password = '';
-        $database = 'db_todo_list';
+        $database = 'db_pokemon';
 
         try {
             $db = new PDO("mysql:host=$host;dbname=$database;charset=utf8", $userName, $password);

@@ -1,11 +1,10 @@
 <header>
     <nav>
         <ul>
-            <li><a class='navegacion' href="{$baseURL}home">Home</a></li>
-            <li><a class='navegacion' href="{$baseURL}pokedex">Pokedex</a></li>
+            <li><a class='navegacion' href="">Home</a></li>
+            <li><a class='navegacion' href="">Pokedex</a></li>
         </ul>
         <ul>
-            <li><a class='navegacion' href="{$baseURL}login">Login</a></li>
             <!--SI HAY UN USUARIO ACTIVO-->
             {if isset($username) && $username}
                 <div class="navbar-nav ml-auto">

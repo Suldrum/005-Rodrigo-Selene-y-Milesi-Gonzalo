@@ -1,6 +1,6 @@
 <?php
 
-include_once 'models/ModelTemplates.php';
+include_once 'models/ModelPokemon.php';
 include_once 'views/ViewTemplates.php';
 
 class ControlaTemplates {
@@ -9,7 +9,7 @@ class ControlaTemplates {
     private $view;
 
     function __construct() {
-        $this->model = new ModelTemplates();
+        $this->model = new ModelPokemon();
         $this->view = new Viewtemplates();
     }
 
