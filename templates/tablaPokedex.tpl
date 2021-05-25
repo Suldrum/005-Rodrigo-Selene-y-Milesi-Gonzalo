@@ -1,6 +1,6 @@
 {include 'templates/header.tpl'}
 <div class="container">
-    <table id="tablaPokedex">
+    <table id="tablaPokedex" class="tableFixHead">
         <thead>
             <tr>
                 <th>#</th>
@@ -15,12 +15,12 @@
             {foreach from=$listaPokemons item=pokemon}
                 <tr>
                     <td>{$pokemon->id_pokemon}</td>
-                    <td><img src="{$pokemon->imagen_pokemon}"></img></td>
-                    <td><img src="{$pokemon->id_region}"></img></td>
+                    <td><img src="{$pokemon->imagen_pokemon}"></td>
+                    <td><img src="{$pokemon->id_region}"></td>
                     <td>{$pokemon->nombre}</td>
-                    <td><img src="{$pokemon->id_tipo_elemental}"></img></td>
+                    <td><img src="{$pokemon->id_tipo_elemental}"></td>
                     <td>{if isset({$pokemon->id_tipo_elemental2})}
-                            <img src="{$pokemon->id_tipo_elemental2}"></img>
+                            <img src="{$pokemon->id_tipo_elemental2}">
                         {/if}
                     </td>
                 </tr>
