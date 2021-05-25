@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3308
--- Tiempo de generación: 25-05-2021 a las 00:10:44
+-- Tiempo de generación: 25-05-2021 a las 22:31:16
 -- Versión del servidor: 8.0.18
 -- Versión de PHP: 7.3.12
 
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `pokemon` (
 --
 
 INSERT INTO `pokemon` (`id_pokemon`, `id_region`, `nombre`, `imagen_pokemon`, `id_tipo_elemental`, `id_tipo_elemental2`) VALUES
-(1, 1, 'Bulbasaur', 'https://static.wikia.nocookie.net/espokemon/images/4/43/Bulbasaur.png/revision/latest?cb=20170120032346', 12, 17),
+(1, 1, 'Bulbasaur', '/imagenes/Pokemon/Bulbasaur.png', 12, 17),
 (2, 1, 'Yvysaur', 'https://static.wikia.nocookie.net/espokemon/images/8/86/Ivysaur.png/revision/latest?cb=20140207202404', 12, 17),
 (4, 1, 'Charmander', 'https://static.wikia.nocookie.net/espokemon/images/5/56/Charmander.png/revision/latest?cb=20140207202456', 7, NULL),
 (5, 1, 'Charmeleon', 'https://static.wikia.nocookie.net/espokemon/images/f/fb/Charmeleon.png/revision/latest?cb=20140207202536', 7, NULL),
@@ -209,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `tipo_elemental` (
 --
 
 INSERT INTO `tipo_elemental` (`id_tipo_elemental`, `nombre`, `imagen_tipo`) VALUES
-(1, 'Acero', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/2/2c/Type_Acero.png/revision/latest?cb=20161221101508'),
+(1, 'Acero', 'imagenes/Tipo/Type_Acero.png'),
 (2, 'Agua', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/b/b7/Type_Agua.png/revision/latest?cb=20161221101702'),
 (3, 'Bicho', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/9/91/Type_Bicho.png/revision/latest?cb=20161221101714'),
 (4, 'Dragón', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/d/d4/Type_Drag%C3%B3n.png/revision/latest?cb=20161221101725'),
@@ -220,7 +220,7 @@ INSERT INTO `tipo_elemental` (`id_tipo_elemental`, `nombre`, `imagen_tipo`) VALU
 (9, 'Hielo', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/3/35/Type_Hielo.png/revision/latest?cb=20161221101836'),
 (10, 'Lucha', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/6/66/Type_Lucha.png/revision/latest?cb=20161221101900'),
 (11, 'Normal', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/2/23/Type_Normal.png/revision/latest?cb=20161221101619'),
-(12, 'Planta', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/6/60/Type_Planta.png/revision/latest?cb=20161221101938'),
+(12, 'Planta', 'imagenes/Tipo/Type_Planta.png'),
 (13, 'Psíquico', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/7/72/Type_Ps%C3%ADquico.png/revision/latest?cb=20161221101950'),
 (14, 'Roca', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/b/b3/Type_Roca.png/revision/latest?cb=20161221101959'),
 (15, 'Siniestro', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/3/39/Type_Siniestro.png/revision/latest?cb=20161221102014'),
