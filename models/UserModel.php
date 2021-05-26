@@ -13,7 +13,7 @@ class UserModel extends Model {
     public function add($name, $lastName, $username, $email, $pass) {
 
         $passEnc = password_hash($pass, PASSWORD_DEFAULT);
-        $query = $this->getDb()->prepare('INSERT INTO `entrenador` (nombre, apellido, apodo, email, contraseña) VALUES (?, ?, ?, ?, ?)');
+        $query = $this->getDb()->prepare("INSERT INTO entrenador (nombre, apellido, apodo, email, contraseña) VALUES (?, ?, ?, ?, ?)");
         $query->execute([$name, $lastName, $username, $email, $passEnc]);
 
     }

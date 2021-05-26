@@ -34,7 +34,58 @@ switch ($urlParts[0]) {
 		break;
 	case 'registrar':
 		$userController->registrar();
+		break;
+	case "logout":
+		$userController->logout();
+		break;
+
+/*	case 'loginAdmin':
+		$adminController->showLogin();
+		break;
+	case 'verifyAdmin':
+		$adminController->verify();
 		break;	
+	case 'registroAdmin':
+		$adminController->showRegistro();
+		break;
+	case 'registrarAdmin':
+		$adminController->registrar();
+		break;
+	case "logout":
+		$adminController->logout();
+		break;
+
+*/
+//ZONA DE ADMINISTRACION DE CATEGORIAS
+/*
+	case "crearPokemon":
+		$ControlaTemplates->FUNCION ();
+		break;
+	case "editarPokemon":
+		$ControlaTemplates->FUNCION ();
+		break;
+	case "eliminarPokemon":
+		$ControlaTemplates->FUNCION ();
+		break;
+	case "crearRegion":
+		$ControlaTemplates->FUNCION ();
+		break;
+	case "editarRegion":
+		$ControlaTemplates->FUNCION ();
+		break;
+	case "eliminarRegion":
+		$ControlaTemplates->FUNCION ();
+		break;
+	case "crearTipoElemental":
+		$ControlaTemplates->FUNCION ();
+		break;
+	case "editarTipoElemental":
+		$ControlaTemplates->FUNCION ();
+		break;
+	case "eliminarTipoElemental":
+		$ControlaTemplates->FUNCION ();
+		break;
+*/
 	default:
 		echo '<h1>Error 404 - Page not found </h1>';
 		break;
