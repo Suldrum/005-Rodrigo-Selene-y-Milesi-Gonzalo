@@ -16,8 +16,8 @@
 
         <label for="contraseña">contraseña </label>
         <input class="form-control" type="password" id="IDcontraseña" name="F_contraseña" placeholder=""/>
+        <button id="botonRegistrar">¡Unete ahora!</button>
     </form>
-    <button id="botonRegistrar" type="button">¡Unete ahora!</button>
 </div>
 
 {include 'templates/footer.tpl'}

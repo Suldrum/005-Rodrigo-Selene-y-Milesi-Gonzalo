@@ -22,12 +22,12 @@ class UserController {
     }    
 
     public function registrar() {
-        $user = $_POST['username'];
-        $name= $_POST['name'];
-        $lastName= $_POST['lastName'];
-        $email= $_POST['email'];
-        $pass = $_POST['password'];
-        $this->model->add($name, $lastName, $username, $email, $pass);
+        $user = $_POST['F_apodo'];
+        $name= $_POST['F_nombre'];
+        $lastName= $_POST['F_apellido'];
+        $email= $_POST['F_email'];
+        $pass = $_POST['F_contraseña'];
+        $this->model->add($name, $lastName, $user, $email, $pass);
         header("Location: " . BASE_URL . 'home');
     }
 
@@ -36,8 +36,8 @@ class UserController {
             $user = $_POST['F_email'];
             $pass = $_POST['F_contraseña'];
             $userDb = $this->model->getUserByUsername($user);
-
-            if (!empty($userDb) && password_verify($pass, $userDb->contraseña)) {
+            if (!empty($userDb) && password_verify($pass, $userDb->contraseña)) 
+            {
                 AuthHelper::login($userDb);
                 header('Location: ' . BASE_URL . "home");
             } else 

@@ -26,12 +26,15 @@ switch ($urlParts[0]) {
 	case 'login':
 		$userController->showLogin();
 		break;
-	case 'registrar':
-			$userController->showRegistro();
-			break;
 	case 'verify':
 		$userController->verify();
-			break;			
+		break;	
+	case 'registro':
+		$userController->showRegistro();
+		break;
+	case 'registrar':
+		$userController->registrar();
+		break;	
 	default:
 		echo '<h1>Error 404 - Page not found </h1>';
 		break;
