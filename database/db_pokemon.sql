@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3308
--- Tiempo de generación: 25-05-2021 a las 22:31:16
+-- Tiempo de generación: 26-05-2021 a las 22:11:59
 -- Versión del servidor: 8.0.18
 -- Versión de PHP: 7.3.12
 
@@ -60,10 +60,10 @@ CREATE TABLE IF NOT EXISTS `entrenador` (
   `apellido` varchar(20) NOT NULL,
   `apodo` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `contraseña` varchar(20) NOT NULL,
+  `contraseña` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id_entrenador`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `entrenador`
@@ -74,7 +74,8 @@ INSERT INTO `entrenador` (`id_entrenador`, `nombre`, `apellido`, `apodo`, `email
 (2, 'Maria', 'Magdalena', 'MotherOfGod', 'prayGod@heaven.com.ar', 'MotherOfGod'),
 (3, 'Ash', 'Ketchum', 'ultimateTrainer', 'ultimateTrainer@entrenador.es', 'ultimateTrainer'),
 (4, 'Misty', 'Waterflower', 'tropicalWaterfall', 'aquatic@aqua.mar', 'tropicalWaterfall'),
-(5, 'Gary', 'Oak', 'ChampionBlue', 'ViridianCity@gymleader.kan', 'ChampionBlue');
+(5, 'Gary', 'Oak', 'ChampionBlue', 'ViridianCity@gymleader.kan', 'ChampionBlue'),
+(6, 'hola', 'hola', 'hola', 'hola@hola', '$2y$10$mx9GQGGXkoasFn7EEHrRZOpmwj/ZU1Dx1mIUA29Z.g81arnq4LhnW');
 
 -- --------------------------------------------------------
 
