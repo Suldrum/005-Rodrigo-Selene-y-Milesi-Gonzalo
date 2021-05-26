@@ -2,6 +2,7 @@
 
 include_once('views/UserView.php');
 include_once('models/UserModel.php');
+include_once('helpers/auth.helper.php');
 
 class UserController {
 
@@ -36,7 +37,7 @@ class UserController {
             $user = $_POST['F_email'];
             $pass = $_POST['F_contraseña'];
             $userDb = $this->model->getUserByUsername($user);
-            if (!empty($userDb) && password_verify($pass, $userDb->contraseña)) 
+            if (!empty($userDb) && password_verify($pass, $userDb->contraseña))
             {
                 AuthHelper::login($userDb);
                 header('Location: ' . BASE_URL . "home");
