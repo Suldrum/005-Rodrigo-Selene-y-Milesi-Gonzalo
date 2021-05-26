@@ -20,7 +20,7 @@
                     <a class="nav-item nav-link " href="registro">Registrar<span class="sr-only"></span></a>
                 </div>
             {/if}
-
+            
         </ul>
     </nav>
 </header>
