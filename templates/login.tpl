@@ -11,10 +11,10 @@
                 {$error}
             </div>
         {/if}
-        <button id="botonIngresar" type="button">Ingresar</button>
+        <button id="botonIngresar">Ingresar</button>
     </form>
     <p>¿No tiene cuenta?</p>
-    <button id="botonCrearCuenta" type="button">Crear cuenta</button>
+    <button id="botonCrearCuenta">Crear cuenta</button>
 </div>
 
 {include 'templates/footer.tpl'}

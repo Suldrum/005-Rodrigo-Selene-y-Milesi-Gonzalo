@@ -32,12 +32,12 @@ class UserController {
     }
 
     public function verify() {
-        if(!empty($_POST['username']) && !empty($_POST['password'])) {
-            $user = $_POST['username'];
-            $pass = $_POST['password'];
+        if(!empty($_POST['F_email']) && !empty($_POST['F_contraseña'])) {
+            $user = $_POST['F_email'];
+            $pass = $_POST['F_contraseña'];
             $userDb = $this->model->getUserByUsername($user);
 
-            if (!empty($userDb) && password_verify($pass, $userDb->password)) {
+            if (!empty($userDb) && password_verify($pass, $userDb->contraseña)) {
                 AuthHelper::login($userDb);
                 header('Location: ' . BASE_URL . "home");
             } else 
