@@ -17,6 +17,7 @@ $urlParts = explode('/', $_GET['action']);
 $ControlaTemplates = new ControlaTemplates();
 $userController = new UserController();
 $adminController = new AdminController();
+$regionController = new RegionController();
 
 switch ($urlParts[0]) {
 	case 'home':
@@ -42,6 +43,9 @@ switch ($urlParts[0]) {
 		break;
 	case "perfilUsuario":
 		$userController->showperfilUsuario();
+		break;
+	case "regiones":
+		$regionController->showRegiones();
 		break;
 //ZONA DE ADMINISTRADORES
  	case 'loginAdmin':
@@ -69,15 +73,23 @@ switch ($urlParts[0]) {
 	case "eliminarPokemon":
 		$ControlaTemplates->FUNCION ();
 		break;
+*/
 	case "crearRegion":
-		$ControlaTemplates->FUNCION ();
+		$regionController->showCrearRegion();
+		break;
+	case "createRegion":
+		$regionController->createRegion();
 		break;
 	case "editarRegion":
-		$ControlaTemplates->FUNCION ();
+		$regionController->showActualizarRegion($urlParts[1]);
+		break;
+	case "editRegion":
+		$regionController->editRegion($urlParts[1]);
 		break;
 	case "eliminarRegion":
-		$ControlaTemplates->FUNCION ();
+		$regionController->deleteRegion($urlParts[1]);
 		break;
+/*
 	case "crearTipoElemental":
 		$ControlaTemplates->FUNCION ();
 		break;

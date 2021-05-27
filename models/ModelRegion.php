@@ -21,18 +21,18 @@ class ModelRegion extends Model {
      * Retorna una tupla a partir de un id pasado por parámtro
      */
     function getRegion($id){
-        $query = $this-> getDb()->prepare('SELECT * FROM region WHERE id_region = ?');
+        $query = $this->getDb()->prepare('SELECT * FROM region WHERE id_region = ?');
         $query->execute([$id]);
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
         /**
-     * @param "$id_region, $nombre, $imagen_region"
-     * Crea una tarea a partir de los parámetros pasados
+     * @param "$nombre, $imagen_region"
+     * Crea una regiona a partir de los parámetros pasados
      */
-    function newRegion($id_region, $nombre, $imagen_region) {
-        $query = $this->getDb()->prepare('INSERT INTO region ($id_region, $nombre, $imagen_region) VALUES (?, ?, ?)');
-        $query->execute([$id_region, $nombre, $imagen_region]);
+    function newRegion($nombre, $imagen_region) {
+        $query = $this->getDb()->prepare('INSERT INTO region (nombre, imagen_region) VALUES (?, ?)');
+        $query->execute([$nombre, $imagen_region]);
     }
 
     /**
@@ -48,8 +48,8 @@ class ModelRegion extends Model {
      * @param $id
      * Actualiza un region en base al id pasado por parámetro
      */
-    function updateRegion($id_region, $nombre, $imagen_region){
+    function updateRegion($nombre, $imagen_region, $id_region){
         $query = $this-> getDb()->prepare('UPDATE region SET nombre = ?, imagen_region = ? WHERE id_region = ?');
-        $query->execute([$id_region, $nombre, $imagen_region]);
+        $query->execute([$nombre, $imagen_region, $id_region]);
     }
 }

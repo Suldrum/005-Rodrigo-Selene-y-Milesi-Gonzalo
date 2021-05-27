@@ -13,4 +13,10 @@ class ViewTemplates extends View {
         $this->getSmarty()->assign('listaPokemons',$listaPokemones);
         $this->getSmarty()->display('templates/tablaPokedex.tpl');
     }
+
+    function ShowRegionVista ($listaRegiones){
+        $this->getSmarty()->assign('home',BASE_URL.'home');
+        $this->getSmarty()->assign('listaRegiones',$listaRegiones);
+        $this->getSmarty()->display('templates/regiones.tpl');
+    }
 }
