@@ -14,7 +14,7 @@
         <button id="botonIngresar">Ingresar</button>
     </form>
     <p>¿No tiene cuenta?</p>
-    <button id="botonCrearCuenta">Crear cuenta</button>
+    <button id="botonCrearCuenta" onclick="location.href='registro'" >Crear cuenta</button>
 </div>
 
 {include 'templates/footer.tpl'}
