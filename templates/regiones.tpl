@@ -14,6 +14,11 @@
                     <td>{$region->id_region}</td>
                     <td>{$region->nombre}</td>
                     <td><img src="{$region->imagen_region}"></td>
+                     <!--SI ES ADMINISTRADOR / ESTO ES PARA PROBAR -->    
+                     {if ($userLogged['admin'])}
+                        <button id="botonCrearCuenta" onclick="location.href='registro'" >Crear cuenta</button>
+                        <button id="botonCrearCuenta" onclick="location.href='registro'" >Crear cuenta</button>
+                    {/if}
                 </tr>
             {/foreach}
         </tbody>

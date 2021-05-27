@@ -43,6 +43,9 @@ switch ($urlParts[0]) {
 	case "perfilUsuario":
 		$userController->showperfilUsuario();
 		break;
+	case "regiones":
+		$ControlaTemplates->showRegiones();
+		break;
 //ZONA DE ADMINISTRADORES
  	case 'loginAdmin':
 		$adminController->showLogin();
