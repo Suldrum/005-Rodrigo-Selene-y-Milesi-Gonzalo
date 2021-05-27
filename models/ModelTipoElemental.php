@@ -20,13 +20,13 @@ class ModelTipoElemental extends Model {
      * Retorna una tupla a partir de un id pasado por parámtro
      */
     function getTipo_elemetal($id){
-        if ($id != NULL) 
+        if ($id != NULL) {
             $query = $this-> getDb()->prepare('SELECT * FROM tipo_elemental WHERE id_tipo_elemental = ?');
             $query->execute([$id]);
             return $query->fetch(PDO::FETCH_OBJ);
         }else{
-            return $query = NULL;
-        endif}  
+            return NULL;
+        }  
     }
 
         /**

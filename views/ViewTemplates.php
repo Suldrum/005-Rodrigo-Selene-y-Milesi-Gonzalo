@@ -24,7 +24,11 @@ class ViewTemplates extends View {
         $this->getSmarty()->assign('tarjetaPokemon',$pokemon);
         $this->getSmarty()->assign('regionPokemon',$Region);
         $this->getSmarty()->assign('tipoElemental1',$tipo1);
-        $this->getSmarty()->assign('tipoElemental2',$tipo2);
+        if ($tipo2 != NULL) {
+            $this->getSmarty()->assign('tipoElemental2',$tipo2->imagen_tipo);
+        }else{
+            $this->getSmarty()->assign('tipoElemental2',$tipo2);
+        }    
         $this->getSmarty()->display('templates/tarjetaPokemon.tpl');
-    }
+     }
 }

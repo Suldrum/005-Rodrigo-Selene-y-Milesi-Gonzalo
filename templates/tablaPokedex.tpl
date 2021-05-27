@@ -15,7 +15,7 @@
                     <td>{$pokemon->id_pokemon}</td>
                     <td><img src="{$pokemon->imagen_pokemon}"></td>
                     <td>{$pokemon->nombre}</td>
-                    <td>  <a href="verTarjetaPokemon"></a>  </td>
+                    <td>  <a href="verTarjetaPokemon/{$pokemon->id_pokemon}">+</a>  </td>
                     {if ($userLogged['admin'])}
                         <td>   
                         <button id="botonActualizarTipo" onclick="location.href='editarPokemon/{$pokemon->id_pokemon}'" >Editar</button>

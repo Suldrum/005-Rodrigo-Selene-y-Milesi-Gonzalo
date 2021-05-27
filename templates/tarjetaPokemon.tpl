@@ -7,7 +7,7 @@
     <img src="{$regionPokemon->imagen_region}">
     <img src="{$tipoElemental1->imagen_tipo}">
     {if {$tipoElemental2}!=NULL}
-            <img src="{$tipoElemental2->imagen_tipo}">
+            <img src="{$tipoElemental2}">
         {/if}
 </div>
 
