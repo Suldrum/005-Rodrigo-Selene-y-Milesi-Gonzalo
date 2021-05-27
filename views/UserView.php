@@ -16,9 +16,16 @@ class UserView extends View {
     }
 
     public function showRegistro($error=null) {
-        $this->getSmarty()->assign('title', "Login");
+        $this->getSmarty()->assign('title', "Registro");
         $this->getSmarty()->assign('error', $error);        
         $this->getSmarty()->assign('home', BASE_URL.'home');
         $this->getSmarty()->display('templates/registro.tpl');
-    }    
+    }  
+    
+    public function showRegistro($error=null) {
+        $this->getSmarty()->assign('title', "Perfil");
+        $this->getSmarty()->assign('error', $error);        
+        $this->getSmarty()->assign('home', BASE_URL.'home');
+        $this->getSmarty()->display('templates/perfilUsuario.tpl');
+    }
 }

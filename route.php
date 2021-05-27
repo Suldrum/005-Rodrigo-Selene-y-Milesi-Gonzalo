@@ -38,6 +38,9 @@ switch ($urlParts[0]) {
 	case "logout":
 		$userController->logout();
 		break;
+	case "perfil":
+		$userController->showPerfil();
+		break;
 
 /*	case 'loginAdmin':
 		$adminController->showLogin();
