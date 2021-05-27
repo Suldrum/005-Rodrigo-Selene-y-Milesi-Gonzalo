@@ -14,6 +14,7 @@
                      <!--SI ES ADMINISTRADOR / ESTO ES PARA PROBAR -->    
                     {if ($userLogged['admin'])}
                         <a class="nav-item nav-link " href="regiones">REGIONES / ESTO ES UNA PRUEBA<span class="sr-only"></span></a>
+                        <a class="nav-item nav-link " href="tablatipos">TABLA DE TIPOS / ESTO ES UNA PRUEBA<span class="sr-only"></span></a>
                     {/if}
                 </div>
             {else}
