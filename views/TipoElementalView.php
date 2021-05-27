@@ -8,4 +8,10 @@ class TipoElementalView extends View {
         parent::__construct();
     }
 
+    public function showTiposElemental() {
+        $this->getSmarty()->assign('title', "Regiones");
+        $this->getSmarty()->assign('error', $error);        
+        $this->getSmarty()->assign('home', BASE_URL.'home');
+        $this->getSmarty()->display('templates/tablatipos.tpl');
+    }
 }

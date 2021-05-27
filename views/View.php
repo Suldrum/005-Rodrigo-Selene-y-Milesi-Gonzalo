@@ -14,4 +14,9 @@ class View  {
     public function getSmarty() {
         return $this->smarty;        
     }
+
+    public function isLogged()
+    {
+        
+    }
 }
