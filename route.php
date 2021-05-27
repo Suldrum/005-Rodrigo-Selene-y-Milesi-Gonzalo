@@ -18,6 +18,7 @@ $ControlaTemplates = new ControlaTemplates();
 $userController = new UserController();
 $adminController = new AdminController();
 $regionController = new RegionController();
+$tipoController = new TipoElementalController();
 
 switch ($urlParts[0]) {
 	case 'home':
@@ -89,17 +90,27 @@ switch ($urlParts[0]) {
 	case "eliminarRegion":
 		$regionController->deleteRegion($urlParts[1]);
 		break;
-/*
+
+
+	case "tablatipos":
+		$tipoController->showTiposElemental();
+		break;	
 	case "crearTipoElemental":
-		$ControlaTemplates->FUNCION ();
+		$tipoController->showCrearTipoElemental();
+		break;
+	case "createTipoElemental":
+		$tipoController->createTipoElemental();
 		break;
 	case "editarTipoElemental":
-		$ControlaTemplates->FUNCION ();
+		$tipoController->showActualizarTipoElemental($urlParts[1]);
+		break;
+	case "editTipoElemental":
+		$tipoController->editTipoElemental($urlParts[1]);
 		break;
 	case "eliminarTipoElemental":
-		$ControlaTemplates->FUNCION ();
+		$tipoController->deleteTipo_elemetal($urlParts[1]);
 		break;
-*/
+
 	default:
 		echo '<h1>Error 404 - Page not found </h1>';
 		break;

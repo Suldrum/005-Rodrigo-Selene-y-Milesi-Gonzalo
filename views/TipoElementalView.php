@@ -8,10 +8,22 @@ class TipoElementalView extends View {
         parent::__construct();
     }
 
-    public function showTiposElemental() {
+    public function showTiposElemental($listaTipoElemental) {
         $this->getSmarty()->assign('title', "Tipos Elementales");
-        $this->getSmarty()->assign('error', $error);        
+        $this->getSmarty()->assign('error', null);
+        $this->getSmarty()->assign('listaTipoElemental',$listaTipoElemental);        
         $this->getSmarty()->assign('home', BASE_URL.'home');
         $this->getSmarty()->display('templates/tablatipos.tpl');
+    }
+    public function showActualizarTipoElemental($tipo) {
+        $this->getSmarty()->assign('tipoActual',$tipo);  
+        $this->getSmarty()->display('templates/tipoActualizar.tpl');
+    }
+
+    public function showCrearTipoElemental() {
+        $this->getSmarty()->assign('title', "Crear Tipo");
+        $this->getSmarty()->assign('error', null);     
+        $this->getSmarty()->assign('home', BASE_URL.'home');
+        $this->getSmarty()->display('templates/tipoNew.tpl');
     }
 }

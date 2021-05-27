@@ -19,15 +19,15 @@
                     <td><img src="{$region->imagen_region}"></td>
                      <!--SI ES ADMINISTRADOR / ESTO ES PARA PROBAR -->    
                      {if ($userLogged['admin'])}
-                        <td>   <button id="botonCrearCuenta" onclick="location.href='editarRegion/{$region->id_region}'" >Editar</button>
-                        <button id="botonCrearCuenta" onclick="location.href='eliminarRegion/{$region->id_region}'" >BORRAR</button></td>
+                        <td>   <button id="botonActualizarRegion" onclick="location.href='editarRegion/{$region->id_region}'" >Editar</button>
+                        <button id="botonEliminarRegion" onclick="location.href='eliminarRegion/{$region->id_region}'" >BORRAR</button></td>
                     {/if}
                 </tr>
             {/foreach}
         </tbody>
-        {if ($userLogged['admin'])}
-            <button id="botonCrearRegion" onclick="location.href='crearRegion'" >Crear Nueva Region</button></td>
-        {/if}
     </table>
+    {if ($userLogged['admin'])}
+        <button id="botonCrearRegion" onclick="location.href='crearRegion'" >Crear Nueva Region</button></td>
+    {/if}
 </div>
 {include 'templates/footer.tpl'}
