@@ -20,7 +20,7 @@ class ModelRegion extends Model {
      * @return mixed
      * Retorna una tupla a partir de un id pasado por parámtro
      */
-    function getregion($id){
+    function getRegion($id){
         $query = $this-> getDb()->prepare('SELECT * FROM region WHERE id_region = ?');
         $query->execute([$id]);
         return $query->fetch(PDO::FETCH_OBJ);

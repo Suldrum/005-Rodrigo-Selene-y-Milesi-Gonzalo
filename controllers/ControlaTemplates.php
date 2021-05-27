@@ -1,7 +1,7 @@
 <?php
 
-include_once 'models/ModelPokemon.php';
-include_once 'views/ViewTemplates.php';
+include_once ('models/ModelPokemon.php');
+include_once ('views/ViewTemplates.php');
 
 class ControlaTemplates {
 
@@ -13,7 +13,6 @@ class ControlaTemplates {
         $this->view = new Viewtemplates();
     }
 
-
     /*hay que seguir armandolo */
     function showHome() {
         $this->view->showHomeVista();
@@ -23,5 +22,4 @@ class ControlaTemplates {
         $pokemons = $this->model->getAll();
         $this->view->ShowPokedexVista ($pokemons);
     }
-   
 }

@@ -2,7 +2,7 @@
 
 require_once('View.php');
 
-class UserView extends View {
+class AdminView extends View {
 
     public function __construct() {
         parent::__construct();
@@ -12,16 +12,16 @@ class UserView extends View {
         $this->getSmarty()->assign('title', "Login");
         $this->getSmarty()->assign('error', $error);        
         $this->getSmarty()->assign('home', BASE_URL.'home');
-        $this->getSmarty()->display('templates/login.tpl');
+        $this->getSmarty()->display('templates/loginAdmin.tpl');
     }
 
     public function showRegistro($error=null) {
         $this->getSmarty()->assign('title', "Registro");
         $this->getSmarty()->assign('error', $error);        
         $this->getSmarty()->assign('home', BASE_URL.'home');
-        $this->getSmarty()->display('templates/registro.tpl');
+        $this->getSmarty()->display('templates/registroAdmin.tpl');
     }  
-
+/*
     public function showPerfilUsuario($userData) {
         $this->getSmarty()->assign('title', "Perfil");
         $this->getSmarty()->assign('error',null);        
@@ -29,4 +29,5 @@ class UserView extends View {
         $this->getSmarty()->assign('usuarioDatos',$userData);
         $this->getSmarty()->display('templates/perfilUsuario.tpl');
     }
+*/
 }

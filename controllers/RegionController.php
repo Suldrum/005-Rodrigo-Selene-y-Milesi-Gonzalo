@@ -12,43 +12,32 @@ class RegionController {
         $this->view = new RegionView();
     }
 
-    public function showLogin() {
-        $this->view->showLogin();
+    public function showRegiones() {
+        $listaRegiones =$this->model->getAll();
+        $this->view->showRegiones($listaRegiones);
     }
 
-    public function showRegistrar() {
-        $this->view->showRegistrar();
-    }    
-
-    public function registrar() {
-        $user = $_POST['username'];
-        $name= $_POST['name'];
-        $lastName= $_POST['lastName'];
-        $email= $_POST['email'];
-        $pass = $_POST['password'];
-        $this->model->add($name, $lastName, $username, $email, $pass);
+    public function crearRegion() {
+        $number = $_POST['numero'];
+        $name= $_POST['nombre'];
+        $image= $_POST['imagen'];
+        $this->model->newRegion($number, $name, $image);
         header("Location: " . BASE_URL . 'home');
     }
 
-    public function verify() {
-        if(!empty($_POST['username']) && !empty($_POST['password'])) {
-            $user = $_POST['username'];
-            $pass = $_POST['password'];
-            $userDb = $this->model->getUserByUsername($user);
-
-            if (!empty($userDb) && password_verify($pass, $userDb->password)) {
-                AuthHelper::login($userDb);
-                header('Location: ' . BASE_URL . "home");
-            } else 
-                $this->view->showLogin("Login incorrecto, password o usuario incorrecto");
-        } else {
-            $this->view->showLogin("Login incompleto");
-        }
-    }
-
-    public function logout() {
-        AuthHelper::logout();
+    public function editarRegion() {
+        $number = $_POST['numero'];
+        $name= $_POST['nombre'];
+        $image= $_POST['imagen'];
+        $this->model->updateRegion($number, $name, $image);
         header("Location: " . BASE_URL . 'home');
     }
 
+    public function eliminarRegion() {
+        $number = $_POST['numero'];
+        $name= $_POST['nombre'];
+        $image= $_POST['imagen'];
+        $this->model->deleteRegion($number, $name, $image);
+        header("Location: " . BASE_URL . 'home');
+    }
 }

@@ -8,6 +8,7 @@ require_once('controllers/UserController.php');
 require_once('controllers/TipoElementalController.php');
 require_once('controllers/PokemonController.php');
 require_once('controllers/RegionController.php');
+require_once('controllers/AdminController.php');
 
 if ($_GET['action'] == '')
 	$_GET['action'] = 'home';
@@ -15,6 +16,7 @@ if ($_GET['action'] == '')
 $urlParts = explode('/', $_GET['action']);
 $ControlaTemplates = new ControlaTemplates();
 $userController = new UserController();
+$adminController = new AdminController();
 
 switch ($urlParts[0]) {
 	case 'home':
@@ -38,15 +40,15 @@ switch ($urlParts[0]) {
 	case "logout":
 		$userController->logout();
 		break;
-	case "perfil":
-		$userController->showPerfil();
+	case "perfilUsuario":
+		$userController->showperfilUsuario();
 		break;
-
-/*	case 'loginAdmin':
+//ZONA DE ADMINISTRADORES
+ 	case 'loginAdmin':
 		$adminController->showLogin();
 		break;
 	case 'verifyAdmin':
-		$adminController->verify();
+		$adminController->verifyAdmin();
 		break;	
 	case 'registroAdmin':
 		$adminController->showRegistro();
@@ -54,11 +56,8 @@ switch ($urlParts[0]) {
 	case 'registrarAdmin':
 		$adminController->registrar();
 		break;
-	case "logout":
-		$adminController->logout();
-		break;
 
-*/
+	
 //ZONA DE ADMINISTRACION DE CATEGORIAS
 /*
 	case "crearPokemon":
