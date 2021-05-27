@@ -18,6 +18,10 @@ class UserController {
         $this->view->showLogin();
     }
 
+    public function showPerfil() {
+        $this->view->showPerfil();
+    }
+
     public function showRegistro() {
         $this->view->showRegistro();
     }    
