@@ -22,9 +22,4 @@ class ControlaTemplates {
         $pokemons = $this->model->getAll();
         $this->view->ShowPokedexVista ($pokemons);
     }
-
-    public function getAlltUserData(){
-        return $this->$userData;
-    }
-   
 }

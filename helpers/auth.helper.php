@@ -43,15 +43,17 @@ class AuthHelper {
             return false;
         }
     }
-/*
+    
     static public function getAlltUserData(){
         self::start(); 
-        $data=[]; 
         if (isset($_SESSION['USERNAME'])){
+            $data=[]; 
             $data['name'] = $_SESSION['USERNAME'];
-            $data['id'] =  $_SESSION['ID_USER']
-            return $data;
-        } 
+            $data['id'] =  $_SESSION['ID_USER'];
+           return $data;
+        }
+        else
+            return null;
     }
-*/
+
 }

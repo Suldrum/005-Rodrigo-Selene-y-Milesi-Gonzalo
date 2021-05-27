@@ -18,8 +18,10 @@ class UserController {
         $this->view->showLogin();
     }
 
-    public function showPerfil() {
-        $this->view->showPerfil();
+    public function showPerfilUsuario() {
+        $authHelper = new AuthHelper();
+        $userData = $authHelper->getAlltUserData();
+        $this->view->showPerfilUsuario($userData);
     }
 
     public function showRegistro() {
