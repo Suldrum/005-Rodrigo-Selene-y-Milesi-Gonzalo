@@ -11,6 +11,10 @@
                     <span class="navbar-text nav-link active">{$userLogged['name']}</span>
                     <a class="nav-item nav-link " href="logout">Logout<span class="sr-only"></span></a>
                     <a class="nav-item nav-link " href="perfilUsuario">Tu Perfil<span class="sr-only"></span></a>
+                     <!--SI ES ADMINISTRADOR / ESTO ES PARA PROBAR -->    
+                    {if ($userLogged['admin'])}
+                        <a class="nav-item nav-link " href="regiones">REGIONES / ESTO ES UNA PRUEBA<span class="sr-only"></span></a>
+                    {/if}
                 </div>
             {else}
                 <!--SI NO HAY UN USUARIO ACTIVO-->

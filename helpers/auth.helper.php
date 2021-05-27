@@ -57,6 +57,14 @@ class AuthHelper {
         }
     }
 
+    public static function isAdmin() {
+        self::start();
+        if (isset($_SESSION['USERNAME'])) {
+            return $_SESSION['IS_ADMIN_LOGGED'];
+        } else 
+            return false;
+    }
+
     public static function getLoggedUser() {
         self::start(); 
         if (isset($_SESSION['USERNAME'])){
