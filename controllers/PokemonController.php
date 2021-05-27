@@ -13,14 +13,15 @@ class PokemonController {
         $this->view = new PokemonView();
     }
 
-    public function showLogin() {
-        $this->view->showLogin();
+    public function showCrearPokemon() {
+        $this->view->showCrearPokemon();
     }
 
-    public function showRegistrar() {
-        $this->view->showRegistrar();
+    public function showActualizarPokemon($id_pokemon) {
+        $pokemon =  $this->model->getPokemon($id_pokemon);
+        $this->view->showActualizarPokemon($pokemon);
     }    
-
+/*
     public function registrar() {
         $user = $_POST['username'];
         $name= $_POST['name'];
@@ -46,9 +47,24 @@ class PokemonController {
             $this->view->showLogin("Login incompleto");
         }
     }
+*/
+    public function createPokemon() {
+        $name= $_POST['F_nombre'];
+        $image= $_POST['F_imagen'];
+        $this->model->newPokemon($name, $image);
+        header("Location: " . BASE_URL . 'home');
+    }
 
-    public function logout() {
-        AuthHelper::logout();
+    public function editPokemon($id_region) {
+        $name= $_POST['F_nombre'];
+        $image= $_POST['F_imagen'];
+        $this->model->updateRegion($name, $image, $id_region);
+        header("Location: " . BASE_URL . 'home');
+    }
+
+    public function deletePokemon($id_region) {
+        //PONER IF DE "ESTAS SEGURO?"
+        $this->model->deleteRegion($id_region);
         header("Location: " . BASE_URL . 'home');
     }
 

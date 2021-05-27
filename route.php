@@ -19,6 +19,7 @@ $userController = new UserController();
 $adminController = new AdminController();
 $regionController = new RegionController();
 $tipoController = new TipoElementalController();
+$pokemonController = new PokemonController();
 
 switch ($urlParts[0]) {
 	case 'home':
@@ -62,19 +63,28 @@ switch ($urlParts[0]) {
 		$adminController->registrar();
 		break;
 
+////////////// ZONA DE ADMINISTRACION DE CATEGORIAS ////////
 	
-//ZONA DE ADMINISTRACION DE CATEGORIAS
-/*
+////// ADMINISTRACION DE POKEMON //////
+
 	case "crearPokemon":
-		$ControlaTemplates->FUNCION ();
+		$pokemonController->showCrearPokemon();
+		break;
+	case "createPokemon":
+		$pokemonController->createPokemon();
 		break;
 	case "editarPokemon":
-		$ControlaTemplates->FUNCION ();
+		$pokemonController->showActualizarPokemon($urlParts[1]);
+		break;
+	case "editPokemon":
+		$pokemonController->editPokemon($urlParts[1]);
 		break;
 	case "eliminarPokemon":
-		$ControlaTemplates->FUNCION ();
+		$pokemonController->deletePokemon($urlParts[1]);
 		break;
-*/
+
+
+////// ADMINISTRACION DE REGION //////
 	case "crearRegion":
 		$regionController->showCrearRegion();
 		break;
@@ -91,7 +101,7 @@ switch ($urlParts[0]) {
 		$regionController->deleteRegion($urlParts[1]);
 		break;
 
-
+////// ADMINISTRACION DE TIPO_ELEMENTAL //////
 	case "tablatipos":
 		$tipoController->showTiposElemental();
 		break;	
@@ -110,6 +120,7 @@ switch ($urlParts[0]) {
 	case "eliminarTipoElemental":
 		$tipoController->deleteTipo_elemetal($urlParts[1]);
 		break;
+////////////// FIN ZONA DE ADMINISTRACION DE CATEGORIAS ////////
 
 	default:
 		echo '<h1>Error 404 - Page not found </h1>';

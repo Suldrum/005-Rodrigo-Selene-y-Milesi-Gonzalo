@@ -48,8 +48,8 @@ class ModelPokemon extends Model {
      * @param $id
      * Actualiza un pokemon en base al id pasado por parámetro
      */
-    function updatePokemon($id_pokemon, $id_region, $nombre, $imagen, $id_tipo_elemental, $id_tipo_elemental2n){
+    function updatePokemon($id_region, $nombre, $imagen, $id_tipo_elemental, $id_tipo_elemental2){
         $query = $this-> getDb()->prepare('UPDATE pokemon SET id_region = ?, nombre = ?, imagen = ?, id_tipo_elemental = ?, id_tipo_elemental2 = ? WHERE id_pokemon = ?');
-        $query->execute([$nombre,$autor,$categoria,$descripcion,$imagen,$id]);
+        $query->execute([$id_region, $nombre, $imagen, $id_tipo_elemental, $id_tipo_elemental2,$id_pokemon]);
     }
 }
