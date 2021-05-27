@@ -182,14 +182,14 @@ CREATE TABLE IF NOT EXISTS `region` (
 --
 
 INSERT INTO `region` (`id_region`, `nombre`, `imagen_region`) VALUES
-(1, 'Kanto', 'https://static.wikia.nocookie.net/pokemongo/images/4/40/Kanto_Platinum.png/revision/latest?cb=20201123000915'),
-(2, 'Johto', 'https://static.wikia.nocookie.net/pokemongo/images/a/a6/Johto_Platinum.png/revision/latest?cb=20201122235234'),
-(3, 'Hoenn', 'https://static.wikia.nocookie.net/pokemongo/images/e/e9/Hoenn_Platinum.png/revision/latest?cb=20201122235242'),
-(4, 'Sinnoh', 'https://static.wikia.nocookie.net/pokemongo/images/8/8c/Sinnoh_Platinum.png/revision/latest?cb=20201122235355'),
-(5, 'Teselia', 'https://static.wikia.nocookie.net/pokemongo/images/1/16/Unova_Platinum.png/revision/latest?cb=20201122235451'),
-(6, 'Kalos', 'https://static.wikia.nocookie.net/pokemongo/images/d/d2/Kalos_Platinum.png/revision/latest?cb=20210109134638'),
-(7, 'Alola', 'https://static.wikia.nocookie.net/pokemongo/images/9/9d/Unown_Platinum.png/revision/latest?cb=20201122235041'),
-(8, 'Galar', 'https://static.wikia.nocookie.net/pokemongo/images/f/ff/Galar_Platinum.png/revision/latest?cb=20201122235610');
+(1, 'Kanto', 'https://static.wikia.nocookie.net/pokemongo/images/4/40/Kanto_Platinum.png'),
+(2, 'Johto', 'https://static.wikia.nocookie.net/pokemongo/images/a/a6/Johto_Platinum.png'),
+(3, 'Hoenn', 'https://static.wikia.nocookie.net/pokemongo/images/e/e9/Hoenn_Platinum.png'),
+(4, 'Sinnoh', 'https://static.wikia.nocookie.net/pokemongo/images/8/8c/Sinnoh_Platinum.png'),
+(5, 'Teselia', 'https://static.wikia.nocookie.net/pokemongo/images/1/16/Unova_Platinum.png'),
+(6, 'Kalos', 'https://static.wikia.nocookie.net/pokemongo/images/d/d2/Kalos_Platinum.png'),
+(7, 'Alola', 'https://static.wikia.nocookie.net/pokemongo/images/9/9d/Unown_Platinum.png'),
+(8, 'Galar', 'https://static.wikia.nocookie.net/pokemongo/images/f/ff/Galar_Platinum.png');
 
 -- --------------------------------------------------------
 

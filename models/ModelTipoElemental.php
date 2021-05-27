@@ -6,11 +6,11 @@ class ModelTipoElemental extends Model {
 
     /**
      * @return array
-     * Retorna todas los tipos elementales en la tabla tipo_elemetal ordenados por id
+     * Retorna todas los tipos elementales en la tabla tipo_elemental ordenados por id
      */
     function getAll() {
 
-        $query = $this->getDb()->prepare('SELECT * FROM tipo_elemetal ORDER BY id_tipo_elemetal ASC');
+        $query = $this->getDb()->prepare('SELECT * FROM tipo_elemental ORDER BY id_tipo_elemetal ASC');
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
@@ -21,9 +21,13 @@ class ModelTipoElemental extends Model {
      * Retorna una tupla a partir de un id pasado por parámtro
      */
     function getTipo_elemetal($id){
-        $query = $this-> getDb()->prepare('SELECT * FROM tipo_elemetal WHERE id_tipo_elemetal = ?');
-        $query->execute([$id]);
-        return $query->fetch(PDO::FETCH_OBJ);
+        if ($id != NULL) 
+            $query = $this-> getDb()->prepare('SELECT * FROM tipo_elemental WHERE id_tipo_elemental = ?');
+            $query->execute([$id]);
+            return $query->fetch(PDO::FETCH_OBJ);
+        }else{
+            return $query = NULL;
+        endif}  
     }
 
         /**
@@ -31,25 +35,25 @@ class ModelTipoElemental extends Model {
      * Crea una tarea a partir de los parámetros pasados
      */
     function newTipo_elemetal($id_tipo_elemetal, $nombre, $imagen_tipo) {
-        $query = $this->getDb()->prepare('INSERT INTO tipo_elemetal (id_tipo_elemetal, nombre, imagen_tipo) VALUES (?, ?, ?)');
+        $query = $this->getDb()->prepare('INSERT INTO tipo_elemental (id_tipo_elemental, nombre, imagen_tipo) VALUES (?, ?, ?)');
         $query->execute([$id_tipo_elemetal, $nombre, $imagen_tipo]);
     }
 
     /**
      * @param $id
-     * Elimina un tipo_elemetal en base al id pasado por parámetro
+     * Elimina un tipo_elemental en base al id pasado por parámetro
      */
     function deleteTipo_elemetal($id) {
-        $query = $this->getDb()->prepare('DELETE FROM tipo_elemetal WHERE id_tipo_elemetal = ?');
+        $query = $this->getDb()->prepare('DELETE FROM tipo_elemental WHERE id_tipo_elemental = ?');
         $query->execute([$id]);
     }
 
      /**
      * @param $id
-     * Actualiza un tipo_elemetal en base al id pasado por parámetro
+     * Actualiza un tipo_elemental en base al id pasado por parámetro
      */
     function updateTipo_elemetal($id_tipo_elemetal, $nombre, $imagen_tipo){
-        $query = $this-> getDb()->prepare('UPDATE tipo_elemetal SET nombre = ?, imagen_tipo = ? WHERE id_tipo_elemetal = ?');
+        $query = $this-> getDb()->prepare('UPDATE tipo_elemental SET nombre = ?, imagen_tipo = ? WHERE id_tipo_elemental = ?');
         $query->execute([$id_tipo_elemetal, $nombre, $imagen_tipo]);
     }
 }

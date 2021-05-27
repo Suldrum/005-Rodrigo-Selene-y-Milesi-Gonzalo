@@ -47,6 +47,9 @@ switch ($urlParts[0]) {
 	case "regiones":
 		$regionController->showRegiones();
 		break;
+	case "verTarjetaPokemon":
+		$ControlaTemplates->showTarjetaPokemon($urlParts[1]);
+		break;
 //ZONA DE ADMINISTRADORES
  	case 'loginAdmin':
 		$adminController->showLogin();
