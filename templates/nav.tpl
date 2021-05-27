@@ -6,9 +6,9 @@
         </ul>
         <ul>
             <!--SI HAY UN USUARIO ACTIVO-->
-            {if isset($username) && $username}
+            {if isset($userLogged) && $userLogged}
                 <div class="navbar-nav ml-auto">
-                    <span class="navbar-text nav-link active">{$username}</span>
+                    <span class="navbar-text nav-link active">{$userLogged['name']}</span>
                     <a class="nav-item nav-link " href="logout">Logout<span class="sr-only"></span></a>
                     <a class="nav-item nav-link " href="perfilUsuario">Tu Perfil<span class="sr-only"></span></a>
                 </div>
