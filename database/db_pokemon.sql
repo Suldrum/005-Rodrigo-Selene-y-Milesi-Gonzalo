@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 27-05-2021 a las 21:47:27
+-- Tiempo de generación: 27-05-2021 a las 22:21:01
 -- Versión del servidor: 8.0.18
 -- Versión de PHP: 7.3.21
 
@@ -33,10 +33,10 @@ CREATE TABLE IF NOT EXISTS `administrador` (
   `nombre` varchar(20) NOT NULL,
   `apellido` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `contraseña` varchar(20) NOT NULL,
+  `contraseña` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id_administrador`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `administrador`
@@ -44,7 +44,8 @@ CREATE TABLE IF NOT EXISTS `administrador` (
 
 INSERT INTO `administrador` (`id_administrador`, `nombre`, `apellido`, `email`, `contraseña`) VALUES
 (1, 'admin1', 'admin1', 'admin1@administracion.com', '1234'),
-(2, 'admin2', 'admin2', 'admin2@administracion.com', '1234');
+(2, 'admin2', 'admin2', 'admin2@administracion.com', '1234'),
+(4, 'Chino', 'Milesi', 'chinomilesi@gmail.com', '$2y$10$N.XK.x.NUR8kjXQBx4lG4.Y6ZzVuHJiszgV3L63ybBsR7ND7NQFYe');
 
 -- --------------------------------------------------------
 

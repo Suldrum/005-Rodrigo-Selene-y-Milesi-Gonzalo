@@ -8,7 +8,7 @@
     <img src="{$tipoElemental1->imagen_tipo}">
     {if {$tipoElemental2}!=NULL}
             <img src="{$tipoElemental2}">
-        {/if}
+    {/if}
 </div>
 
 {include 'templates/footer.tpl'}
