@@ -20,4 +20,11 @@ class RegionView extends View {
         $this->getSmarty()->assign('regionActual',$region);  
         $this->getSmarty()->display('templates/regionActualizar.tpl');
     }
+
+    public function showCrearRegion() {
+        $this->getSmarty()->assign('title', "Crear Region");
+        $this->getSmarty()->assign('error', null);     
+        $this->getSmarty()->assign('home', BASE_URL.'home');
+        $this->getSmarty()->display('templates/regionNew.tpl');
+    }
 }

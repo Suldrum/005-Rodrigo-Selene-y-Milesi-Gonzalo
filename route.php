@@ -77,11 +77,14 @@ switch ($urlParts[0]) {
 	case "crearRegion":
 		$regionController->showCrearRegion();
 		break;
+	case "createRegion":
+		$regionController->createRegion();
+		break;
 	case "editarRegion":
 		$regionController->showActualizarRegion($urlParts[1]);
 		break;
-		case "editRegion":
-			$regionController->editRegion($urlParts[1]);
+	case "editRegion":
+		$regionController->editRegion($urlParts[1]);
 		break;
 	case "eliminarRegion":
 		$regionController->deleteRegion($urlParts[1]);

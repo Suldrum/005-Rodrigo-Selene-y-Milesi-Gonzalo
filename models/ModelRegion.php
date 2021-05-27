@@ -27,12 +27,12 @@ class ModelRegion extends Model {
     }
 
         /**
-     * @param "$id_region, $nombre, $imagen_region"
-     * Crea una tarea a partir de los parámetros pasados
+     * @param "$nombre, $imagen_region"
+     * Crea una regiona a partir de los parámetros pasados
      */
-    function newRegion($id_region, $nombre, $imagen_region) {
-        $query = $this->getDb()->prepare('INSERT INTO region ($id_region, $nombre, $imagen_region) VALUES (?, ?, ?)');
-        $query->execute([$id_region, $nombre, $imagen_region]);
+    function newRegion($nombre, $imagen_region) {
+        $query = $this->getDb()->prepare('INSERT INTO region (nombre, imagen_region) VALUES (?, ?)');
+        $query->execute([$nombre, $imagen_region]);
     }
 
     /**

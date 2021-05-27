@@ -18,8 +18,7 @@ class RegionController {
     }
 
     public function showCrearRegion() {
-        $listaRegiones =$this->model->getAll();
-        $this->view->showRegiones($listaRegiones);
+        $this->view->showCrearRegion();
     }
 
     public function showActualizarRegion($id_region) {
@@ -27,11 +26,10 @@ class RegionController {
         $this->view->showActualizarRegion($region);
     }
 
-    public function crearRegion() {
-        $number = $_POST['numero'];
-        $name= $_POST['nombre'];
-        $image= $_POST['imagen'];
-        $this->model->newRegion($number, $name, $image);
+    public function createRegion() {
+        $name= $_POST['F_nombre'];
+        $image= $_POST['F_imagen'];
+        $this->model->newRegion($name, $image);
         header("Location: " . BASE_URL . 'home');
     }
 
