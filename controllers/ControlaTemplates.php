@@ -12,7 +12,6 @@ class ControlaTemplates {
     function __construct() {
         $this->model = new ModelPokemon();
         $this->view = new Viewtemplates();
-        $this->model = new ModelRegion();
     }
 
     /*hay que seguir armandolo */
@@ -28,5 +27,10 @@ class ControlaTemplates {
     function showRegiones() {
         $listaRegiones = $this->model->getAll();
         $this->view->ShowRegionVista ($listaRegiones);
+    }
+
+    function showActualizarRegion($regionActual) {
+        $regionData = $this->model-getRegiongetRegion();
+        $this->view->ShowRegionVista($regionData);
     } 
 }

@@ -17,6 +17,16 @@ class RegionController {
         $this->view->showRegiones($listaRegiones);
     }
 
+    public function showCrearRegion() {
+        $listaRegiones =$this->model->getAll();
+        $this->view->showRegiones($listaRegiones);
+    }
+
+    public function showActualizarRegion($id_region) {
+        $region =  $this->model->getRegion($id_region);
+        $this->view->showActualizarRegion($region);
+    }
+
     public function crearRegion() {
         $number = $_POST['numero'];
         $name= $_POST['nombre'];
@@ -25,19 +35,16 @@ class RegionController {
         header("Location: " . BASE_URL . 'home');
     }
 
-    public function editarRegion() {
-        $number = $_POST['numero'];
-        $name= $_POST['nombre'];
-        $image= $_POST['imagen'];
-        $this->model->updateRegion($number, $name, $image);
+    public function editRegion($id_region) {
+        $name= $_POST['F_nombre'];
+        $image= $_POST['F_imagen'];
+        $this->model->updateRegion($name, $image, $id_region);
         header("Location: " . BASE_URL . 'home');
     }
 
-    public function eliminarRegion() {
-        $number = $_POST['numero'];
-        $name= $_POST['nombre'];
-        $image= $_POST['imagen'];
-        $this->model->deleteRegion($number, $name, $image);
+    public function deleteRegion($id_region) {
+        //PONER IF DE "ESTAS SEGURO?"
+        $this->model->deleteRegion($id_region);
         header("Location: " . BASE_URL . 'home');
     }
 }
