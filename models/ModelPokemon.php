@@ -31,7 +31,7 @@ class ModelPokemon extends Model {
      * Crea una tarea a partir de los parámetros pasados
      */
     function newPokemon($id_pokemon, $id_region, $nombre, $imagen, $id_tipo_elemental, $id_tipo_elemental2) {
-        $query = $this->getDb()->prepare('INSERT INTO pokemon (id_pokemon, id_region, nombre, imagen, id_tipo_elemental, id_tipo_elemental2) VALUES (?, ?, ?, ?, ?, ?)');
+        $query = $this->getDb()->prepare('INSERT INTO pokemon (id_pokemon, id_region, nombre, imagen_pokemon, id_tipo_elemental, id_tipo_elemental2) VALUES (?, ?, ?, ?, ?, ?)');
         $query->execute([$id_pokemon, $id_region, $nombre, $imagen, $id_tipo_elemental, $id_tipo_elemental2]);
     }
 
@@ -48,8 +48,8 @@ class ModelPokemon extends Model {
      * @param $id
      * Actualiza un pokemon en base al id pasado por parámetro
      */
-    function updatePokemon($id_region, $nombre, $imagen, $id_tipo_elemental, $id_tipo_elemental2){
-        $query = $this-> getDb()->prepare('UPDATE pokemon SET id_region = ?, nombre = ?, imagen = ?, id_tipo_elemental = ?, id_tipo_elemental2 = ? WHERE id_pokemon = ?');
-        $query->execute([$id_region, $nombre, $imagen, $id_tipo_elemental, $id_tipo_elemental2,$id_pokemon]);
+    function updatePokemon($id_region, $nombre, $imagen, $id_tipo_elemental, $id_tipo_elemental2, $id_pokemonViejo){
+        $query = $this-> getDb()->prepare('UPDATE pokemon SET id_region = ?, nombre = ?, imagen_pokemon = ?, id_tipo_elemental = ?, id_tipo_elemental2 = ? WHERE id_pokemon = ?');
+        $query->execute([$id_region, $nombre, $imagen, $id_tipo_elemental, $id_tipo_elemental2,$id_pokemonViejo]);
     }
 }

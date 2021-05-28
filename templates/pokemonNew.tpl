@@ -1,11 +1,15 @@
 {include 'templates/header.tpl'}
 <div class="container">
-    <form action="createTipoElemental" method="POST">
+    <form action="createPokemon" method="POST">
         <label for="numero_pokedex">Numero de Pokedex Nacional: </label>
         <input type="text" name="F_id_pokemon" placeholder="" />
        
+        <select name="F_id_region">
         <label for="region"> Region </label>
-        <input type="text" name="F_region" placeholder="" />
+        {foreach from = $listaRegiones item = region}
+            <option value="{$region->id_region}">{$region->nombre}</option>
+        {/foreach}
+        </select>
         
         <label for="nombre"> Nombre </label>
         <input type="text" name="F_nombre" placeholder="" />
@@ -14,20 +18,20 @@
         <input type="text" name="F_imagen" placeholder="" />
         
         <label for="tipo1"> Tipo Elemental </label>
-        <select namename="F_id_tipo_elemental">
+
+        <select name="F_id_tipo_elemental">
         {foreach from = $listaTipos item = tipo}
-            <option value="{$tipo->id_tipo_elemental}">{$tipo->nombre}</option>
+            <option value="{$tipo->id_tipo_elemental}"> {$tipo->nombre}</option>
         {/foreach}
         </select>
+
         <label for="tipo2"> Tipo Elemental </label>
-        <input type="checkbox">
-        {if}
-        <select namename="F_id_tipo_elemental2">
+        <select id="selecTipo2" name="F_id_tipo_elemental2" >
         {foreach from = $listaTipos item = tipo}
-            <option value="{$tipo->id_tipo_elemental}">{$tipo->nombre}</option>
+            <option value="{$tipo->id_tipo_elemental}"> {$tipo->nombre}</option>
         {/foreach}
         </select>
-        {/if}
+        <input type="checkbox" id="chequeo">
         <button id="botonCrear">Crear Pokemon</button>
     </form>
 </div>

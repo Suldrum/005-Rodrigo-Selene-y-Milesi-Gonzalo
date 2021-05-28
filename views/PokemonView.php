@@ -9,14 +9,18 @@ class PokemonView extends View {
     }
 //DEXTER DEBERIA ESTAR AQUI SEGUN YO, NO TENGO PRUEBAS PERO TAMPOCO DUDAS
 
-    public function showActualizarPokemon($pokemon) {
+    public function showActualizarPokemon($pokemon,$regiones,$tipos) {
         $this->getSmarty()->assign('pokemonActual',$pokemon);  
+        $this->getSmarty()->assign('listaTipos', $tipos);  
+        $this->getSmarty()->assign('listaRegiones', $regiones);
         $this->getSmarty()->display('templates/pokemonActualizar.tpl');
     }
 
-    public function showCrearPokemon() {
+    public function showCrearPokemon($regiones, $tipos) {
         $this->getSmarty()->assign('title', "Crear Pokemon");
-        $this->getSmarty()->assign('error', null);     
+        $this->getSmarty()->assign('error', null);
+        $this->getSmarty()->assign('listaTipos', $tipos);  
+        $this->getSmarty()->assign('listaRegiones', $regiones);       
         $this->getSmarty()->assign('home', BASE_URL.'home');
         $this->getSmarty()->display('templates/pokemonNew.tpl');
     }
