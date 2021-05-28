@@ -12,11 +12,11 @@ class RegionView extends View {
         $this->getSmarty()->assign('title', "Regiones");
         $this->getSmarty()->assign('error', null);     
         $this->getSmarty()->assign('listaRegiones',$listaRegiones);   
-        $this->getSmarty()->assign('home', BASE_URL.'home');
         $this->getSmarty()->display('templates/regiones.tpl');
     }
 
     public function showActualizarRegion($region) {
+        $this->getSmarty()->assign('title', "Actualizar Region");
         $this->getSmarty()->assign('regionActual',$region);  
         $this->getSmarty()->display('templates/regionActualizar.tpl');
     }

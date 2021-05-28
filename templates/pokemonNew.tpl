@@ -11,11 +11,7 @@
         {/foreach}
         </select>
         
-        <label for="nombre"> Nombre </label>
-        <input type="text" name="F_nombre" placeholder="" />
-        
-        <label for="imagen"> Link de la imagen </label>
-        <input type="text" name="F_imagen" placeholder="" />
+        {include 'templates/formNameImage.tpl'}
         
         <label for="tipo1"> Tipo Elemental </label>
 
@@ -32,7 +28,6 @@
             <option value="{$tipo->id_tipo_elemental}"> {$tipo->nombre}</option>
         {/foreach}
         </select>
-        <input type="checkbox" id="chequeo">
         <button id="botonCrear">Crear Pokemon</button>
     </form>
 </div>

@@ -12,10 +12,10 @@ class TipoElementalView extends View {
         $this->getSmarty()->assign('title', "Tipos Elementales");
         $this->getSmarty()->assign('error', null);
         $this->getSmarty()->assign('listaTipoElemental',$listaTipoElemental);        
-        $this->getSmarty()->assign('home', BASE_URL.'home');
         $this->getSmarty()->display('templates/tablatipos.tpl');
     }
     public function showActualizarTipoElemental($tipo) {
+        $this->getSmarty()->assign('title', "Actualizar Tipo");
         $this->getSmarty()->assign('tipoActual',$tipo);  
         $this->getSmarty()->display('templates/tipoActualizar.tpl');
     }

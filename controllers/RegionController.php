@@ -30,19 +30,19 @@ class RegionController {
         $name= $_POST['F_nombre'];
         $image= $_POST['F_imagen'];
         $this->model->newRegion($name, $image);
-        header("Location: " . BASE_URL . 'home');
+        header("Location: " . BASE_URL . 'regiones');
     }
 
     public function editRegion($id_region) {
         $name= $_POST['F_nombre'];
         $image= $_POST['F_imagen'];
         $this->model->updateRegion($name, $image, $id_region);
-        header("Location: " . BASE_URL . 'home');
+        header("Location: " . BASE_URL . 'regiones');
     }
 
     public function deleteRegion($id_region) {
         //PONER IF DE "ESTAS SEGURO?"
         $this->model->deleteRegion($id_region);
-        header("Location: " . BASE_URL . 'home');
+        header("Location: " . BASE_URL . 'regiones');
     }
 }

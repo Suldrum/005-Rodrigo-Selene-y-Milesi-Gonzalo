@@ -20,13 +20,13 @@ class UserView extends View {
         $this->getSmarty()->assign('error', $error);        
         $this->getSmarty()->assign('home', BASE_URL.'home');
         $this->getSmarty()->display('templates/registro.tpl');
-    }  
-
+    }
+    
     public function showPerfilUsuario($userData) {
         $this->getSmarty()->assign('title', "Perfil");
         $this->getSmarty()->assign('error',null);        
         $this->getSmarty()->assign('home', BASE_URL.'home');
         $this->getSmarty()->assign('usuarioDatos',$userData);
         $this->getSmarty()->display('templates/perfilUsuario.tpl');
-    }
+    }  
 }

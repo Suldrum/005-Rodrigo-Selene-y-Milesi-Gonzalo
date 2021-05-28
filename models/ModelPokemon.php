@@ -51,8 +51,6 @@ class ModelPokemon extends Model {
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
     
-
-
     /**
      * @param $id
      * @return mixed

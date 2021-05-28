@@ -17,13 +17,7 @@ class AdminController {
     public function showLogin() {
         $this->view->showLogin();
     }
-/*
-    public function showPerfilUsuario() {
-        $authHelper = new AuthHelper();
-        $AdminData = $authHelper->getAlltAdminData();
-        $this->view->showPerfilUsuario($AdminData);
-    }
-*/
+
     public function showRegistro() {
         $this->view->showRegistro();
     }    

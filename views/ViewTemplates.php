@@ -10,16 +10,11 @@ class ViewTemplates extends View {
     }
 
     function ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos){
+        $this->getSmarty()->assign('title', "Tabla - Pokedex");
         $this->getSmarty()->assign('listaPokemons',$listaPokemones);
         $this->getSmarty()->assign('listaRegiones',$listaRegiones);
         $this->getSmarty()->assign('listaTipos',$listaTipos);
         $this->getSmarty()->display('templates/tablaPokedex.tpl');
-    }
-
-    function ShowRegionVista ($listaRegiones){
-        $this->getSmarty()->assign('home',BASE_URL.'home');
-        $this->getSmarty()->assign('listaRegiones',$listaRegiones);
-        $this->getSmarty()->display('templates/regiones.tpl');
     }
 
     function ShowTarjetaVistaPokemon ($pokemon, $Region, $tipo1, $tipo2){
@@ -32,5 +27,11 @@ class ViewTemplates extends View {
             $this->getSmarty()->assign('tipoElemental2',$tipo2);
         }    
         $this->getSmarty()->display('templates/tarjetaPokemon.tpl');
-     }
+    }
+
+    function ShowRegionVista ($listaRegiones){
+        $this->getSmarty()->assign('title', "Regiones");
+        $this->getSmarty()->assign('listaRegiones',$listaRegiones);
+        $this->getSmarty()->display('templates/regiones.tpl');
+    }
 }

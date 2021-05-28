@@ -44,7 +44,7 @@ switch ($urlParts[0]) {
 		$userController->logout();
 		break;
 	case "perfilUsuario":
-		$userController->showperfilUsuario();
+		$userController->showPerfilUsuario();
 		break;
 	case "regiones":
 		$regionController->showRegiones();
@@ -127,7 +127,7 @@ switch ($urlParts[0]) {
 		$tipoController->editTipoElemental($urlParts[1]);
 		break;
 	case "eliminarTipoElemental":
-		$tipoController->deleteTipo_elemetal($urlParts[1]);
+		$tipoController->deleteTipo_Elemental($urlParts[1]);
 		break;
 ////////////// FIN ZONA DE ADMINISTRACION DE CATEGORIAS ////////
 

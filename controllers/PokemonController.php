@@ -65,11 +65,11 @@ class PokemonController {
         $image= $_POST['F_imagen'];
         $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
         if ($_POST['F_id_tipo_elemental2'] != "NADA")
-        $id_tipo_elemental2= $_POST['F_id_tipo_elemental2'];
+            $id_tipo_elemental2= $_POST['F_id_tipo_elemental2'];
         else
-        $id_tipo_elemental2= null;
+            $id_tipo_elemental2= null;
         $this->model->newPokemon($id_pokemon, $id_region, $name, $image, $id_tipo_elemental, $id_tipo_elemental2);
-        header("Location: " . BASE_URL . 'home');
+        header("Location: " . BASE_URL . 'dexter');
     }
 
     public function editPokemon($id_pokemonViejo) {
@@ -79,17 +79,17 @@ class PokemonController {
         $image= $_POST['F_imagen'];
         $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
         if ($_POST['F_id_tipo_elemental2'] != "NADA")
-        $id_tipo_elemental2= $_POST['F_id_tipo_elemental2'];
+            $id_tipo_elemental2= $_POST['F_id_tipo_elemental2'];
         else
-        $id_tipo_elemental2= null;
+            $id_tipo_elemental2= null;
         $this->model->updatePokemon($id_region, $name, $image, $id_tipo_elemental, $id_tipo_elemental2,$id_pokemonViejo);
-     //   header("Location: " . BASE_URL . 'home');
+        header("Location: " . BASE_URL . 'dexter');
     }
 
     public function deletePokemon($id_region) {
         //PONER IF DE "ESTAS SEGURO?"
         $this->model->deletePokemon($id_region);
-        header("Location: " . BASE_URL . 'home');
+        header("Location: " . BASE_URL . 'dexter');
     }
 
 }

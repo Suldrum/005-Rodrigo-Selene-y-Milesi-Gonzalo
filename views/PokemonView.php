@@ -7,9 +7,9 @@ class PokemonView extends View {
     public function __construct() {
         parent::__construct();
     }
-//DEXTER DEBERIA ESTAR AQUI SEGUN YO, NO TENGO PRUEBAS PERO TAMPOCO DUDAS
 
     public function showActualizarPokemon($pokemon,$regiones,$tipos) {
+        $this->getSmarty()->assign('title', "Actualizar Pokemon");
         $this->getSmarty()->assign('pokemonActual',$pokemon);  
         $this->getSmarty()->assign('listaTipos', $tipos);  
         $this->getSmarty()->assign('listaRegiones', $regiones);
