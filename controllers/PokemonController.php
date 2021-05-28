@@ -64,7 +64,10 @@ class PokemonController {
         $name= $_POST['F_nombre'];
         $image= $_POST['F_imagen'];
         $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
+        if ($_POST['F_id_tipo_elemental2'] != "NADA")
         $id_tipo_elemental2= $_POST['F_id_tipo_elemental2'];
+        else
+        $id_tipo_elemental2= null;
         $this->model->newPokemon($id_pokemon, $id_region, $name, $image, $id_tipo_elemental, $id_tipo_elemental2);
         header("Location: " . BASE_URL . 'home');
     }
@@ -75,7 +78,10 @@ class PokemonController {
         $name= $_POST['F_nombre'];
         $image= $_POST['F_imagen'];
         $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
+        if ($_POST['F_id_tipo_elemental2'] != "NADA")
         $id_tipo_elemental2= $_POST['F_id_tipo_elemental2'];
+        else
+        $id_tipo_elemental2= null;
         $this->model->updatePokemon($id_region, $name, $image, $id_tipo_elemental, $id_tipo_elemental2,$id_pokemonViejo);
      //   header("Location: " . BASE_URL . 'home');
     }
