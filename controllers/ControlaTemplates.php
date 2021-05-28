@@ -24,8 +24,10 @@ class ControlaTemplates {
     }  
 
     function showPokedex(){
-        $pokemons = $this->model->getAll();
-        $this->view->ShowPokedexVista ($pokemons);
+        $listaRegiones = $this->modelRegion->getAll();
+        $listaTipos = $this->modelTipo->getAll();
+        $listaPokemones = $this->model->getAll();
+        $this->view->ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos);
     }
 
     function showRegiones() {
@@ -37,6 +39,21 @@ class ControlaTemplates {
         $regionData = $this->model->getRegiongetRegion();
         $this->view->ShowRegionVista($regionData);
     } 
+
+    function showPokedexTypeFilter($id_tipo_elemental){
+        $pokemons = $this->model->getAllByType($id_tipo_elemental);
+        $this->view->ShowPokedexVista ($pokemons);
+    }
+
+    function showPokedexRegionFilter($id_region){
+        $pokemons = $this->model->getAllByRegion($id_region);
+        $this->view->ShowPokedexVista ($pokemons);
+    }
+
+    function showPokedexAllFilters($id_region,$id_tipo_elemental){
+        $pokemons = $this->model->getAllFiltro($id_region,$id_tipo_elemental);
+        $this->view->ShowPokedexVista ($pokemons);
+    }
 
     function showTarjetaPokemon($idPokemon){
         $pokemon = $this->model->getPokemon($idPokemon);

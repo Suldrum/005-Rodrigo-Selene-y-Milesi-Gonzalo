@@ -1,5 +1,7 @@
 {include 'templates/header.tpl'}
+{include 'templates/filtro.tpl'}
 <div class="container">
+
     <table id="tablaPokedex" class="tableFixHead">
         <thead>
             <tr>

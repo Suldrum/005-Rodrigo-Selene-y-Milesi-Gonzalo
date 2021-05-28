@@ -52,6 +52,17 @@ switch ($urlParts[0]) {
 	case "verTarjetaPokemon":
 		$ControlaTemplates->showTarjetaPokemon($urlParts[1]);
 		break;
+//ZONA DE FILTROS
+case "filtroRegion":
+	$ControlaTemplates->showPokedexRegionFilter($urlParts[1]);
+	break;
+case "filtroTipo":
+	$ControlaTemplates->showPokedexTypeFilter($urlParts[1]);
+	break;
+case "filtroAll":
+	$ControlaTemplates->showPokedexAllFilters($urlParts[1],$urlParts[2]);
+	break;
+
 //ZONA DE ADMINISTRADORES
  	case 'loginAdmin':
 		$adminController->showLogin();

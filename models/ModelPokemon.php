@@ -14,7 +14,45 @@ class ModelPokemon extends Model {
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     * Retorna todos los pokemons en la tabla Pokemon que pertenezcan a una region pasada por parametro
+     */
+    function getAllByRegion($id_region) {
+
+        $query = $this->getDb()->prepare('SELECT * FROM pokemon WHERE id_region = ? ORDER BY id_pokemon ASC');
+        $query->execute([$id_region]);
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+        /**
+     * @param $id
+     * @return mixed
+     * Retorna todos los pokemons en la tabla Pokemon que pertenezcan a sean de un tipo pasado por parametro
+     */
+    function getAllByType($id_tipo_elemental) {
+
+        $query = $this->getDb()->prepare('SELECT * FROM pokemon WHERE (id_tipo_elemental = ? OR id_tipo_elemental2 = ? ) ORDER BY id_pokemon ASC');
+        $query->execute([$id_tipo_elemental]);
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * @param $id_region,$id_tipo_elemental
+     * @return mixed
+     * Retorna todos los pokemons en la tabla Pokemon que sean de una region y de un tipo elemental pasados por parametro
+     */
+    function getAllFiltro($id_region,$id_tipo_elemental) {
+
+        $query = $this->getDb()->prepare('SELECT * FROM pokemon WHERE (id_region = ? AND (id_tipo_elemental = ? OR id_tipo_elemental2 = ? )) ORDER BY id_pokemon ASC');
+        $query->execute([$id_tipo_elemental]);
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
     
+
+
     /**
      * @param $id
      * @return mixed
