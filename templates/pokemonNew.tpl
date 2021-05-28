@@ -27,7 +27,7 @@
 
         <label for="tipo2"> Tipo Elemental </label>
         <select id="selecTipo2" name="F_id_tipo_elemental2" >
-        <option value="NADA"> NINGUNO</option>
+        <option value="NADA">---</option>
         {foreach from = $listaTipos item = tipo}
             <option value="{$tipo->id_tipo_elemental}"> {$tipo->nombre}</option>
         {/foreach}
