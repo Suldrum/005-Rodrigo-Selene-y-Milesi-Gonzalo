@@ -9,6 +9,7 @@
     {if {$tipoElemental2}!=NULL}
             <img src="{$tipoElemental2}">
     {/if}
+    <a class='navegacion' href="dexter">Volver</a>
 </div>
 
 {include 'templates/footer.tpl'}

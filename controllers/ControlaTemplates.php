@@ -43,8 +43,8 @@ class ControlaTemplates {
     function showTarjetaPokemon($idPokemon){
         $pokemon = $this->model->getPokemon($idPokemon);
         $region = $this->modelRegion->getRegion($pokemon->id_region);
-        $tipo1 = $this->modelTipo->getTipo_elemetal($pokemon->id_tipo_elemental);
-        $tipo2 = $this->modelTipo->getTipo_elemetal($pokemon->id_tipo_elemental2);
+        $tipo1 = $this->modelTipo->getTipo_Elemental($pokemon->id_tipo_elemental);
+        $tipo2 = $this->modelTipo->getTipo_Elemental($pokemon->id_tipo_elemental2);
         $this->view->ShowTarjetaVistaPokemon($pokemon,$region,$tipo1,$tipo2);
     }
 
