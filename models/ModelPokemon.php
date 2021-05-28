@@ -35,7 +35,7 @@ class ModelPokemon extends Model {
     function getAllByType($id_tipo_elemental) {
 
         $query = $this->getDb()->prepare('SELECT * FROM pokemon WHERE (id_tipo_elemental = ? OR id_tipo_elemental2 = ? ) ORDER BY id_pokemon ASC');
-        $query->execute([$id_tipo_elemental]);
+        $query->execute([$id_tipo_elemental,$id_tipo_elemental]);
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
@@ -47,7 +47,7 @@ class ModelPokemon extends Model {
     function getAllFiltro($id_region,$id_tipo_elemental) {
 
         $query = $this->getDb()->prepare('SELECT * FROM pokemon WHERE (id_region = ? AND (id_tipo_elemental = ? OR id_tipo_elemental2 = ? )) ORDER BY id_pokemon ASC');
-        $query->execute([$id_tipo_elemental]);
+        $query->execute([$id_region, $id_tipo_elemental,$id_tipo_elemental]);
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
     

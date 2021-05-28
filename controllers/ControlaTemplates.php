@@ -40,19 +40,29 @@ class ControlaTemplates {
         $this->view->ShowRegionVista($regionData);
     } 
 
-    function showPokedexTypeFilter($id_tipo_elemental){
-        $pokemons = $this->model->getAllByType($id_tipo_elemental);
-        $this->view->ShowPokedexVista ($pokemons);
+    function showPokedexTypeFilter(){
+        $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
+        $listaRegiones = $this->modelRegion->getAll();
+        $listaTipos = $this->modelTipo->getAll();
+        $listaPokemones = $this->model->getAllByType($id_tipo_elemental);
+        $this->view->ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos);
     }
 
-    function showPokedexRegionFilter($id_region){
-        $pokemons = $this->model->getAllByRegion($id_region);
-        $this->view->ShowPokedexVista ($pokemons);
+    function showPokedexRegionFilter(){
+        $id_region= $_POST['F_id_region'];
+        $listaRegiones = $this->modelRegion->getAll();
+        $listaTipos = $this->modelTipo->getAll();
+        $listaPokemones = $this->model->getAllByRegion($id_region);
+        $this->view->ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos);
     }
 
-    function showPokedexAllFilters($id_region,$id_tipo_elemental){
-        $pokemons = $this->model->getAllFiltro($id_region,$id_tipo_elemental);
-        $this->view->ShowPokedexVista ($pokemons);
+    function showPokedexAllFilters(){
+        $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
+        $id_region= $_POST['F_id_region'];
+        $listaRegiones = $this->modelRegion->getAll();
+        $listaTipos = $this->modelTipo->getAll();
+        $listaPokemones = $this->model->getAllFiltro($id_region,$id_tipo_elemental);
+        $this->view->ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos);
     }
 
     function showTarjetaPokemon($idPokemon){

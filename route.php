@@ -54,13 +54,13 @@ switch ($urlParts[0]) {
 		break;
 //ZONA DE FILTROS
 case "filtroRegion":
-	$ControlaTemplates->showPokedexRegionFilter($urlParts[1]);
+	$ControlaTemplates->showPokedexRegionFilter();
 	break;
 case "filtroTipo":
-	$ControlaTemplates->showPokedexTypeFilter($urlParts[1]);
+	$ControlaTemplates->showPokedexTypeFilter();
 	break;
 case "filtroAll":
-	$ControlaTemplates->showPokedexAllFilters($urlParts[1],$urlParts[2]);
+	$ControlaTemplates->showPokedexAllFilters();
 	break;
 
 //ZONA DE ADMINISTRADORES
