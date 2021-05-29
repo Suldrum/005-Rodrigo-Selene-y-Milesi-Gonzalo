@@ -51,7 +51,7 @@ class PokemonController {
     }
 
     public function editPokemon($id_pokemonViejo) {
-        if (!empty($_POST['F_nombre']) && !empty($_POST['F_imagen']) && !empty($_POST['F_id_pokemon'])) {
+        if (!empty($_POST['F_nombre']) && !empty($_POST['F_imagen'])) {
         //    $id_pokemon= $_POST['F_id_pokemon'];
             $id_region= $_POST['F_id_region'];
             $name= $_POST['F_nombre'];
