@@ -63,8 +63,12 @@ class ControlaTemplates {
             {
                 if ($id_tipo_elemental != "NADA")
                     $listaPokemones = $this->model->getAllByType($id_tipo_elemental);
-        
+                else{
+                        if (($id_region == "NADA") && ($id_tipo_elemental == "NADA"))
+                            header("Location: " . BASE_URL . 'dexter');
+                    }
             }
+            
         }
         $listaRegiones = $this->modelRegion->getAll();
         $listaTipos = $this->modelTipo->getAll();
