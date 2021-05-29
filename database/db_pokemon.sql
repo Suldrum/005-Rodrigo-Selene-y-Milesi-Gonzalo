@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 27-05-2021 a las 22:21:01
+-- Tiempo de generación: 29-05-2021 a las 00:21:04
 -- Versión del servidor: 8.0.18
 -- Versión de PHP: 7.3.21
 
@@ -43,8 +43,6 @@ CREATE TABLE IF NOT EXISTS `administrador` (
 --
 
 INSERT INTO `administrador` (`id_administrador`, `nombre`, `apellido`, `email`, `contraseña`) VALUES
-(1, 'admin1', 'admin1', 'admin1@administracion.com', '1234'),
-(2, 'admin2', 'admin2', 'admin2@administracion.com', '1234'),
 (4, 'Chino', 'Milesi', 'chinomilesi@gmail.com', '$2y$10$N.XK.x.NUR8kjXQBx4lG4.Y6ZzVuHJiszgV3L63ybBsR7ND7NQFYe');
 
 -- --------------------------------------------------------
@@ -70,11 +68,6 @@ CREATE TABLE IF NOT EXISTS `entrenador` (
 --
 
 INSERT INTO `entrenador` (`id_entrenador`, `nombre`, `apellido`, `apodo`, `email`, `contraseña`) VALUES
-(1, 'juan', 'perez', 'Papo123', 'juan_perez@gmail.com', 'Papo123'),
-(2, 'Maria', 'Magdalena', 'MotherOfGod', 'prayGod@heaven.com.ar', 'MotherOfGod'),
-(3, 'Ash', 'Ketchum', 'ultimateTrainer', 'ultimateTrainer@entrenador.es', 'ultimateTrainer'),
-(4, 'Misty', 'Waterflower', 'tropicalWaterfall', 'aquatic@aqua.mar', 'tropicalWaterfall'),
-(5, 'Gary', 'Oak', 'ChampionBlue', 'ViridianCity@gymleader.kan', 'ChampionBlue'),
 (6, 'hola', 'hola', 'hola', 'hola@hola', '$2y$10$mx9GQGGXkoasFn7EEHrRZOpmwj/ZU1Dx1mIUA29Z.g81arnq4LhnW');
 
 -- --------------------------------------------------------
@@ -203,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `tipo_elemental` (
   `nombre` varchar(11) NOT NULL,
   `imagen_tipo` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id_tipo_elemental`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `tipo_elemental`
