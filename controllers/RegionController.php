@@ -27,17 +27,26 @@ class RegionController {
     }
 
     public function createRegion() {
-        $name= $_POST['F_nombre'];
-        $image= $_POST['F_imagen'];
-        $this->model->newRegion($name, $image);
-        header("Location: " . BASE_URL . 'regiones');
+        if (!empty($_POST['F_nombre']) && !empty($_POST['F_imagen'])) {
+            $name= $_POST['F_nombre'];
+            $image= $_POST['F_imagen'];
+            $this->model->newRegion($name, $image);
+            header("Location: " . BASE_URL . 'regiones');
+        }else {
+            header("Location: " . BASE_URL . 'createRegion');
+        }
     }
 
-    public function editRegion($id_region) {
-        $name= $_POST['F_nombre'];
-        $image= $_POST['F_imagen'];
-        $this->model->updateRegion($name, $image, $id_region);
-        header("Location: " . BASE_URL . 'regiones');
+    public function editRegion($id_region) {  
+        if (!empty($_POST['F_nombre']) && !empty($_POST['F_imagen'])) {
+            $name= $_POST['F_nombre'];
+            $image= $_POST['F_imagen'];
+            $this->model->updateRegion($name, $image, $id_region);
+            header("Location: " . BASE_URL . 'regiones');
+        }else {
+            header("Location: " . BASE_URL . 'editarRegion/'.$id_region);
+        }
+        
     }
 
     public function deleteRegion($id_region) {

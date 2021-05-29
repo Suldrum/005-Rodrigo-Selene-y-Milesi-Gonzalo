@@ -27,17 +27,25 @@ class TipoElementalController {
     }
 
     public function createTipoElemental() {
-        $name= $_POST['F_nombre'];
-        $image= $_POST['F_imagen'];
-        $this->model->newTipo_Elemental($name, $image);
-        header("Location: " . BASE_URL . 'tablatipos');
+        if (!empty($_POST['F_nombre']) && !empty($_POST['F_imagen'])) {
+                $name= $_POST['F_nombre'];
+                $image= $_POST['F_imagen'];
+                $this->model->newTipo_Elemental($name, $image);
+                header("Location: " . BASE_URL . 'tablatipos');
+            }else {
+                header("Location: " . BASE_URL . 'createTipoElemental');
+            }
     }
 
-    public function editTipoElemental($id_region) {
-        $name= $_POST['F_nombre'];
-        $image= $_POST['F_imagen'];
-        $this->model->updateTipo_Elemental($name, $image, $id_region);
-        header("Location: " . BASE_URL . 'tablatipos');
+    public function editTipoElemental($id_tipo_elemental) {
+        if (!empty($_POST['F_nombre']) && !empty($_POST['F_imagen'])) {
+            $name= $_POST['F_nombre'];
+            $image= $_POST['F_imagen'];
+            $this->model->updateTipo_Elemental($name, $image, $id_tipo_elemental);
+            header("Location: " . BASE_URL . 'tablatipos');
+        }else {
+            header("Location: " . BASE_URL . 'editarTipoElemental/'.$id_tipo_elemental);
+        }
     }
 
     public function deleteTipo_Elemental($id_tipo_elemental) {
