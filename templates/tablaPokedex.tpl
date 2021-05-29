@@ -1,41 +1,44 @@
 {include 'templates/header.tpl'}
 {include 'templates/filtro.tpl'}
-<div class="container">
-
-    <table id="tablaPokedex" class="table table-dark table-sm">
-        <thead>
-            <tr class="align-middle">
-                <th>#</th>
-                <th>Imagen</th>
-                <th>Nombre</th>
-                <th>Ver detalle</th>
-                {if ($userLogged['admin'])}
-                    <th>Editar</th>
-                    <th>Borrar</th>
-                {/if}
-            </tr>
-        </thead>
-        <tbody>
-            {foreach from=$listaPokemons item=pokemon}
+<div class="m-0 row justify-content-center">
+    <div class=" col-auto m-2 text-center" style="height: 540px; overflow: scroll;">
+        <table class="table  table-dark">
+            <thead>
                 <tr class="align-middle">
-                    <td>{$pokemon->id_pokemon}</td>
-                    <td><img src="{$pokemon->imagen_pokemon}"></td>
-                    <td>{$pokemon->nombre}</td>
-                    <td>  <a href="verTarjetaPokemon/{$pokemon->id_pokemon}">+</a>  </td>
+                    <th style=" position: sticky; top: 0; z-index: 1; ">#</th>
+                    <th style=" position: sticky; top: 0; z-index: 1; ">Imagen</th>
+                    <th style=" position: sticky; top: 0; z-index: 1; ">Nombre</th>
+                    <th style=" position: sticky; top: 0; z-index: 1; ">Ver detalle</th>
                     {if ($userLogged['admin'])}
-                        <td>   
-                        <button id="botonActualizarTipo" onclick="location.href='editarPokemon/{$pokemon->id_pokemon}'" >Editar</button>
-                        </td>
-                        <td>    
-                        <button id="botonEliminarTipo" onclick="location.href='eliminarPokemon/{$pokemon->id_pokemon}'" >BORRAR</button>
-                        </td>
+                        <th style=" position: sticky; top: 0; z-index: 1; ">Editar</th>
+                        <th style=" position: sticky; top: 0; z-index: 1; ">Borrar</th>
                     {/if}
                 </tr>
-            {/foreach}
-        </tbody>
-    </table>
-    {if ($userLogged['admin'])}
-        <button class="btn btn-outline-success" onclick="location.href='crearPokemon'" >Crear Pokemon</button></td>
-    {/if}
+            </thead>
+            <tbody>
+                {foreach from=$listaPokemons item=pokemon}
+                    <tr class="align-middle">
+                        <td>{$pokemon->id_pokemon}</td>
+                        <td><img src="{$pokemon->imagen_pokemon}"></td>
+                        <td>{$pokemon->nombre}</td>
+                        <td> <a href="verTarjetaPokemon/{$pokemon->id_pokemon}">+</a> </td>
+                        {if ($userLogged['admin'])}
+                            <td>
+                                <button id="botonActualizarTipo"
+                                    onclick="location.href='editarPokemon/{$pokemon->id_pokemon}'">Editar</button>
+                            </td>
+                            <td>
+                                <button id="botonEliminarTipo"
+                                    onclick="location.href='eliminarPokemon/{$pokemon->id_pokemon}'">BORRAR</button>
+                            </td>
+                        {/if}
+                    </tr>
+                {/foreach}
+            </tbody>
+        </table>
+        {if ($userLogged['admin'])}
+            <button class="btn btn-outline-success" onclick="location.href='crearPokemon'">Crear Pokemon</button></td>
+        {/if}
+    </div>
 </div>
 {include 'templates/footer.tpl'}
