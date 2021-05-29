@@ -28,7 +28,7 @@
             <option value="{$tipo->id_tipo_elemental}"> {$tipo->nombre}</option>
         {/foreach}
         </select>
-        <button id="botonCrear">Crear Pokemon</button>
+        <button class="btn btn-outline-success">Crear Pokemon</button>
     </form>
 </div>
 {include 'templates/footer.tpl'}

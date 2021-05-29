@@ -46,7 +46,7 @@
     {/foreach}
     </select>
     
-    <button id="botonCrear">Editar Pokemon</button>
+    <button class="btn btn-outline-success">Editar Pokemon</button>
 </form>
 </div>
 {include 'templates/footer.tpl'}

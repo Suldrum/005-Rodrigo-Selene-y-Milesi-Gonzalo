@@ -9,7 +9,7 @@
     <div id= "datosRegionNuevos">
     <form action="editRegion/{$regionActual->id_region}" method="POST">
         {include 'templates/formNameImage.tpl'}
-        <button id="botonIngresar">Actualizar Region</button>
+        <button class="btn btn-outline-success">Actualizar Region</button>
     </form>
 </div>
 {include 'templates/footer.tpl'}

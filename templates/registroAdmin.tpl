@@ -9,7 +9,7 @@
         <input type="text" name="F_apellido" placeholder=""/>
 
         {include 'templates/formEmailPass.tpl'}
-        <button id="botonRegistrar">Dar de alta administrador</button>
+        <button class="btn btn-outline-success">Dar de alta administrador</button>
     </form>
 </div>
 
