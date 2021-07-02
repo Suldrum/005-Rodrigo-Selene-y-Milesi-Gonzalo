@@ -22,6 +22,9 @@ $tipoController = new TipoElementalController();
 $pokemonController = new PokemonController();
 
 switch ($urlParts[0]) {
+	case 'usuarios':
+		$ControlaTemplates->showUsuarios();
+		break;
 	case 'home':
 		$ControlaTemplates->showHome();
 		break;

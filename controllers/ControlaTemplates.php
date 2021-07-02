@@ -21,6 +21,10 @@ class ControlaTemplates {
     /*hay que seguir armandolo */
     function showHome() {
         $this->view->showHomeVista();
+    }
+    
+    function showUsuarios() {
+        $this->view->showUsuarios();
     }  
 
     function showPokedex(){

@@ -35,6 +35,8 @@ class UserController {
         $email= $_POST['F_email'];
         $pass = $_POST['F_contraseña'];
         $this->model->add($name, $lastName, $user, $email, $pass);
+        $userDb = $this->model->getUserByUsername($email);
+        AuthHelper::login($userDb);
         header("Location: " . BASE_URL . 'home');
     }
 
