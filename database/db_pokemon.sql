@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 29-05-2021 a las 00:21:04
+-- Servidor: 127.0.0.1:3308
+-- Tiempo de generación: 03-07-2021 a las 22:39:14
 -- Versión del servidor: 8.0.18
--- Versión de PHP: 7.3.21
+-- Versión de PHP: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,51 +25,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `administrador`
+-- Estructura de tabla para la tabla `comentario`
 --
 
-DROP TABLE IF EXISTS `administrador`;
-CREATE TABLE IF NOT EXISTS `administrador` (
-  `id_administrador` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(20) NOT NULL,
-  `apellido` varchar(20) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `contraseña` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  PRIMARY KEY (`id_administrador`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `administrador`
---
-
-INSERT INTO `administrador` (`id_administrador`, `nombre`, `apellido`, `email`, `contraseña`) VALUES
-(4, 'Chino', 'Milesi', 'chinomilesi@gmail.com', '$2y$10$N.XK.x.NUR8kjXQBx4lG4.Y6ZzVuHJiszgV3L63ybBsR7ND7NQFYe');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `entrenador`
---
-
-DROP TABLE IF EXISTS `entrenador`;
-CREATE TABLE IF NOT EXISTS `entrenador` (
-  `id_entrenador` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(20) NOT NULL,
-  `apellido` varchar(20) NOT NULL,
-  `apodo` varchar(20) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `contraseña` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  PRIMARY KEY (`id_entrenador`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `entrenador`
---
-
-INSERT INTO `entrenador` (`id_entrenador`, `nombre`, `apellido`, `apodo`, `email`, `contraseña`) VALUES
-(6, 'hola', 'hola', 'hola', 'hola@hola', '$2y$10$mx9GQGGXkoasFn7EEHrRZOpmwj/ZU1Dx1mIUA29Z.g81arnq4LhnW');
+DROP TABLE IF EXISTS `comentario`;
+CREATE TABLE IF NOT EXISTS `comentario` (
+  `id_comentario` int(11) NOT NULL AUTO_INCREMENT,
+  `id_fk_pokemon` int(11) NOT NULL,
+  `id_fk_usuario` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `calificacion` tinyint(4) NOT NULL,
+  `texto` text,
+  PRIMARY KEY (`id_comentario`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -88,14 +57,14 @@ CREATE TABLE IF NOT EXISTS `pokemon` (
   KEY `id_region` (`id_region`),
   KEY `id_tipo_elemental` (`id_tipo_elemental`,`id_tipo_elemental2`) USING BTREE,
   KEY `id_tipo_elemental2` (`id_tipo_elemental2`)
-) ENGINE=InnoDB AUTO_INCREMENT=817 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `pokemon`
 --
 
 INSERT INTO `pokemon` (`id_pokemon`, `id_region`, `nombre`, `imagen_pokemon`, `id_tipo_elemental`, `id_tipo_elemental2`) VALUES
-(1, 1, 'Bulbasaur', 'https://images.wikidexcdn.net/mwuploads/wikidex/thumb/4/43/latest/20190406170624/Bulbasaur.png/260px-Bulbasaur.png', 12, 17),
+(1, 1, 'Bulbasaur', '/imagenes/Pokemon/Bulbasaur.png', 12, 17),
 (2, 1, 'Yvysaur', 'https://static.wikia.nocookie.net/espokemon/images/8/86/Ivysaur.png', 12, 17),
 (4, 1, 'Charmander', 'https://static.wikia.nocookie.net/espokemon/images/5/56/Charmander.png', 7, NULL),
 (5, 1, 'Charmeleon', 'https://static.wikia.nocookie.net/espokemon/images/f/fb/Charmeleon.png', 7, NULL),
@@ -165,7 +134,7 @@ INSERT INTO `pokemon` (`id_pokemon`, `id_region`, `nombre`, `imagen_pokemon`, `i
 DROP TABLE IF EXISTS `region`;
 CREATE TABLE IF NOT EXISTS `region` (
   `id_region` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(11) NOT NULL,
+  `nombre` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `imagen_region` varchar(150) NOT NULL,
   PRIMARY KEY (`id_region`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Esta tabla refiere a las regiones que existen en el juego';
@@ -193,7 +162,7 @@ INSERT INTO `region` (`id_region`, `nombre`, `imagen_region`) VALUES
 DROP TABLE IF EXISTS `tipo_elemental`;
 CREATE TABLE IF NOT EXISTS `tipo_elemental` (
   `id_tipo_elemental` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(11) NOT NULL,
+  `nombre` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `imagen_tipo` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id_tipo_elemental`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -203,24 +172,48 @@ CREATE TABLE IF NOT EXISTS `tipo_elemental` (
 --
 
 INSERT INTO `tipo_elemental` (`id_tipo_elemental`, `nombre`, `imagen_tipo`) VALUES
-(1, 'Acero', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/2/2c/Type_Acero.png'),
+(1, 'Acero', 'imagenes/Tipo/Type_Acero.png'),
 (2, 'Agua', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/b/b7/Type_Agua.png'),
 (3, 'Bicho', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/9/91/Type_Bicho.png'),
 (4, 'Dragón', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/d/d4/Type_Drag%C3%B3n.png'),
 (5, 'Eléctrico', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/c/c7/Type_El%C3%A9ctrico.png'),
-(6, 'Fantasma', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/1/11/Type_Fantasma.png'),
+(6, 'Fantasma', 'https://pokemongo.fandom.com/es/wiki/Archivo:Type_Fantasma.png'),
 (7, 'Fuego', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/3/38/Type_Fuego.png'),
 (8, 'Hada', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/4/49/Type_Hada.png'),
 (9, 'Hielo', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/3/35/Type_Hielo.png'),
 (10, 'Lucha', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/6/66/Type_Lucha.png'),
 (11, 'Normal', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/2/23/Type_Normal.png'),
-(12, 'Planta', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/6/60/Type_Planta.png'),
+(12, 'Planta', 'imagenes/Tipo/Type_Planta.png'),
 (13, 'Psíquico', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/7/72/Type_Ps%C3%ADquico.png'),
 (14, 'Roca', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/b/b3/Type_Roca.png'),
 (15, 'Siniestro', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/3/39/Type_Siniestro.png'),
 (16, 'Tierra', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/4/49/Type_Tierra.png'),
 (17, 'Veneno', 'https://static.wikia.nocookie.net/pokemongo_gamepedia_en/images/9/90/Type_Poison.png'),
 (18, 'Volador', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/8/80/Type_Volador.png');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(50) NOT NULL,
+  `contraseña` varchar(500) NOT NULL,
+  `nombre` varchar(20) NOT NULL,
+  `apellido` varchar(20) NOT NULL,
+  `administrador` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`ID`, `email`, `contraseña`, `nombre`, `apellido`, `administrador`) VALUES
+(2, 'hola@hola', '$2y$10$yiQieHg9ORhiOWTJC7HFD.XzZAKa2yT46sTDYsR7J/iafsjl6VVA2', 'hola', 'hola', 1);
 
 --
 -- Restricciones para tablas volcadas
