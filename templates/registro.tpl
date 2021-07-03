@@ -8,9 +8,6 @@
         <label for="apellido">apellido </label>
         <input type="text" name="F_apellido" placeholder=""/>
 
-        <label for="apodo">apodo </label>
-        <input type="text" name="F_apodo" placeholder=""/>
-
         {include 'templates/formEmailPass.tpl'}
         <button id="botonRegistrar">¡Unete ahora!</button>
     </form>

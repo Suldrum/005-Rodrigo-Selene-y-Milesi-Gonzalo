@@ -28,7 +28,7 @@
                 </td>
             {/if}
             <td>
-                <button onclick="location.href='eliminarAdmin/{$user->ID}'">BORRAR</button>
+                <button onclick="location.href='eliminarUser/{$user->ID}'">BORRAR</button>
             </td>
         </tr>
     {/foreach}

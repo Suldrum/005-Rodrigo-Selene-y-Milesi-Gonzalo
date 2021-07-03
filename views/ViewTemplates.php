@@ -9,10 +9,6 @@ class ViewTemplates extends View {
         $this->getSmarty()->display('templates/home.tpl');
     }
 
-    function showUsuarios() {
-        $this->getSmarty()->assign('home',BASE_URL.'home');
-        $this->getSmarty()->display('templates/tablaUsuarios.tpl');
-    }  
     function ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos){
         $this->getSmarty()->assign('title', "Tabla - Pokedex");
         $this->getSmarty()->assign('listaPokemons',$listaPokemones);

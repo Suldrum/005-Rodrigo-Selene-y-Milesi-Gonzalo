@@ -8,7 +8,6 @@ require_once('controllers/UserController.php');
 require_once('controllers/TipoElementalController.php');
 require_once('controllers/PokemonController.php');
 require_once('controllers/RegionController.php');
-require_once('controllers/AdminController.php');
 
 if ($_GET['action'] == '')
 	$_GET['action'] = 'home';
@@ -16,14 +15,13 @@ if ($_GET['action'] == '')
 $urlParts = explode('/', $_GET['action']);
 $ControlaTemplates = new ControlaTemplates();
 $userController = new UserController();
-$adminController = new AdminController();
 $regionController = new RegionController();
 $tipoController = new TipoElementalController();
 $pokemonController = new PokemonController();
 
 switch ($urlParts[0]) {
 	case 'usuarios':
-		$ControlaTemplates->showUsuarios();
+		$userController->showUsuarios();
 		break;
 	case 'home':
 		$ControlaTemplates->showHome();
@@ -61,19 +59,17 @@ switch ($urlParts[0]) {
 		$ControlaTemplates->showPokedexFilter();
 	break;
 
-//ZONA DE ADMINISTRADORES
- 	case 'loginAdmin':
-		$adminController->showLogin();
-		break;
-	case 'verifyAdmin':
-		$adminController->verifyAdmin();
-		break;	
-	case 'registroAdmin':
-		$adminController->showRegistro();
-		break;
-	case 'registrarAdmin':
-		$adminController->registrar();
-		break;
+////////////// ZONA DE ADMINISTRACION DE USUARIOS ////////
+
+case "bajaAdmin":
+	$userController->bajaAdmin($urlParts[1]);
+	break;
+case "altaAdmin":
+	$userController->altaAdmin($urlParts[1]);
+	break;
+case "eliminarUser":
+	$userController->deleteUser($urlParts[1]);
+	break;
 
 ////////////// ZONA DE ADMINISTRACION DE CATEGORIAS ////////
 	

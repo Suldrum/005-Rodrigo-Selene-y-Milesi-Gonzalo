@@ -22,10 +22,6 @@ class ControlaTemplates {
     function showHome() {
         $this->view->showHomeVista();
     }
-    
-    function showUsuarios() {
-        $this->view->showUsuarios();
-    }  
 
     function showPokedex(){
         $listaRegiones = $this->modelRegion->getAll();

@@ -22,6 +22,9 @@
                     {/if}
                     <a class="nav-item nav-link " href="logout">Logout<span class="sr-only"></span></a>
                 </div>
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-item nav-link " href="usuarios">Lista de usuarios<span class="sr-only"></span></a>
+                </div>
             {else}
                 <!--SI NO HAY UN USUARIO ACTIVO-->
                 <div class="navbar-nav ml-auto">
@@ -29,9 +32,6 @@
                 </div>
                 <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link " href="registro">Registrar<span class="sr-only"></span></a>
-                </div>
-                <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link " href="usuarios">Lista de usuarios<span class="sr-only"></span></a>
                 </div>
             {/if}
 

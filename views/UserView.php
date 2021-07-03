@@ -28,5 +28,11 @@ class UserView extends View {
         $this->getSmarty()->assign('home', BASE_URL.'home');
         $this->getSmarty()->assign('usuarioDatos',$userData);
         $this->getSmarty()->display('templates/perfilUsuario.tpl');
+    }
+    
+    function showUsuarios($listaUsuarios) {
+        $this->getSmarty()->assign('home',BASE_URL.'home');
+        $this->getSmarty()->assign('listaUsuarios',$listaUsuarios);
+        $this->getSmarty()->display('templates/tablaUsuarios.tpl');
     }  
 }
