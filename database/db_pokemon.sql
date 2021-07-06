@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `pokemon` (
 --
 
 INSERT INTO `pokemon` (`id_pokemon`, `id_region`, `nombre`, `imagen_pokemon`, `id_tipo_elemental`, `id_tipo_elemental2`) VALUES
-(1, 1, 'Bulbasaur', '/imagenes/Pokemon/Bulbasaur.png', 12, 17),
+(1, 1, 'Bulbasaur', 'https://images.wikidexcdn.net/mwuploads/wikidex/archive/4/43/20080715101726%21Bulbasaur.png', 12, 17),
 (2, 1, 'Yvysaur', 'https://static.wikia.nocookie.net/espokemon/images/8/86/Ivysaur.png', 12, 17),
 (4, 1, 'Charmander', 'https://static.wikia.nocookie.net/espokemon/images/5/56/Charmander.png', 7, NULL),
 (5, 1, 'Charmeleon', 'https://static.wikia.nocookie.net/espokemon/images/f/fb/Charmeleon.png', 7, NULL),

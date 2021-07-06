@@ -21,10 +21,15 @@ class ModelPokemon extends Model {
      * Retorna todos los pokemons en la tabla Pokemon que pertenezcan a una region pasada por parametro
      */
     function getAllByRegion($id_region) {
-
+/*
         $query = $this->getDb()->prepare('SELECT * FROM pokemon WHERE id_region = ? ORDER BY id_pokemon ASC');
         $query->execute([$id_region]);
         return $query->fetchAll(PDO::FETCH_OBJ);
+        */
+        $id_region = 20;
+        $query = $this->getDb()->prepare('SELECT * FROM pokemon LIMIT 10 OFFSET 5');
+        $query->execute();
+        return $query->fetch(PDO::FETCH_OBJ);
     }
 
         /**
@@ -87,5 +92,16 @@ class ModelPokemon extends Model {
     function updatePokemon($id_region, $nombre, $imagen, $id_tipo_elemental, $id_tipo_elemental2, $id_pokemonViejo){
         $query = $this-> getDb()->prepare('UPDATE pokemon SET id_region = ?, nombre = ?, imagen_pokemon = ?, id_tipo_elemental = ?, id_tipo_elemental2 = ? WHERE id_pokemon = ?');
         $query->execute([$id_region, $nombre, $imagen, $id_tipo_elemental, $id_tipo_elemental2,$id_pokemonViejo]);
+    }
+
+     /**
+     * @param $inicio
+     * Muestra 5 pokemons por paginado
+     * SELECT * FROM `pokemon` ORDER BY nombre ASC LIMIT 10 OFFSET 8 
+     */
+    function paginationPokemon($inicio){
+        $query = $this-> getDb()->prepare('SELECT * FROM `pokemon` LIMIT 10 OFFSET ?');
+        $query->execute([$inicio]);
+        return $query->fetch(PDO::FETCH_OBJ);
     }
 }
