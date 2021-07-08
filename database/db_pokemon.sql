@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3308
--- Tiempo de generación: 03-07-2021 a las 22:39:14
+-- Tiempo de generación: 07-07-2021 a las 00:27:25
 -- Versión del servidor: 8.0.18
 -- Versión de PHP: 7.3.12
 
@@ -33,11 +33,17 @@ CREATE TABLE IF NOT EXISTS `comentario` (
   `id_comentario` int(11) NOT NULL AUTO_INCREMENT,
   `id_fk_pokemon` int(11) NOT NULL,
   `id_fk_usuario` int(11) NOT NULL,
-  `fecha` date NOT NULL,
   `calificacion` tinyint(4) NOT NULL,
   `texto` text,
   PRIMARY KEY (`id_comentario`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`id_comentario`, `id_fk_pokemon`, `id_fk_usuario`, `fecha`, `calificacion`, `texto`) VALUES
+(4, 4, 2, '2021-07-06', 5, 'Lindo');
 
 -- --------------------------------------------------------
 
@@ -206,14 +212,15 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `apellido` varchar(20) NOT NULL,
   `administrador` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`ID`, `email`, `contraseña`, `nombre`, `apellido`, `administrador`) VALUES
-(2, 'hola@hola', '$2y$10$yiQieHg9ORhiOWTJC7HFD.XzZAKa2yT46sTDYsR7J/iafsjl6VVA2', 'hola', 'hola', 1);
+(2, 'hola@hola', '$2y$10$yiQieHg9ORhiOWTJC7HFD.XzZAKa2yT46sTDYsR7J/iafsjl6VVA2', 'hola', 'hola', 1),
+(3, 'hola@hola', '$2y$10$Uytufa4wr/psxH/wcFDRJOZWZ2eKHMXfCUQcQ5oBg4YSqQ7eZ8MY6', 'hola', 'hola', 0);
 
 --
 -- Restricciones para tablas volcadas
