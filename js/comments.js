@@ -116,7 +116,6 @@ function getPokemonComments() {
     let pokemonID = getPokemonID();
     fetch('api/comments/'+pokemonID)
     .then( response =>{ 
-        console.log(response );
         if (response.status == 200)
         {
             return response.json();
@@ -126,7 +125,6 @@ function getPokemonComments() {
         }
     })
     .then (pokemonComments => {
-        console.log(pokemonComments);
         if (pokemonComments == null)
         {
             listaComentarios.error = true;
@@ -158,39 +156,45 @@ function newPokemonComment(comment) {
         mode: 'cors',
         body: JSON.stringify(comment)
     })
-    .then((response) => {
-        if (response.ok) {
-            //Recarga de comentarios
-            getPokemonComments();
-            alert('¡Gracias por compartir tu opinion!');
-        } else {
-            alert('Ha ocurrido algun error :(');
+    /*
+    .then( response =>{ 
+        if (response.status == 200)
+        {
+            return response.json();
+            
+        }else{
+            return null;
         }
     })
+    .then(response => {
+        // Desde la API se recibe true si esta todo ok.
+        if (response == true) {
+            alert('Comentario eliminado');
+            getPokemonComments();
+        }
+        else
+            alert('no se pudo borrar comentario');
+    })
+    */
     .catch(exception => console.log(exception));
 
 }
 
 // Borra un comentario en la Base de Datos y de la Pagina
 function deletePokemonComment(commentID) {
-    fetch('api/comments/'+commentID,{
+    fetch('api/comment/'+commentID,{
         method: 'DELETE',
         mode: 'cors'
-    })
-    .then((response) => {
-        return response.text()
-    })
-    .then((response) => {
-        // Si la respuesta fue true/exitosa, ¿poner respuesta.ok?
-        if (response) {
-            alert('Borrado exitoso');
-            // Recarga de comentarios
+    }) 
+    .then( response =>{ 
+        if (response.status == 200)
+        {
             getPokemonComments();
+            alert('El comentario fue eliminado');
+            
+        }else{
+            alert('El comentario no pudo ser eliminado');
         }
-        else {
-            alert('El comentario no pudo ser eliminado.');
-        }
-
     })
-    .catch((exception) => console.log(exception));
+    .catch(exception => console.log(exception));
 }

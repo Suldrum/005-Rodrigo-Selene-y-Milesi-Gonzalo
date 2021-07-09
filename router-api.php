@@ -14,9 +14,9 @@ $router->addRoute('pokemon/:ID', 'GET', 'APIController', 'getPokemon');
 // obtener comentarios de un pokemon.
 $router->addRoute('comments/:ID', 'GET', 'APIController', 'getPokemonComments');
 // postear un comentario.
-$router->addRoute('comments', 'POST', 'APIController', 'newPokemonComment');
+$router->addRoute('comment', 'POST', 'APIController', 'newPokemonComment');
 // borrar un comentario.
-$router->addRoute('comments/:ID', 'DELETE', 'APIController', 'deletePokemonComment');
+$router->addRoute('comment/:ID', 'DELETE', 'APIController', 'deletePokemonComment');
 
 // rutea
 $router->route($_REQUEST['resource'], $_SERVER['REQUEST_METHOD']);

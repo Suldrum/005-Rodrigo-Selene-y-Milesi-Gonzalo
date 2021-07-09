@@ -65,11 +65,11 @@ class ApiController {
             $id = $params[':ID'];
             $result = $this->model->getComment($id);
             if (!empty($result)) {
-                $this->model->deletePokemonComment($id);
+                $this->model->deleteComment($id);
                 $this->view->response($result, 200);
             }
             else {
-                $this->view->response('el comentario no existe :(', 200);
+                $this->view->response('el comentario no existe :(', 404);
             }
         }
         else {
