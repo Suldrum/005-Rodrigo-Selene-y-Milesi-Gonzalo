@@ -6,16 +6,10 @@ class ApiController {
 
     private $model;
     private $view;
-    private $data;
 
     public function __construct() {
         $this->model =  new ModelComentario();
         $this->view = new APIView();
-        $this->data = file_get_contents("php://input");
-    }
-
-    private function getData() {
-        return json_decode($this->data);
     }
 /*    
 

@@ -8,7 +8,7 @@ let userID = parseInt(document.querySelector('#seccionComentario').getAttribute(
 // Pide cargar los comentarios ni bien se carga la página
 
 $(document).ready(function (){
-    getComments();
+    getPokemonComments();
 });
 
 /*
@@ -32,13 +32,13 @@ let listaComentarios = new Vue({
          * Funcion de eliminar del boton en el template
          */
          eliminarComentario: function (commentID) {
-            deleteComment(commentID);
+            deletePokemonComment(commentID);
             
         }
     }
 });
 
-
+/*
 let nuevoComentario = new Vue({
     //nombre del div donde se carga
     el:'#newComment',
@@ -69,7 +69,7 @@ let nuevoComentario = new Vue({
         }
     }
 });
-
+ */
 /**
  *  Obtener el id del pokemon desde un atributo HTML.
  */
@@ -78,7 +78,7 @@ let nuevoComentario = new Vue({
 }
 
 // Trae los comentarios de la API
-function getComments() {
+function getPokemonComments() {
     //Inicio de mi lista de comentarios
     listaComentarios.error = false;
     listaComentarios.loading = true;
@@ -86,10 +86,11 @@ function getComments() {
     //Obtengo de que pokemon se cargan los comentarios
     let pokemonID = getPokemonID();
     fetch('api/comments/'+pokemonID)
-    .then(response => response.json())
-    .then ( pokemonComments => {
+    .then(response =>{ console.log("Respuesta: ",response);response.json(); console.log("Respuesta JSON: ",response.json());})
+    .then (pokemonComments => {
+        console.log(pokemonComments);
         if (pokemonComments == null) {
-            // Hubo un error 
+            // Hubo un error
             listaComentarios.error = true;
         }
         else {
@@ -105,7 +106,7 @@ function getComments() {
 }
 
 // Permite postear un comentario con calificación
-function postComment(comment) {
+function newPokemonComment(comment) {
 
     fetch('api/comment', {
         method: 'POST',
@@ -116,7 +117,7 @@ function postComment(comment) {
     .then((response) => {
         if (response.ok) {
             //Recarga de comentarios
-            getComments();
+            getPokemonComments();
             alert('¡Gracias por compartir tu opinion!');
         } else {
             alert('Ha ocurrido algun error :(');
@@ -127,7 +128,7 @@ function postComment(comment) {
 }
 
 // Borra un comentario en la Base de Datos y de la Pagina
-function deleteComment(commentID) {
+function deletePokemonComment(commentID) {
     fetch('api/comments/'+commentID,{
         method: 'DELETE',
         mode: 'cors'
@@ -140,7 +141,7 @@ function deleteComment(commentID) {
         if (response) {
             alert('Borrado exitoso');
             // Recarga de comentarios
-            getComments();
+            getPokemonComments();
         }
         else {
             alert('El comentario no pudo ser eliminado.');

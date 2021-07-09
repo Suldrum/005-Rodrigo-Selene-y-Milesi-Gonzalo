@@ -1,8 +1,8 @@
 {literal}
-<div id="comments">
+<section id="comments">
 <h3> COMENTARIOS</h3>
 
-    <div v-if="errored">
+    <div v-if="error">
         <p>Lo sentimos, no es posible obtener la información en este momento, por favor intente nuevamente mas tarde</p>    
     </div>
 
@@ -12,7 +12,7 @@
         CARGA DE COMENTARIOS 
          
     <!--- >    <h3> Calificacion: {{finalScore}} </h3>  <--->
-        <div v-for="comentario in listaComentarios" style="width: 18rem;">
+        <div v-for="comentario in pokemonComments" style="width: 18rem;">
             <div>
                 <h5>{{comentario.id_fk_usuario}}</h5>
                 <h6>Puntuacion: {{comentario.calificacion}}</h6>
@@ -22,6 +22,5 @@
         </div>
     
     </div>
-    
-</div>
+</section>
 {/literal}
