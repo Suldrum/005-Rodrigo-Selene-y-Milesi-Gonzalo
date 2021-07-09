@@ -1,20 +1,19 @@
 'use strict';
 
-// Se cargan los datos del usuario actual desde los elementos del HTML
-//let username = document.querySelector('#seccionComentario').getAttribute('username');
-//let userID = parseInt(document.querySelector('#seccionComentario').getAttribute('userID'));
-//let privilege = document.querySelector('#seccionComentario').getAttribute('privilege');
+/**
+ *  Obtener el id del pokemon desde un atributo HTML.
+ */
+ function getPokemonID() {
+    return parseInt(document.querySelector('#seccionComentario').getAttribute('pokemonID'));
+}
 
-// Pide cargar los comentarios ni bien se carga la página
+/**
+ *  Obtener el id del usuario desde un atributo HTML.
+ */
+function getUserID() {
+    return document.querySelector('#seccionComentario').getAttribute('userID');
+}
 
-
-
-
-/*
-document.addEventListener('DOMContentLoaded', function(){
-    getPokemonComments()
-});
-*/
 let listaComentarios = new Vue({
     //nombre del div donde se carga
     el: '#comments', 
@@ -38,15 +37,13 @@ let listaComentarios = new Vue({
     }
 });
 
-/*
+
 let nuevoComentario = new Vue({
     //nombre del div donde se carga
     el:'#newComment',
     data: {
         userComment: null,
-    //    rating: null,
-        username: username,
-   //     privilege: privilege
+    //    puntaje: null,
     },
     methods: { 
         // Responde al botón en el formulario de Vue
@@ -56,54 +53,26 @@ let nuevoComentario = new Vue({
             // Prepara un JSON con los datos del comentario y del autor
             let comment = {
                 id_fk_pokemon: getPokemonID(),
-                id_fk_usuario: userID,
-                texto: userComment.value,
-               // fecha:
-               //calificacion: parseInt(calificacion.value)
+            //    id_fk_usuario: getUserID(),
+                id_fk_usuario: 3,
+                calificacion: 4,
+                texto: userComment.value
+                //calificacion: parseInt(puntaje.value)
+                
             }
             // Envía el JSON al método para postear el comentario
-            postComment(comment);
+            newPokemonComment(comment);
             // Limpia los campos en la pagina
            // formPostComment.userComment = null;
         //    formPostComment.rating = null;
         }
     }
 });
- */
-/**
- *  Obtener el id del pokemon desde un atributo HTML.
- */
- function getPokemonID() {
-    return parseInt(document.querySelector('#seccionComentario').getAttribute('pokemonID'));
-}
 
+// Pide cargar los comentarios ni bien se carga la página
 $(document).ready(function (){
     getPokemonComments();
-    /*
-    fetch('api/comments/4')
-     .then( response =>{ 
-     //    console.log("Respuesta: ",response);
-        return response.json();
-     //    console.log("Respuesta JSON: ",response.json());
-     })
-     .then (pokemonComments => {
-         console.log(pokemonComments);
-         if (pokemonComments == null) {
-             // Hubo un error
-             listaComentarios.error = true;
-         }
-         else {
-             // Obtengo todos los comentarios de un pokemon y lo guardo en la lista de comentarios
-             listaComentarios.pokemonComments = pokemonComments;
-        //     averageRating.users_rating = getAverage(ins_comments);
-         }
-         // Termina la carga de informacion
-         listaComentarios.loading = false;
-        // averageRating.loading = false;
-     })
-     .catch(exception => console.log(exception));
-     */
- });
+});
 
 // Trae los comentarios de la API
 function getPokemonComments() {
@@ -156,26 +125,16 @@ function newPokemonComment(comment) {
         mode: 'cors',
         body: JSON.stringify(comment)
     })
-    /*
     .then( response =>{ 
         if (response.status == 200)
         {
-            return response.json();
+            getPokemonComments();
+            alert('El comentario fue agregado');
             
         }else{
-            return null;
+            alert('El comentario no pudo ser enviado');
         }
     })
-    .then(response => {
-        // Desde la API se recibe true si esta todo ok.
-        if (response == true) {
-            alert('Comentario eliminado');
-            getPokemonComments();
-        }
-        else
-            alert('no se pudo borrar comentario');
-    })
-    */
     .catch(exception => console.log(exception));
 
 }

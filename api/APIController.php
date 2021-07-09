@@ -69,7 +69,7 @@ class ApiController {
                 $this->view->response($result, 200);
             }
             else {
-                $this->view->response('el comentario no existe :(', 404);
+                $this->view->response('El comentario no existe :(', 404);
             }
         }
         else {
@@ -83,7 +83,7 @@ class ApiController {
     public function newPokemonComment()
     {
         $params = json_decode(file_get_contents("php://input"));
-        $result = $this->model->newPokemonComment($params->id_fk_pokemon, $params->id_fk_usuario, $params->puntaje, $params->texto);
+        $result = $this->model->newPokemonComment($params->id_fk_pokemon, $params->id_fk_usuario, $params->calificacion, $params->texto);
         if ($result)
             $this->view->response($result, 200);
         else
