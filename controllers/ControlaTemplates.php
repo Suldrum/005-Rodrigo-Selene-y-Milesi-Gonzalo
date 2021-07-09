@@ -41,7 +41,13 @@ class ControlaTemplates {
     } 
 
     function showTarjetaPokemon($idPokemon){
+        
         $pokemon = $this->model->getPokemon($idPokemon);
+        if (!$pokemon)
+        {
+            header("Location: " . BASE_URL . 'dexter');
+            die();
+        }
         $region = $this->modelRegion->getRegion($pokemon->id_region);
         $tipo1 = $this->modelTipo->getTipo_Elemental($pokemon->id_tipo_elemental);
         $tipo2 = $this->modelTipo->getTipo_Elemental($pokemon->id_tipo_elemental2);

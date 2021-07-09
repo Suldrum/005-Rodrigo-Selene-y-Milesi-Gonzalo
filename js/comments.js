@@ -2,18 +2,17 @@
 
 // Se cargan los datos del usuario actual desde los elementos del HTML
 //let username = document.querySelector('#seccionComentario').getAttribute('username');
-let userID = parseInt(document.querySelector('#seccionComentario').getAttribute('userID'));
+//let userID = parseInt(document.querySelector('#seccionComentario').getAttribute('userID'));
 //let privilege = document.querySelector('#seccionComentario').getAttribute('privilege');
 
 // Pide cargar los comentarios ni bien se carga la página
 
-$(document).ready(function (){
-    getPokemonComments();
-});
+
+
 
 /*
 document.addEventListener('DOMContentLoaded', function(){
-    getComments();
+    getPokemonComments()
 });
 */
 let listaComentarios = new Vue({
@@ -22,7 +21,8 @@ let listaComentarios = new Vue({
     data: {
         error: false,
         //lo pone en true ya que los metodos se encargaran de ponerlo en false cuando terminen
-        loading: true, 
+        loading: true,
+        notComment: false, 
     //    privilege: privilege,
     //arreglo de recepcion de la informacion
         pokemonComments: []
@@ -77,26 +77,70 @@ let nuevoComentario = new Vue({
     return parseInt(document.querySelector('#seccionComentario').getAttribute('pokemonID'));
 }
 
+$(document).ready(function (){
+    getPokemonComments();
+    /*
+    fetch('api/comments/4')
+     .then( response =>{ 
+     //    console.log("Respuesta: ",response);
+        return response.json();
+     //    console.log("Respuesta JSON: ",response.json());
+     })
+     .then (pokemonComments => {
+         console.log(pokemonComments);
+         if (pokemonComments == null) {
+             // Hubo un error
+             listaComentarios.error = true;
+         }
+         else {
+             // Obtengo todos los comentarios de un pokemon y lo guardo en la lista de comentarios
+             listaComentarios.pokemonComments = pokemonComments;
+        //     averageRating.users_rating = getAverage(ins_comments);
+         }
+         // Termina la carga de informacion
+         listaComentarios.loading = false;
+        // averageRating.loading = false;
+     })
+     .catch(exception => console.log(exception));
+     */
+ });
+
 // Trae los comentarios de la API
 function getPokemonComments() {
     //Inicio de mi lista de comentarios
     listaComentarios.error = false;
     listaComentarios.loading = true;
+    listaComentarios.notComment=false;
     listaComentarios.pokemonComments = [];
     //Obtengo de que pokemon se cargan los comentarios
     let pokemonID = getPokemonID();
     fetch('api/comments/'+pokemonID)
-    .then(response =>{ console.log("Respuesta: ",response);response.json(); console.log("Respuesta JSON: ",response.json());})
+    .then( response =>{ 
+        console.log(response );
+        if (response.status == 200)
+        {
+            return response.json();
+            
+        }else{
+            return null;
+        }
+    })
     .then (pokemonComments => {
         console.log(pokemonComments);
-        if (pokemonComments == null) {
-            // Hubo un error
+        if (pokemonComments == null)
+        {
             listaComentarios.error = true;
         }
-        else {
-            // Obtengo todos los comentarios de un pokemon y lo guardo en la lista de comentarios
-            listaComentarios.pokemonComments = pokemonComments;
+        else{
+            if (pokemonComments == "Sin comentarios") {
+            // Hubo un error
+            listaComentarios.notComment=true;
+            }
+            else {
+                // Obtengo todos los comentarios de un pokemon y lo guardo en la lista de comentarios
+                listaComentarios.pokemonComments = pokemonComments;
        //     averageRating.users_rating = getAverage(ins_comments);
+            }
         }
         // Termina la carga de informacion
         listaComentarios.loading = false;

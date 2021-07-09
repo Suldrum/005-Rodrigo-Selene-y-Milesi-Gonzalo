@@ -35,17 +35,26 @@ class ApiController {
   /**
      *  obtener comentarios de un pokemon
      */
+
+
     public function getPokemonComments($params = [])
-    {
+    { 
+
         if (!empty($params)) {
             $id_pokemon = $params[':ID'];
             $listComment = $this->model->getPokemonComments($id_pokemon);
+           
             if ($listComment)
                 $this->view->response($listComment, 200);
             else
-                $this->view->response(null, 200);
+                $this->view->response("Sin comentarios", 200);     
         }
-    }
+       /* 
+        else
+        
+           $this->view->response(null, 404);
+        */
+    } 
 
     /**
      *  borrar un comentario
