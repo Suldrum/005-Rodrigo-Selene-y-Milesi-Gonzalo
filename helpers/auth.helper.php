@@ -14,26 +14,13 @@ class AuthHelper {
     static public function login($user) {
         self::start();
         $_SESSION['IS_LOGGED'] = true;
-        $_SESSION['ID_USER'] = $user->id_entrenador;
-        $_SESSION['USERNAME'] = $user->nombre;
-        $_SESSION['IS_ADMIN_LOGGED'] = false;
-/*        $_SESSION['USERNICK'] = $user->apodo;
-        $_SESSION['USERLASTNAME'] = $user->apellido;
-        $_SESSION['USEREMAIL'] = $user->email;
-*/
+        $_SESSION['ID_USER'] = $user->ID;
+        $_SESSION['NAME'] = $user->nombre;
+        $_SESSION['LASTNAME'] = $user->apellido;
+        $_SESSION['EMAIL'] = $user->email;
+        $_SESSION['ADMIN'] = $user->administrador;
     }
 
-    static public function loginAdmin($user) {
-        self::start();
-        $_SESSION['IS_LOGGED'] = true;
-        $_SESSION['ID_USER'] = $user->id_administrador;
-        $_SESSION['USERNAME'] = $user->nombre;
-        $_SESSION['IS_ADMIN_LOGGED'] = true;
-/*        $_SESSION['USERNICK'] = $user->apodo;
-        $_SESSION['USERLASTNAME'] = $user->apellido;
-        $_SESSION['USEREMAIL'] = $user->email;
-*/
-    }
 
     public static function logout() {
         self::start();
@@ -42,7 +29,7 @@ class AuthHelper {
 
     public static function checkLoggedIn() {
         self::start();
-        if (!isset($_SESSION['ID_USER'])){
+        if (!isset($_SESSION['EMAIL'])){
             header('Location: ' . BASE_URL . "login");
             die;
         }
@@ -50,27 +37,29 @@ class AuthHelper {
 
     public static function getLoggedUserName() {
         self::start();
-        if (isset($_SESSION['USERNAME'])) {
-            return $_SESSION['USERNAME'];
+        if (isset($_SESSION['EMAIL'])) {
+            return $_SESSION['EMAIL'];
         } else {
-            return false;
+            return null;
         }
     }
 
     public static function isAdmin() {
         self::start();
-        if (isset($_SESSION['USERNAME'])) {
-            return $_SESSION['IS_ADMIN_LOGGED'];
-        } else 
+        if (isset($_SESSION['EMAIL'])) {
+            return ($_SESSION['ADMIN'] == 1);
+        }
+        else
             return false;
     }
 
     public static function getLoggedUser() {
         self::start(); 
-        if (isset($_SESSION['USERNAME'])){
+        if (isset($_SESSION['EMAIL'])){
             $data=[]; 
-            $data['name'] = $_SESSION['USERNAME'];
-            $data['admin'] =  $_SESSION['IS_ADMIN_LOGGED'];
+            $data['email'] = $_SESSION['EMAIL'];
+            $data['name'] = $_SESSION['NAME'];
+            $data['admin'] = ($_SESSION['ADMIN'] == 1);
            return $data;
         }
         else
@@ -79,10 +68,13 @@ class AuthHelper {
     
     static public function getAlltUserData(){
         self::start(); 
-        if (isset($_SESSION['USERNAME'])){
+        if (isset($_SESSION['EMAIL'])){
             $data=[]; 
-            $data['name'] = $_SESSION['USERNAME'];
+            $data['name'] = $_SESSION['NAME'];
             $data['id'] =  $_SESSION['ID_USER'];
+            $data['lastname'] =  $_SESSION['LASTNAME'];
+            $data['email'] =  $_SESSION['EMAIL'] ;
+            $data['admin'] = ($_SESSION['ADMIN'] == 1);
            return $data;
         }
         else

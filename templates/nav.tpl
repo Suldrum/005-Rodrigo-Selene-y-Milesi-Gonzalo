@@ -17,13 +17,15 @@
             {if isset($userLogged) && $userLogged}
                 <div class="navbar-nav ml-auto">
                     <span class="navbar-text nav-link active">{$userLogged['name']}</span>
+                     <!--SI EL USUARIO ACTIVO NO ES ADMINISTRADOR-->
                     {if (!($userLogged['admin']))}
                         <a class="nav-item nav-link " href="perfilUsuario">Tu Perfil<span class="sr-only"></span></a>
+                    {else}
+                        <div class="navbar-nav ml-auto">
+                            <a class="nav-item nav-link " href="usuarios">Lista de usuarios<span class="sr-only"></span></a>
+                        </div>
                     {/if}
                     <a class="nav-item nav-link " href="logout">Logout<span class="sr-only"></span></a>
-                </div>
-                <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link " href="usuarios">Lista de usuarios<span class="sr-only"></span></a>
                 </div>
             {else}
                 <!--SI NO HAY UN USUARIO ACTIVO-->

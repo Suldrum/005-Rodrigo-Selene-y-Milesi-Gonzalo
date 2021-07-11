@@ -1,15 +1,23 @@
 <?php
 require_once 'models/ModelComentario.php';
+
+include_once('models/UserModel.php');
+include_once('models/ModelPokemon.php');
+include_once('helpers/auth.helper.php');
 require_once 'api/APIView.php';
 
 class ApiController {
 
     private $model;
     private $view;
+    private $modelUser;
+    private $modelPokemon;
 
     public function __construct() {
         $this->model =  new ModelComentario();
         $this->view = new APIView();
+        $this->modelUser =  new UserModel();
+        $this->modelPokemon =  new ModelPokemon();
     }
 /*    
 
@@ -61,19 +69,26 @@ class ApiController {
      */
     public function deletePokemonComment($params = [])
     {
-        if (!empty($params)) {
-            $id = $params[':ID'];
-            $result = $this->model->getComment($id);
-            if (!empty($result)) {
-                $this->model->deleteComment($id);
-                $this->view->response($result, 200);
+        $authHelper = new AuthHelper();
+        $userLogged = $authHelper->getLoggedUserName();
+        if  (   (!(is_null($userLogged))) && ($authHelper->isAdmin())    )
+        {
+            if (!empty($params)) {
+                $id = $params[':ID'];
+                $result = $this->model->getComment($id);
+                if (!empty($result)) {
+                    $result = $this->model->deleteComment($id);
+                    $this->view->response($result, 200);
+                }
+                else {
+                    $this->view->response('El comentario no existe :(', 404);
+                }
             }
             else {
-                $this->view->response('El comentario no existe :(', 404);
+                $this->view->response(false, 404);
             }
-        }
-        else {
-            $this->view->response(false, 404);
+        }else {
+            $this->view->response(false, 200);
         }
     }
 
@@ -83,10 +98,29 @@ class ApiController {
     public function newPokemonComment()
     {
         $params = json_decode(file_get_contents("php://input"));
-        $result = $this->model->newPokemonComment($params->id_fk_pokemon, $params->id_fk_usuario, $params->calificacion, $params->texto);
-        if ($result)
-            $this->view->response($result, 200);
+
+        // RECUPERA EL POKEMON
+        
+        /*
+        $urlParts = explode('/', $_SERVER['REQUEST_URI']);
+        $pokemon = $this->modelPokemon->getPokemon(parseInt($urlParts[$urlParts.length - 1])); //poner ID
+        */
+        $pokemon = $this->modelPokemon->getPokemon($params->pokemon);
+        
+        // RECUPERA EL USUARIO ACTIVO
+        $authHelper = new AuthHelper();
+        $userLogged = $authHelper->getLoggedUserName();
+        if  (   (!(is_null($pokemon))) && (!(is_null($userLogged)))    )
+        {
+            $user = $this->modelUser->getUserByUsername($userLogged);
+            $result = $this->model->newPokemonComment($pokemon->id_pokemon, $user->ID, $params->calificacion, $params->texto);
+            if ($result)
+                $this->view->response($result, 200);
+            else
+                $this->view->response(null, 500);
+        }
         else
-            $this->view->response(null, 200);
+            $this->view->response(null, 404);
     }
 }
+?>

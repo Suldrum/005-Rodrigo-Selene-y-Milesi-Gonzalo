@@ -33,10 +33,19 @@ class UserController {
         $lastName= $_POST['F_apellido'];
         $email= $_POST['F_email'];
         $pass = $_POST['F_contraseña'];
-        $this->model->add($name, $lastName, $email, $pass);
-        $userDb = $this->model->getUserByUsername($email);
-        AuthHelper::login($userDb);
-        header("Location: " . BASE_URL . 'home');
+        $existe = $this->model->getUserByUsername($email);
+        if ( $existe == null)
+        {
+            $this->model->add($name, $lastName, $email, $pass);
+            $userDb = $this->model->getUserByUsername($email);
+            AuthHelper::login($userDb);
+            header("Location: " . BASE_URL . 'home');
+        }
+        else{
+            header("Location: " . BASE_URL . 'registro');
+            //el eco no anda pero si esta andando bien el else so me doy por satisfecha de momento
+            echo "El email ya existe, por favor ingrese otro";
+        }
     }
 
     public function verify() {
@@ -61,8 +70,13 @@ class UserController {
     }
 
     function showUsuarios() {
-        $listaUsuarios = $this->model->getAll();
-        $this->view->showUsuarios($listaUsuarios);
+        if (AuthHelper::isAdmin())
+       { 
+           $listaUsuarios = $this->model->getAll();
+           $this->view->showUsuarios($listaUsuarios);
+       }
+       else
+           header('Location: ' . BASE_URL . "home");
     }  
 
     function bajaAdmin($id)

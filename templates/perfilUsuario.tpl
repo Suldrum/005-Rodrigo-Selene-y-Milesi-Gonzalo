@@ -1,17 +1,10 @@
 {include 'templates/header.tpl'}
 
 <div class="container">
-<h1> hola mundo! </h1>
-    <img alt="IMAGEN_AVATAR">
-
-    <label for="nombre">nombre </label>
-    <label for="nombre_tabla"> {$usuarioDatos['name']} </label>
-    <label for="apellido">apellido </label>
-    <label for="apellido_tabla"> {$usuarioDatos['id']} </label>
-    <label for="apodo">apodo </label>
-    <label for="apodo_tabla"></label>
-    <label for="email">email </label>
-    <label for="email_tabla"> </label>
+<h1> Tus datos </h1>
+    <label for="nombre">Nombre: </label> <label for="nombreDB"> {$userData['name']} </label>
+    <label for="apellido">Apellido: </label> <label for="apellidoDB"> {$userData['lastname']} </label>
+    <label for="email">Email: </label> <label for="emailDB"> {$userData['email']} </label>
 </div>
 
 {include 'templates/footer.tpl'}

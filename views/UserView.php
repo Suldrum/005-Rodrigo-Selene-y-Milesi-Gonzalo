@@ -26,7 +26,7 @@ class UserView extends View {
         $this->getSmarty()->assign('title', "Perfil");
         $this->getSmarty()->assign('error',null);        
         $this->getSmarty()->assign('home', BASE_URL.'home');
-        $this->getSmarty()->assign('usuarioDatos',$userData);
+        $this->getSmarty()->assign('userData',$userData);
         $this->getSmarty()->display('templates/perfilUsuario.tpl');
     }
     

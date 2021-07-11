@@ -1,17 +1,13 @@
 'use strict';
 
+//ELIMINAR LOS ALERTS / MOVERLOS AL CONTROLADRO
+
 /**
  *  Obtener el id del pokemon desde un atributo HTML.
  */
  function getPokemonID() {
-    return parseInt(document.querySelector('#seccionComentario').getAttribute('pokemonID'));
-}
-
-/**
- *  Obtener el id del usuario desde un atributo HTML.
- */
-function getUserID() {
-    return document.querySelector('#seccionComentario').getAttribute('userID');
+    let urlParts = window.location.href.split('/');
+    return parseInt(urlParts[urlParts.length - 1]);
 }
 
 let listaComentarios = new Vue({
@@ -31,43 +27,46 @@ let listaComentarios = new Vue({
          * Funcion de eliminar del boton en el template
          */
          eliminarComentario: function (commentID) {
-            deletePokemonComment(commentID);
+            deletePokemonComment(commentID); // CONTROLES EN EL CONTROLADOR Y EN EL VUE
             
         }
     }
 });
 
-
+// ESTO DEBE EDITARSE DE MANERA QUE SOLO SE ENVIE EL TEXTO Y LA CALIFICACION, EL RESTO SE VERIFICA EN EL CONTROLADOR
 let nuevoComentario = new Vue({
     //nombre del div donde se carga
     el:'#newComment',
     data: {
         userComment: null,
-    //    puntaje: null,
     },
-    methods: { 
+    methods: 
+    {
         // Responde al botón en el formulario de Vue
         guardarComentario: function(e) {
             // Previene la recarga automática de la página
             e.preventDefault(e);
             // Prepara un JSON con los datos del comentario y del autor
             let comment = {
-                id_fk_pokemon: getPokemonID(),
-            //    id_fk_usuario: getUserID(),
-                id_fk_usuario: 3,
-                calificacion: 4,
+                pokemon: getPokemonID(), 
+                calificacion: document.querySelector('input[name="rating"]:checked').value, //Controlar que si no hay estrellas (osea valor null) corte
                 texto: userComment.value
-                //calificacion: parseInt(puntaje.value)
-                
             }
             // Envía el JSON al método para postear el comentario
             newPokemonComment(comment);
+            //document.querySelector('input[name="rating"]:checked').value
             // Limpia los campos en la pagina
-           // formPostComment.userComment = null;
+            //userComment = null;
         //    formPostComment.rating = null;
-        }
-    }
+
+        },
+    },
 });
+
+function getStarValue()
+{
+    return document.querySelector('input[name="rating"]:checked').value;
+}
 
 // Pide cargar los comentarios ni bien se carga la página
 $(document).ready(function (){

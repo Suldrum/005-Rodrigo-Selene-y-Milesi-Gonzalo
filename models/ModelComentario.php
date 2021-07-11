@@ -43,7 +43,8 @@ class ModelComentario extends Model {
      */
     function newPokemonComment($pokemon, $usuario, $calificacion, $texto) {
         $query = $this->getDb()->prepare('INSERT INTO comentario (id_fk_pokemon, id_fk_usuario, calificacion, texto) VALUES (?, ?, ?, ?)');
-        $query->execute([$pokemon, $usuario, $calificacion, $texto]);
+        $success = $query->execute([$pokemon, $usuario, $calificacion, $texto]);
+        return $success;
     }
 
     /**
@@ -52,6 +53,7 @@ class ModelComentario extends Model {
      */
     function deleteComment($id) {
         $query = $this->getDb()->prepare('DELETE FROM comentario WHERE id_comentario = ?');
-        $query->execute([$id]);
+        $success = $query->execute([$id]);
+        return $success;
     }
 }
