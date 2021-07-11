@@ -1,6 +1,6 @@
 'use strict';
 
-//ELIMINAR LOS ALERTS / MOVERLOS AL CONTROLADRO
+//ELIMINAR LOS ALERTS / MOVERLOS AL CONTROLADOR
 
 /**
  *  Obtener el id del pokemon desde un atributo HTML.
@@ -27,7 +27,7 @@ let listaComentarios = new Vue({
          * Funcion de eliminar del boton en el template
          */
          eliminarComentario: function (commentID) {
-            deletePokemonComment(commentID); // CONTROLES EN EL CONTROLADOR Y EN EL VUE
+            deletePokemonComment(commentID); // CONTROLES EN EL VUE
             
         }
     }
@@ -44,28 +44,49 @@ let nuevoComentario = new Vue({
     {
         // Responde al botón en el formulario de Vue
         guardarComentario: function(e) {
+           
             // Previene la recarga automática de la página
             e.preventDefault(e);
-            // Prepara un JSON con los datos del comentario y del autor
+            // Prepara un json
             let comment = {
                 pokemon: getPokemonID(), 
-                calificacion: document.querySelector('input[name="rating"]:checked').value, //Controlar que si no hay estrellas (osea valor null) corte
+                calificacion: getStarValue(),
                 texto: userComment.value
             }
-            // Envía el JSON al método para postear el comentario
-            newPokemonComment(comment);
-            //document.querySelector('input[name="rating"]:checked').value
-            // Limpia los campos en la pagina
-            //userComment = null;
-        //    formPostComment.rating = null;
+            // Envía el JSON al método para postear el comentario        
+            if ( comment.calificacion != 0)
+            {
+                newPokemonComment(comment);
+                // Limpia los campos en la pagina
+                resetData();
+            }
+            else{
+                alert('No olvides dar una nota ;-)');
+            }
+            
+
 
         },
     },
 });
 
+// Recupera el valor de las estrellas, si todavia no se eligio ninguna devuelve 0
 function getStarValue()
 {
-    return document.querySelector('input[name="rating"]:checked').value;
+    let star = document.querySelector('input[name="rating"]:checked');
+    if ( star != null)
+        return star.value;
+    else
+        return 0;
+}
+
+function resetData()
+{
+    //Limpia el textarea
+    document.getElementById("userComment").value= "";
+    //Limpia las estrellas
+    document.querySelector('input[name="rating"]:checked').checked = false;
+
 }
 
 // Pide cargar los comentarios ni bien se carga la página

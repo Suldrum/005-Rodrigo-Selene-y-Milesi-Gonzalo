@@ -22,7 +22,7 @@
       </div>
     </div>
     <br>
-    <textarea v-model="userComment" id="userComment" rows="8" cols="40"> Comentario...</textarea>
+    <textarea v-model="userComment" id="userComment" rows="8" cols="40" placeholder="Comentario..."></textarea>
     <button v-on:click="guardarComentario">Postear</button>
 </section>
 {/literal}
