@@ -59,7 +59,7 @@ class AuthHelper {
             $data=[]; 
             $data['email'] = $_SESSION['EMAIL'];
             $data['name'] = $_SESSION['NAME'];
-            $data['admin'] = ($_SESSION['ADMIN'] == 1);
+            $data['admin'] = $_SESSION['ADMIN'];
            return $data;
         }
         else
