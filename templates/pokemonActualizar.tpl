@@ -16,11 +16,7 @@
     <br>
     <br>
     <div id= "datosPokemonNuevos">
-    <form action="editPokemon/{$pokemonActual->id_pokemon}" method="POST">
-    <!--
-    <label for="numero_pokedex">Numero de Pokedex Nacional: </label>
-    <input type="text" name="F_id_pokemon" placeholder="" />
-   -->
+    <form action="editPokemon/{$pokemonActual->id_pokemon}" method="POST" enctype="multipart/form-data">
     <select name="F_id_region">
     <label for="region"> Region </label>
     {foreach from = $listaRegiones item = region}

@@ -33,39 +33,66 @@ class PokemonController {
     }    
 
     public function createPokemon() {
-        if (!empty($_POST['F_nombre']) && !empty($_POST['F_imagen']) && !empty($_POST['F_id_pokemon'])) {
-            $id_pokemon= $_POST['F_id_pokemon'];
-            $id_region= $_POST['F_id_region'];
-            $name= $_POST['F_nombre'];
-            $image= $_POST['F_imagen'];
-            $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
-            if ($_POST['F_id_tipo_elemental2'] != "NADA")
-                $id_tipo_elemental2= $_POST['F_id_tipo_elemental2'];
+        $id_pokemon= $_POST['F_id_pokemon'];
+        $name= $_POST['F_nombre'];
+        $image= $_FILES['F_imagen']['size'];
+        if ( ($name != '') && ($image > 0) && ($id_pokemon > 0 )) {
+            if (
+                $_FILES['F_imagen']['type'] == "image/jpg" ||
+                $_FILES['F_imagen']['type'] == "image/jpeg" ||
+                $_FILES['F_imagen']['type'] == "image/png" ||
+                $_FILES['F_imagen']['type'] == "image/jpeg"
+            )
+            {
+                $id_region= $_POST['F_id_region'];
+                $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
+                if ($_POST['F_id_tipo_elemental2'] != "NADA")
+                    $id_tipo_elemental2= $_POST['F_id_tipo_elemental2'];
+                else
+                    $id_tipo_elemental2= null;
+                $success = $this->model->newPokemon($id_pokemon, $id_region, $name, $_FILES['F_imagen']['tmp_name'], $id_tipo_elemental, $id_tipo_elemental2);
+                if ($success)
+                    header("Location: " . BASE_URL . 'dexter');
+                    else
+                    header("Location: " . BASE_URL . 'crearPokemon');
+            }
             else
-                $id_tipo_elemental2= null;
-            $this->model->newPokemon($id_pokemon, $id_region, $name, $image, $id_tipo_elemental, $id_tipo_elemental2);
-            header("Location: " . BASE_URL . 'dexter');
-        }else {
-            header("Location: " . BASE_URL . 'createPokemon');
+                header("Location: " . BASE_URL . 'crearPokemon');
         }
+        else
+            header("Location: " . BASE_URL . 'home');
     }
 
     public function editPokemon($id_pokemonViejo) {
-        if (!empty($_POST['F_nombre']) && !empty($_POST['F_imagen'])) {
-        //    $id_pokemon= $_POST['F_id_pokemon'];
-            $id_region= $_POST['F_id_region'];
-            $name= $_POST['F_nombre'];
-            $image= $_POST['F_imagen'];
-            $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
-            if ($_POST['F_id_tipo_elemental2'] != "NADA")
-                $id_tipo_elemental2= $_POST['F_id_tipo_elemental2'];
+        $name= $_POST['F_nombre'];
+        $image= $_FILES['F_imagen']['size'];
+        if ( ($name != '') && ($image > 0)) {
+
+            if (
+                $_FILES['F_imagen']['type'] == "image/jpg" ||
+                $_FILES['F_imagen']['type'] == "image/jpeg" ||
+                $_FILES['F_imagen']['type'] == "image/png" ||
+                $_FILES['F_imagen']['type'] == "image/jpeg"
+            )
+            {
+                $id_region= $_POST['F_id_region'];
+                $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
+                if ($_POST['F_id_tipo_elemental2'] != "NADA")
+                    $id_tipo_elemental2= $_POST['F_id_tipo_elemental2'];
+                else
+                    $id_tipo_elemental2= null;
+                $success =  $this->model->updatePokemon($id_region, $name, $_FILES['F_imagen']['tmp_name'], $id_tipo_elemental, $id_tipo_elemental2,$id_pokemonViejo);
+                if ($success)
+                    header("Location: " . BASE_URL . 'dexter');
+               else
+                    header("Location: " . BASE_URL . 'editarPokemon/'.$id_pokemonViejo);
+            }
             else
-                $id_tipo_elemental2= null;
-            $this->model->updatePokemon($id_region, $name, $image, $id_tipo_elemental, $id_tipo_elemental2,$id_pokemonViejo);
-            header("Location: " . BASE_URL . 'dexter');
-        }else {
-            header("Location: " . BASE_URL . 'editarPokemon/'.$id_pokemonViejo);
+                header("Location: " . BASE_URL . 'editarPokemon/'.$id_pokemonViejo);
         }
+        else
+            header("Location: " . BASE_URL . 'home');
+        
     }
 
     public function deletePokemon($id_pokemon) {
