@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 12-07-2021 a las 21:39:48
+-- Servidor: 127.0.0.1:3308
+-- Tiempo de generación: 13-07-2021 a las 04:27:38
 -- Versión del servidor: 8.0.18
--- Versión de PHP: 7.3.21
+-- Versión de PHP: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -65,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `pokemon` (
   `id_pokemon` int(11) NOT NULL AUTO_INCREMENT,
   `id_region` tinyint(4) NOT NULL,
   `nombre` varchar(20) NOT NULL,
-  `imagen_pokemon` varchar(150) NOT NULL,
+  `imagen_pokemon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `id_tipo_elemental` tinyint(4) NOT NULL,
   `id_tipo_elemental2` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id_pokemon`),
@@ -150,9 +151,9 @@ DROP TABLE IF EXISTS `region`;
 CREATE TABLE IF NOT EXISTS `region` (
   `id_region` tinyint(4) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `imagen_region` varchar(150) NOT NULL,
+  `imagen_region` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id_region`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Esta tabla refiere a las regiones que existen en el juego';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Esta tabla refiere a las regiones que existen en el juego';
 
 --
 -- Volcado de datos para la tabla `region`
@@ -178,9 +179,9 @@ DROP TABLE IF EXISTS `tipo_elemental`;
 CREATE TABLE IF NOT EXISTS `tipo_elemental` (
   `id_tipo_elemental` tinyint(4) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `imagen_tipo` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `imagen_tipo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id_tipo_elemental`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `tipo_elemental`

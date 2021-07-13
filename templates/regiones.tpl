@@ -32,9 +32,9 @@
                 {/foreach}
             </tbody>
         </table>
-        {if ($userLogged['admin'])}
-            <button id="botonCrearRegion" onclick="location.href='crearRegion'">Crear Nueva Region</button></td>
-        {/if}
     </div>
+    {if ($userLogged['admin'])}
+        <button id="botonCrearRegion" onclick="location.href='crearRegion'">Crear Nueva Region</button></td>
+    {/if}
 </div>
 {include 'templates/footer.tpl'}

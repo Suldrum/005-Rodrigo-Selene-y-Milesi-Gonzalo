@@ -4,6 +4,16 @@ require_once('Model.php');
 
 class ModelRegion extends Model {
 
+
+    private function getTarget() {
+        $target = 'imagenes/Region/'.uniqid().'.jpg';
+        return $target;
+    }
+
+    private function saveImage($image, $target) {
+        move_uploaded_file($image, $target);
+    }
+
     /**
      * @return array
      * Retorna todas los regiones en la tabla region ordenados por numero de la pokedex
@@ -31,8 +41,25 @@ class ModelRegion extends Model {
      * Crea una regiona a partir de los parámetros pasados
      */
     function newRegion($nombre, $imagen_region) {
+        $pathImg = $this->getTarget();
         $query = $this->getDb()->prepare('INSERT INTO region (nombre, imagen_region) VALUES (?, ?)');
-        $query->execute([$nombre, $imagen_region]);
+        $success = $query->execute([$nombre, $pathImg]);
+        if($success && isset($pathImg)) 
+            $this->saveImage($imagen_region, $pathImg);
+        return $success;
+    }
+
+     /**
+     * @param $id
+     * Actualiza un region en base al id pasado por parámetro
+     */
+    function updateRegion($nombre, $imagen_region, $id_region){
+        $pathImg = $this->getTarget();
+        $query = $this->getDb()->prepare('UPDATE region SET nombre = ?, imagen_region = ? WHERE id_region = ?');
+        $success = $query->execute([$nombre, $pathImg, $id_region]);
+        if($success && isset($pathImg)) 
+            $this->saveImage($imagen_region, $pathImg);
+        return $success;
     }
 
     /**
@@ -44,12 +71,4 @@ class ModelRegion extends Model {
         $query->execute([$id]);
     }
 
-     /**
-     * @param $id
-     * Actualiza un region en base al id pasado por parámetro
-     */
-    function updateRegion($nombre, $imagen_region, $id_region){
-        $query = $this-> getDb()->prepare('UPDATE region SET nombre = ?, imagen_region = ? WHERE id_region = ?');
-        $query->execute([$nombre, $imagen_region, $id_region]);
-    }
 }

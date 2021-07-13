@@ -1,2 +1,5 @@
 templates_c/*.php
 models/Model.php
+imagenes/Tipo_Elemental/
+imagenes/Region/
+imagenes/Pokemon/

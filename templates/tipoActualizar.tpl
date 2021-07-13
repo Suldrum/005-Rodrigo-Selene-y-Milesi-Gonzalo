@@ -7,7 +7,7 @@
     <br>
     <br>
     <div id= "datosTipoNuevo">
-    <form action="editTipoElemental/{$tipoActual->id_tipo_elemental}" method="POST">
+    <form action="editTipoElemental/{$tipoActual->id_tipo_elemental}" method="POST" enctype="multipart/form-data">
         {include 'templates/formNameImage.tpl'}
         <button id="botonIngresar">Actualizar tipo</button>
     </form>
