@@ -18,7 +18,8 @@ let listaComentarios = new Vue({
         //lo pone en true ya que los metodos se encargaran de ponerlo en false cuando terminen
         loading: true,
         notComment: false, 
-    //    privilege: privilege,
+        visible: document.querySelector("#seccionComentario").getAttribute('visible'),
+    //    visible: '<%= Session["admin"] %>',
     //arreglo de recepcion de la informacion
         pokemonComments: []
     },
@@ -63,9 +64,6 @@ let nuevoComentario = new Vue({
             else{
                 alert('No olvides dar una nota ;-)');
             }
-            
-
-
         },
     },
 });
@@ -116,22 +114,20 @@ function getPokemonComments() {
     .then (pokemonComments => {
         if (pokemonComments == null)
         {
+            // Hubo un error
             listaComentarios.error = true;
         }
         else{
             if (pokemonComments == "Sin comentarios") {
-            // Hubo un error
             listaComentarios.notComment=true;
             }
             else {
                 // Obtengo todos los comentarios de un pokemon y lo guardo en la lista de comentarios
                 listaComentarios.pokemonComments = pokemonComments;
-       //     averageRating.users_rating = getAverage(ins_comments);
             }
         }
         // Termina la carga de informacion
         listaComentarios.loading = false;
-       // averageRating.loading = false;
     })
     .catch(exception => console.log(exception));
 }

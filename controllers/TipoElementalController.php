@@ -27,25 +27,53 @@ class TipoElementalController {
     }
 
     public function createTipoElemental() {
-        if (!empty($_POST['F_nombre']) && !empty($_POST['F_imagen'])) {
-                $name= $_POST['F_nombre'];
-                $image= $_POST['F_imagen'];
-                $this->model->newTipo_Elemental($name, $image);
-                header("Location: " . BASE_URL . 'tablatipos');
-            }else {
-                header("Location: " . BASE_URL . 'createTipoElemental');
-            }
+        $name= $_POST['F_nombre'];
+        $image= $_FILES['F_imagen']['size'];
+         if ( ($name != '') && ($image > 0))
+        {
+            if(
+                $_FILES['F_imagen']['type'] == "image/jpg" ||
+                $_FILES['F_imagen']['type'] == "image/jpeg" ||
+                $_FILES['F_imagen']['type'] == "image/png" ||
+                $_FILES['F_imagen']['type'] == "image/jpeg"
+                )
+            {
+                $success = $this->model->newTipo_Elemental($name, $_FILES['F_imagen']['tmp_name']);
+                if ($success)
+                    header("Location: " . BASE_URL . 'tablatipos');
+                else
+                    header("Location: " . BASE_URL . 'crearTipoElemental');
+                }
+            else
+                header("Location: " . BASE_URL . 'crearTipoElemental');
+        }
+        else
+            header("Location: " . BASE_URL . 'home');
     }
 
     public function editTipoElemental($id_tipo_elemental) {
-        if (!empty($_POST['F_nombre']) && !empty($_POST['F_imagen'])) {
-            $name= $_POST['F_nombre'];
-            $image= $_POST['F_imagen'];
-            $this->model->updateTipo_Elemental($name, $image, $id_tipo_elemental);
-            header("Location: " . BASE_URL . 'tablatipos');
-        }else {
-            header("Location: " . BASE_URL . 'editarTipoElemental/'.$id_tipo_elemental);
+        $name= $_POST['F_nombre'];
+        $image= $_FILES['F_imagen']['size'];
+         if ( ($name != '') && ($image > 0))
+        {
+            if(
+                $_FILES['F_imagen']['type'] == "image/jpg" ||
+                $_FILES['F_imagen']['type'] == "image/jpeg" ||
+                $_FILES['F_imagen']['type'] == "image/png" ||
+                $_FILES['F_imagen']['type'] == "image/jpeg"
+                )
+            {
+                $success = $this->model->updateTipo_Elemental($name, $_FILES['F_imagen']['tmp_name'], $id_tipo_elemental);
+                if ($success)
+                    header("Location: " . BASE_URL . 'tablatipos');
+                else
+                    header("Location: " . BASE_URL . 'editarTipoElemental/'.$id_tipo_elemental);
+                }
+            else
+                header("Location: " . BASE_URL . 'editarTipoElemental/'.$id_tipo_elemental);
         }
+        else
+            header("Location: " . BASE_URL . 'home');
     }
 
     public function deleteTipo_Elemental($id_tipo_elemental) {

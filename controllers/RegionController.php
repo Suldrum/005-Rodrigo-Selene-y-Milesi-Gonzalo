@@ -27,25 +27,51 @@ class RegionController {
     }
 
     public function createRegion() {
-        if (!empty($_POST['F_nombre']) && !empty($_POST['F_imagen'])) {
-            $name= $_POST['F_nombre'];
-            $image= $_POST['F_imagen'];
-            $this->model->newRegion($name, $image);
-            header("Location: " . BASE_URL . 'regiones');
-        }else {
-            header("Location: " . BASE_URL . 'createRegion');
+        $name= $_POST['F_nombre'];
+        $image= $_FILES['F_imagen']['size'];
+        if ( ($name != '') && ($image > 0))
+        {
+            if (
+                $_FILES['F_imagen']['type'] == "image/jpg" ||
+                $_FILES['F_imagen']['type'] == "image/jpeg" ||
+                $_FILES['F_imagen']['type'] == "image/png" ||
+                $_FILES['F_imagen']['type'] == "image/jpeg"
+            )
+            {
+                $success = $this->model->newRegion($name, $_FILES['F_imagen']['tmp_name']);
+                if ($success)
+                    header("Location: " . BASE_URL . 'regiones');
+                else
+                    header("Location: " . BASE_URL . 'crearRegion');
+            }else
+                header("Location: " . BASE_URL . 'crearRegion');
         }
+        else
+            header("Location: " . BASE_URL . 'home');
     }
 
     public function editRegion($id_region) {  
-        if (!empty($_POST['F_nombre']) && !empty($_POST['F_imagen'])) {
-            $name= $_POST['F_nombre'];
-            $image= $_POST['F_imagen'];
-            $this->model->updateRegion($name, $image, $id_region);
-            header("Location: " . BASE_URL . 'regiones');
-        }else {
-            header("Location: " . BASE_URL . 'editarRegion/'.$id_region);
+        $name= $_POST['F_nombre'];
+        $image= $_FILES['F_imagen']['size'];
+        if ( ($name != '') && ($image > 0))
+        {
+            if (
+                $_FILES['F_imagen']['type'] == "image/jpg" ||
+                $_FILES['F_imagen']['type'] == "image/jpeg" ||
+                $_FILES['F_imagen']['type'] == "image/png" ||
+                $_FILES['F_imagen']['type'] == "image/jpeg"
+            )
+            {
+                $success = $this->model->updateRegion($name, $_FILES['F_imagen']['tmp_name'], $id_region);
+                if ($success)
+                    header("Location: " . BASE_URL . 'regiones');
+                else
+                    header("Location: " . BASE_URL . 'editarRegion/'.$id_region);
+            }else
+                header("Location: " . BASE_URL . 'editarRegion/'.$id_region);
         }
+        else
+            header("Location: " . BASE_URL . 'home');
         
     }
 

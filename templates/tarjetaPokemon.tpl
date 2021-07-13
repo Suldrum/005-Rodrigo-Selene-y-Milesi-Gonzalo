@@ -11,7 +11,7 @@
     {/if}
     <a class='navegacion' href="dexter">Volver</a>
     <!---- CAMBIAR TODO LO POSIBLE A PHP ------>
-    <section id = seccionComentario username = 4  pokemonID = {$tarjetaPokemon->id_pokemon}>
+    <section id = seccionComentario visible= {$userLogged['admin']}>
     {if isset($userLogged) && $userLogged}
         <!---- LA CONSOLA TIRA UN ERROR ACA PORQUE EL JS NO ENCUENTRA EL NEWCOMMENT ------>
         {include 'templates/vue/formComment.vue'}

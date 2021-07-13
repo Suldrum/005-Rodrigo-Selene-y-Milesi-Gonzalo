@@ -4,6 +4,14 @@ require_once('Model.php');
 
 class ModelTipoElemental extends Model {
 
+    private function getTarget() {
+        $target = 'imagenes/Tipo_Elemental/'.uniqid().'.jpg';
+        return $target;
+    }
+
+    private function saveImage($image, $target) {
+        move_uploaded_file($image, $target);
+    }
     /**
      * @return array
      * Retorna todas los tipos elementales en la tabla tipo_elemental ordenados por id
@@ -34,8 +42,12 @@ class ModelTipoElemental extends Model {
      * Crea una tarea a partir de los parámetros pasados
      */
     function newTipo_Elemental($nombre, $imagen_tipo) {
+        $pathImg = $this->getTarget();
         $query = $this->getDb()->prepare('INSERT INTO tipo_elemental (nombre, imagen_tipo) VALUES (?, ?)');
-        $query->execute([$nombre, $imagen_tipo]);
+        $success = $query->execute([$nombre, $pathImg]);
+        if($success && isset($pathImg)) 
+            $this->saveImage($imagen_tipo, $pathImg);
+        return $success;
     }
 
     /**
@@ -52,7 +64,11 @@ class ModelTipoElemental extends Model {
      * Actualiza un tipo_elemental en base al id pasado por parámetro
      */
     function updateTipo_Elemental($nombre, $imagen_tipo, $id_tipo_elemental){
+        $pathImg = $this->getTarget();
         $query = $this-> getDb()->prepare('UPDATE tipo_elemental SET nombre = ?, imagen_tipo = ? WHERE id_tipo_elemental = ?');
-        $query->execute([$nombre, $imagen_tipo, $id_tipo_elemental]);
+        $success = $query->execute([$nombre, $pathImg, $id_tipo_elemental]);
+        if($success && isset($pathImg)) 
+            $this->saveImage($imagen_tipo, $pathImg);
+        return $success;
     }
 }

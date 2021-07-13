@@ -28,3 +28,7 @@
 {
 	content: "\f005";
 }
+
+.star-rating__wrap[disabled] { 
+	pointer-events: none;
+}

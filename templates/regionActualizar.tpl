@@ -7,7 +7,7 @@
     <br>
     <br>
     <div id= "datosRegionNuevos">
-    <form action="editRegion/{$regionActual->id_region}" method="POST">
+    <form action="editRegion/{$regionActual->id_region}" method="POST" enctype="multipart/form-data">
         {include 'templates/formNameImage.tpl'}
         <button class="btn btn-outline-success">Actualizar Region</button>
     </form>
