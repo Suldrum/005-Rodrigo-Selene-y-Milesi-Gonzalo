@@ -33,10 +33,10 @@
                     </tr>
                 {/foreach}
             </tbody>
-        </table>
-        {if ($userLogged['admin'])}
-            <button id="botonCrearTipo" onclick="location.href='crearTipoElemental'">Crear Nuevo Tipo</button></td>
-        {/if}
+        </table> 
     </div>
+    {if ($userLogged['admin'])}
+        <button id="botonCrearTipo" onclick="location.href='crearTipoElemental'">Crear Nuevo Tipo</button></td>
+    {/if}
 </div>
 {include 'templates/footer.tpl'}

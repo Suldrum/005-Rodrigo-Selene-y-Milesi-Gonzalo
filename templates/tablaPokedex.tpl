@@ -36,9 +36,10 @@
                 {/foreach}
             </tbody>
         </table>
-        {if ($userLogged['admin'])}
-            <button class="btn btn-outline-success" onclick="location.href='crearPokemon'">Crear Pokemon</button></td>
-        {/if}
+       
     </div>
+    {if ($userLogged['admin'])}
+        <button class="btn btn-outline-success" onclick="location.href='crearPokemon'">Crear Pokemon</button></td>
+    {/if}
 </div>
 {include 'templates/footer.tpl'}

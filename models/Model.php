@@ -11,7 +11,7 @@ class Model {
 
     public function create_connection() {
         //IMPORTANTE!! INDICAR EL PUERTO! PARA MySQL :3308 Y PARA MariaDB:3306
-        $host = 'localhost:3308';
+        $host = 'localhost';
         $userName = 'root';
         $password = '';
         $database = 'db_pokemon';

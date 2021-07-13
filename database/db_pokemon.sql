@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3308
--- Tiempo de generación: 07-07-2021 a las 00:27:25
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 12-07-2021 a las 21:39:48
 -- Versión del servidor: 8.0.18
--- Versión de PHP: 7.3.12
+-- Versión de PHP: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -35,15 +34,25 @@ CREATE TABLE IF NOT EXISTS `comentario` (
   `id_fk_usuario` int(11) NOT NULL,
   `calificacion` tinyint(4) NOT NULL,
   `texto` text,
-  PRIMARY KEY (`id_comentario`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id_comentario`),
+  KEY `id_fk_usuario` (`id_fk_usuario`) USING BTREE,
+  KEY `id_fk_pokemon` (`id_fk_pokemon`)
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `comentario`
 --
 
-INSERT INTO `comentario` (`id_comentario`, `id_fk_pokemon`, `id_fk_usuario`, `fecha`, `calificacion`, `texto`) VALUES
-(4, 4, 2, '2021-07-06', 5, 'Lindo');
+INSERT INTO `comentario` (`id_comentario`, `id_fk_pokemon`, `id_fk_usuario`, `calificacion`, `texto`) VALUES
+(7, 4, 2, 2, '22222222222222222222'),
+(8, 4, 2, 4, 'aaaaaa'),
+(9, 4, 2, 4, 'aaaaaa'),
+(24, 5, 3, 5, 'aaaaaaaaa'),
+(25, 5, 2, 4, 'aaaaaasasasasas'),
+(26, 5, 2, 5, 'zxzx'),
+(27, 5, 2, 5, 'asas'),
+(45, 1, 2, 2, 'aa'),
+(46, 1, 3, 4, 'asas');
 
 -- --------------------------------------------------------
 
@@ -178,18 +187,18 @@ CREATE TABLE IF NOT EXISTS `tipo_elemental` (
 --
 
 INSERT INTO `tipo_elemental` (`id_tipo_elemental`, `nombre`, `imagen_tipo`) VALUES
-(1, 'Acero', 'imagenes/Tipo/Type_Acero.png'),
+(1, 'Acero', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/2/2c/Type_Acero.png'),
 (2, 'Agua', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/b/b7/Type_Agua.png'),
 (3, 'Bicho', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/9/91/Type_Bicho.png'),
 (4, 'Dragón', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/d/d4/Type_Drag%C3%B3n.png'),
 (5, 'Eléctrico', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/c/c7/Type_El%C3%A9ctrico.png'),
-(6, 'Fantasma', 'https://pokemongo.fandom.com/es/wiki/Archivo:Type_Fantasma.png'),
+(6, 'Fantasma', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/1/11/Type_Fantasma.png'),
 (7, 'Fuego', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/3/38/Type_Fuego.png'),
 (8, 'Hada', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/4/49/Type_Hada.png'),
 (9, 'Hielo', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/3/35/Type_Hielo.png'),
 (10, 'Lucha', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/6/66/Type_Lucha.png'),
 (11, 'Normal', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/2/23/Type_Normal.png'),
-(12, 'Planta', 'imagenes/Tipo/Type_Planta.png'),
+(12, 'Planta', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/6/60/Type_Planta.png'),
 (13, 'Psíquico', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/7/72/Type_Ps%C3%ADquico.png'),
 (14, 'Roca', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/b/b3/Type_Roca.png'),
 (15, 'Siniestro', 'https://static.wikia.nocookie.net/pokemongo_es_gamepedia/images/3/39/Type_Siniestro.png'),
@@ -211,20 +220,28 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `nombre` varchar(20) NOT NULL,
   `apellido` varchar(20) NOT NULL,
   `administrador` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`ID`, `email`, `contraseña`, `nombre`, `apellido`, `administrador`) VALUES
-(2, 'hola@hola', '$2y$10$yiQieHg9ORhiOWTJC7HFD.XzZAKa2yT46sTDYsR7J/iafsjl6VVA2', 'hola', 'hola', 1),
+(2, 'admin@admin', '$2y$10$yiQieHg9ORhiOWTJC7HFD.XzZAKa2yT46sTDYsR7J/iafsjl6VVA2', 'admin', 'admin', 1),
 (3, 'hola@hola', '$2y$10$Uytufa4wr/psxH/wcFDRJOZWZ2eKHMXfCUQcQ5oBg4YSqQ7eZ8MY6', 'hola', 'hola', 0);
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`id_fk_usuario`) REFERENCES `usuario` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`id_fk_pokemon`) REFERENCES `pokemon` (`id_pokemon`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pokemon`
