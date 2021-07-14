@@ -1,7 +1,6 @@
 {literal}
 <section id="newComment">
     <h3> ¿Quieres compartir lo que piensas de este pokemon? </h3>
-    <!-- > AQUI PONER ESTRELLITAS <--->
     <br>
       <div class="star-rating">
       <div class="star-rating__wrap">

@@ -2,6 +2,7 @@
 
 //ELIMINAR LOS ALERTS / MOVERLOS AL CONTROLADOR
 
+
 /**
  *  Obtener el id del pokemon desde un atributo HTML.
  */
@@ -35,6 +36,7 @@ let listaComentarios = new Vue({
 });
 
 // ESTO DEBE EDITARSE DE MANERA QUE SOLO SE ENVIE EL TEXTO Y LA CALIFICACION, EL RESTO SE VERIFICA EN EL CONTROLADOR
+
 let nuevoComentario = new Vue({
     //nombre del div donde se carga
     el:'#newComment',
@@ -90,6 +92,7 @@ function resetData()
 // Pide cargar los comentarios ni bien se carga la página
 $(document).ready(function (){
     getPokemonComments();
+    
 });
 
 // Trae los comentarios de la API
@@ -128,6 +131,7 @@ function getPokemonComments() {
         }
         // Termina la carga de informacion
         listaComentarios.loading = false;
+        
     })
     .catch(exception => console.log(exception));
 }

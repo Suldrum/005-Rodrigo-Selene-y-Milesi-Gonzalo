@@ -88,7 +88,7 @@ class ApiController {
                 $this->view->response(false, 404);
             }
         }else {
-            $this->view->response(false, 200);
+            $this->view->response(false, 404);
         }
     }
 
