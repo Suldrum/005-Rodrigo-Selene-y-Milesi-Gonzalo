@@ -43,5 +43,12 @@ class UserModel extends Model {
         $query->execute([$id]);
 
     }
+
+    function countAdmin()
+    {
+        $query = $this->getDb()->prepare('SELECT COUNT(*) AS total FROM usuario WHERE administrador = 1');
+        $query->execute();
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
 }
 ?>

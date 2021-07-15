@@ -78,11 +78,17 @@ class UserController {
        else
            header('Location: ' . BASE_URL . "home");
     }  
+  
 
     function bajaAdmin($id)
-    {
-        $this->model->bajaAdmin($id);
-        header("Location: " . BASE_URL . 'usuarios');
+    {  
+        $admins = $this->model->countAdmin();
+        if ($admins->total > 1){
+            $this->model->bajaAdmin($id);
+            header("Location: " . BASE_URL . 'usuarios');
+        }else{
+            header("Location: " . BASE_URL . 'usuarios');
+        }
     }
 
     function altaAdmin($id)
