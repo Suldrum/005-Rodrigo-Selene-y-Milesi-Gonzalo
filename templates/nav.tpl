@@ -6,7 +6,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link active" href="home">Home</a></li>
-            <li class="nav-item"><a class="nav-link active" href="dexter">Pokedex</a></li>
+            <li class="nav-item"><a class="nav-link active" href="dexter/1">Pokedex</a></li>
             <li class="nav-item"> <a class="nav-link active" href="regiones">Regiones<span class="sr-only"></span></a>
             </li>
             <li class="nav-item"> <a class="nav-link active" href="tablatipos">Tabla de Tipos<span

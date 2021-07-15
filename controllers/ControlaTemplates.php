@@ -5,11 +5,12 @@ include_once ('models/ModelRegion.php');
 include_once ('models/ModelTipoElemental.php');
 include_once ('views/ViewTemplates.php');
 
-
+const ROWSPERPAGE = 7;
 class ControlaTemplates {
 
     private $model;
     private $view;
+    
 
     function __construct() {
         $this->model = new ModelPokemon();
@@ -23,13 +24,14 @@ class ControlaTemplates {
         $this->view->showHomeVista();
     }
 
-    function showPokedex(){
+    function showPokedex($pagina){
         $listaRegiones = $this->modelRegion->getAll();
         $listaTipos = $this->modelTipo->getAll();
-        $listaPokemones = $this->model->getAll();
-        //$listaPokemones = $this->paginationPokemon();
-       $this->view->ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos);
-       // $this->paginationPokemon();
+    //    $listaPokemones = $this->model->getAll();
+        $listaPokemones = $this->paginationPokemon($pagina);
+        $pokeTotal = $this->model->countPokemon();
+        $cantPaginas = ceil ($pokeTotal->total / ROWSPERPAGE) ;
+        $this->view->ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos,$cantPaginas);
     }
 
     function showRegiones() {
@@ -83,19 +85,16 @@ class ControlaTemplates {
         $this->view->ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos);
     }
 
-    public function paginationPokemon()
+    public function paginationPokemon($pagina)
     {
         $pokeTotal = $this->model->countPokemon();
-
          // number of rows to show per page
-         $rowsPerPage = 7;
          // find out total pages
-         $totalpages = ceil($pokeTotal / $rowsPerPage);
- 
-         // get the current page or set a default
-         if (isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])) {
+         $totalpages = ceil ($pokeTotal->total / ROWSPERPAGE) ;
+    //     // get the current page or set a default
+         if (isset($pagina) && is_numeric($pagina)) {
          // cast var as int
-         $currentpage = (int) $_GET['currentpage'];
+         $currentpage = (int) $pagina;
          } else {
          // default page num
          $currentpage = 1;
@@ -113,30 +112,28 @@ class ControlaTemplates {
          } // end if
  
          // the offset of the list, based on current page 
-         $offset = ($currentpage - 1) * $rowsPerPage;
+         $offset = ($currentpage - 1) * ROWSPERPAGE ;
         
-        $dexter = $this->model->paginationPokemon($offset, $rowsPerPage);
+       $dexter = $this->model->paginationPokemon($offset, ROWSPERPAGE );
+       return ($dexter);
 
-         /*mysqli_query($this->getDb(), $sql);*/
-        // while there are rows to be fetched...
-        foreach ($dexter as $list)  {
-            // echo data
-            echo $list->nombre  . "<br />";
-            } // end while
-    
+    }
+}
 
-        /******  build the pagination links ******/
+
+  /******  build the pagination links ******/
         // range of num links to show
+/*       
         $range = 3;
 
         // if not on page 1, don't show back links
         if ($currentpage > 1) {
         // show << link to go back to page 1
-        echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=1'><<</a> ";
+        echo " <a href='dexter/1'> << </a> ";
         // get previous page num
         $prevpage = $currentpage - 1;
         // show < link to go back to 1 page
-        echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$prevpage'><</a> ";
+        echo " <a href='dexter/$prevpage'><</a> ";
         } // end if 
 
         // loop to show links to range of pages around current page
@@ -150,7 +147,7 @@ class ControlaTemplates {
             // if not current page...
             } else {
                 // make it a link
-                echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$x'>$x</a> ";
+                echo " <a href='dexter/$x'>$x</a> ";
             } // end else
         } // end if 
         } // end for
@@ -160,11 +157,10 @@ class ControlaTemplates {
         // get next page
         $nextpage = $currentpage + 1;
             // echo forward link for next page 
-        echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$nextpage'>></a> ";
+        echo " <a href='dexter/$nextpage'>></a> ";
         // echo forward link for lastpage
-        echo " <a href='{$_SERVER['PHP_SELF']}?currentpage=$totalpages'>>></a> ";
+        echo " <a href='dexter/$totalpages'>>></a> ";
         } // end if
         /****** end build pagination links ******/
 
-    }
-}
+

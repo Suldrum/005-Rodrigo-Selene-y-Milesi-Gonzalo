@@ -9,11 +9,12 @@ class ViewTemplates extends View {
         $this->getSmarty()->display('templates/home.tpl');
     }
 
-    function ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos){
+    function ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos,$cantPaginas){
         $this->getSmarty()->assign('title', "Tabla - Pokedex");
         $this->getSmarty()->assign('listaPokemons',$listaPokemones);
         $this->getSmarty()->assign('listaRegiones',$listaRegiones);
         $this->getSmarty()->assign('listaTipos',$listaTipos);
+        $this->getSmarty()->assign('cantPaginas',$cantPaginas);
         $this->getSmarty()->display('templates/tablaPokedex.tpl');
     }
 

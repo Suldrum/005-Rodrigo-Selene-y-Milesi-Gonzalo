@@ -27,7 +27,7 @@ switch ($urlParts[0]) {
 		$ControlaTemplates->showHome();
 		break;
 	case 'dexter':
-		$ControlaTemplates->showPokedex();
+		$ControlaTemplates->showPokedex($urlParts[1]);
 		break;
 	case 'login':
 		$userController->showLogin();

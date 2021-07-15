@@ -19,7 +19,7 @@
                 {foreach from=$listaPokemons item=pokemon}
                     <tr class="align-middle">
                         <td>{$pokemon->id_pokemon}</td>
-                        <td><img class="img-fluid" height="150px" width="150px" src="{$pokemon->imagen_pokemon}"></td>
+                        <td><img src="{$pokemon->imagen_pokemon}"></td>
                         <td>{$pokemon->nombre}</td>
                         <td> <a href="verTarjetaPokemon/{$pokemon->id_pokemon}">+</a> </td>
                         {if ($userLogged['admin'])}
@@ -34,10 +34,18 @@
                         {/if}
                     </tr>
                 {/foreach}
+                
             </tbody>
-        </table>
-       
+        </table>   
     </div>
+
+    <ul class="pagination">
+    
+  
+    {for $pagina = 1 to $cantPaginas}
+        <li><a href="dexter/{$pagina}">{$pagina}</a></li>
+    {/for}
+    </ul>
     {if ($userLogged['admin'])}
         <button class="btn btn-outline-success" onclick="location.href='crearPokemon'">Crear Pokemon</button></td>
     {/if}

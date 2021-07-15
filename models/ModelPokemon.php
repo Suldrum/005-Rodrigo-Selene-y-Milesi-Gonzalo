@@ -107,9 +107,9 @@ class ModelPokemon extends Model {
 
     function countPokemon()
     {
-        $query = $this->getDb()->prepare('SELECT COUNT(*) FROM pokemon');
-        $pokeTotal = $query->execute();
-        return ($pokeTotal);
+        $query = $this->getDb()->prepare('SELECT COUNT(*) AS total FROM pokemon');
+        $query->execute();
+        return $query->fetch(PDO::FETCH_OBJ);
     }
      /**
      * @param $pagina
@@ -118,9 +118,6 @@ class ModelPokemon extends Model {
      */
     
     function paginationPokemon($offset, $rowsPerPage){
-    //    $query = $this-> getDb()->prepare('SELECT * FROM pokemon ORDER BY id_pokemon ASC LIMIT 10 OFFSET '.$pagina);
-    //    $query->execute();
-        // get the info from the db 
         $sql = "SELECT * FROM pokemon LIMIT $offset, $rowsPerPage";
         $query = $this->getDb()->prepare($sql);  
         $query ->execute(); 
