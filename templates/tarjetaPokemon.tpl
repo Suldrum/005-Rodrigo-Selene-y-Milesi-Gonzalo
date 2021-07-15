@@ -2,12 +2,12 @@
 
 <div class="container">
     <p>{$tarjetaPokemon->nombre}</p>
-    <img src="{$tarjetaPokemon->imagen_pokemon}">
+    <img class="img-fluid" height="200px" width="200px" src="{$tarjetaPokemon->imagen_pokemon}">
     <p>{$regionPokemon->nombre}</p>
-    <img src="{$regionPokemon->imagen_region}">
-    <img src="{$tipoElemental1->imagen_tipo}">
+    <img class="img-fluid" height="100px" width="100px" src="{$regionPokemon->imagen_region}">
+    <img class="img-fluid" height="100px" width="100px" src="{$tipoElemental1->imagen_tipo}">
     {if {$tipoElemental2}!=NULL}
-            <img src="{$tipoElemental2}">
+            <img class="img-fluid" height="100px" width="100px" src="{$tipoElemental2}">
     {/if}
     <a class='navegacion' href="dexter">Volver</a>
     <!---- CAMBIAR TODO LO POSIBLE A PHP ------>

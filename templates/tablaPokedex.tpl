@@ -19,7 +19,7 @@
                 {foreach from=$listaPokemons item=pokemon}
                     <tr class="align-middle">
                         <td>{$pokemon->id_pokemon}</td>
-                        <td><img src="{$pokemon->imagen_pokemon}"></td>
+                        <td><img class="img-fluid" height="150px" width="150px" src="{$pokemon->imagen_pokemon}"></td>
                         <td>{$pokemon->nombre}</td>
                         <td> <a href="verTarjetaPokemon/{$pokemon->id_pokemon}">+</a> </td>
                         {if ($userLogged['admin'])}

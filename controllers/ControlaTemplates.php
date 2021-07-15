@@ -26,10 +26,10 @@ class ControlaTemplates {
     function showPokedex(){
         $listaRegiones = $this->modelRegion->getAll();
         $listaTipos = $this->modelTipo->getAll();
-    //    $listaPokemones = $this->model->getAll();
-        $listaPokemones = $this->paginationPokemon();
-     //   $this->view->ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos);
-        $this->paginationPokemon();
+        $listaPokemones = $this->model->getAll();
+        //$listaPokemones = $this->paginationPokemon();
+       $this->view->ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos);
+       // $this->paginationPokemon();
     }
 
     function showRegiones() {

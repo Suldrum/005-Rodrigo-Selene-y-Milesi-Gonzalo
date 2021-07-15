@@ -18,7 +18,7 @@
                     <tr>
                         <td>{$region->id_region}</td>
                         <td>{$region->nombre}</td>
-                        <td><img src="{$region->imagen_region}"></td>
+                        <td><img class="img-fluid" height="100px" width="100px" src="{$region->imagen_region}"></td>
                         <!--SI ES ADMINISTRADOR / ESTO ES PARA PROBAR -->
                         {if ($userLogged['admin'])}
                             <td>

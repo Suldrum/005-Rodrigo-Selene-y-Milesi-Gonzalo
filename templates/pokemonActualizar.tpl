@@ -3,14 +3,14 @@
     <div id= "datosRegionActual">
         {$pokemonActual->id_pokemon}
         {$regionPokemon = {$pokemonActual->id_region} - 1}
-        <img alt= "IMAGEN_REGION_ACTUAL"src="{$listaRegiones[$regionPokemon]->imagen_region}">
+        <img class="img-fluid" height="100px" width="100px" alt= "IMAGEN_REGION_ACTUAL"src="{$listaRegiones[$regionPokemon]->imagen_region}">
         {$pokemonActual->nombre}
         {$tipo1 = {$pokemonActual->id_tipo_elemental} - 1} 
-        <img alt= "IMAGEN_POKEMON_ACTUAL"src="{$pokemonActual->imagen_pokemon}">
-        <img alt= "IMAGEN_TIPO1_ACTUAL"src="{$listaTipos[$tipo1]->imagen_tipo}"> 
+        <img class="img-fluid" height="150px" width="150px" alt= "IMAGEN_POKEMON_ACTUAL"src="{$pokemonActual->imagen_pokemon}">
+        <img class="img-fluid" height="100px" width="100px" alt= "IMAGEN_TIPO1_ACTUAL"src="{$listaTipos[$tipo1]->imagen_tipo}"> 
         {if {$pokemonActual->id_tipo_elemental2}!=NULL}  
             {$tipo2 = {$pokemonActual->id_tipo_elemental2} - 1}  
-            <img alt= "IMAGEN_TIPO2_ACTUAL"src="{$listaTipos[$tipo2]->imagen_tipo}">
+            <img class="img-fluid" height="100px" width="100px" alt= "IMAGEN_TIPO2_ACTUAL"src="{$listaTipos[$tipo2]->imagen_tipo}">
         {/if}   
     </div>
     <br>

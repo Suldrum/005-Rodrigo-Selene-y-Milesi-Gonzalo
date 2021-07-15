@@ -2,7 +2,7 @@
 <div class="container">
     <div id= "datosTipoActual">
         {$tipoActual->nombre}
-        <img alt= "IMAGEN_TIPO_ACTUAL"src="{$tipoActual->imagen_tipo}">
+        <img class="img-fluid" height="200px" width="200px" alt= "IMAGEN_TIPO_ACTUAL"src="{$tipoActual->imagen_tipo}">
     </div>
     <br>
     <br>
