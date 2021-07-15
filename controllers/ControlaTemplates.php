@@ -28,6 +28,7 @@ class ControlaTemplates {
         $listaTipos = $this->modelTipo->getAll();
         $listaPokemones = $this->model->getAll();
         $this->view->ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos);
+        $this->model-> paginationPokemon();
     }
 
     function showRegiones() {
