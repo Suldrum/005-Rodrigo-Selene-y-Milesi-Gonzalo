@@ -26,8 +26,9 @@ class ControlaTemplates {
     function showPokedex(){
         $listaRegiones = $this->modelRegion->getAll();
         $listaTipos = $this->modelTipo->getAll();
-        $listaPokemones = $this->model->getAll();
-        $this->view->ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos);
+    //    $listaPokemones = $this->model->getAll();
+        $listaPokemones = $this->paginationPokemon();
+     //   $this->view->ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos);
         $this->paginationPokemon();
     }
 
@@ -115,11 +116,12 @@ class ControlaTemplates {
          $offset = ($currentpage - 1) * $rowsPerPage;
         
         $dexter = $this->model->paginationPokemon($offset, $rowsPerPage);
+
          /*mysqli_query($this->getDb(), $sql);*/
         // while there are rows to be fetched...
         foreach ($dexter as $list)  {
             // echo data
-            echo "pokemon " . "<br />";
+            echo $list->nombre  . "<br />";
             } // end while
     
 

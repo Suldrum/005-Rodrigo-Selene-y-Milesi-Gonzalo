@@ -121,7 +121,7 @@ class ModelPokemon extends Model {
     //    $query = $this-> getDb()->prepare('SELECT * FROM pokemon ORDER BY id_pokemon ASC LIMIT 10 OFFSET '.$pagina);
     //    $query->execute();
         // get the info from the db 
-        $sql = "SELECT id_pokemon FROM pokemon LIMIT $offset, $rowsPerPage";
+        $sql = "SELECT * FROM pokemon LIMIT $offset, $rowsPerPage";
         $query = $this->getDb()->prepare($sql);  
         $query ->execute(); 
         return( $query->fetchAll(PDO::FETCH_OBJ));
