@@ -100,5 +100,4 @@ class PokemonController {
         $this->model->deletePokemon($id_pokemon);
         header("Location: " . BASE_URL . 'dexter');
     }
-
 }
