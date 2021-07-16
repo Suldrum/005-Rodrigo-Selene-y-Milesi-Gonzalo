@@ -39,7 +39,7 @@
         </table>   
     </div>
 
-    <ul class="pagination">
+    <ul class="pagination justify-content-center">
     
     {if ($url[2] != "dexter")}
         {for $pagina = 1 to $cantPaginas}
@@ -52,7 +52,9 @@
     {/if}
     </ul>
     {if ($userLogged['admin'])}
-        <button class="btn btn-outline-success" onclick="location.href='crearPokemon'">Crear Pokemon</button></td>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-outline-success" onclick="location.href='crearPokemon'">Crear Pokemon</button></td>
+        </div>
     {/if}
 </div>
 {include 'templates/footer.tpl'}

@@ -36,7 +36,7 @@
         </table> 
     </div>
     {if ($userLogged['admin'])}
-        <button id="botonCrearTipo" onclick="location.href='crearTipoElemental'">Crear Nuevo Tipo</button></td>
+        <button id="botonCrearTipo" onclick="location.href='crearTipoElemental'" >Crear Nuevo Tipo</button></td>
     {/if}
 </div>
 {include 'templates/footer.tpl'}

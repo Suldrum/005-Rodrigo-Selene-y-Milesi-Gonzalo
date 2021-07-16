@@ -33,4 +33,8 @@
 	pointer-events: none;
 }
 
-
+.pokeFondo{
+    background-image: url('/imagenes/pokeFondo.jpg');
+    background-size: cover;
+    width: auto;
+}

@@ -13,5 +13,5 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>PokemonGoBattle</title>
 </head>
-<body>
+<body >
 {include 'templates/nav.tpl'}
