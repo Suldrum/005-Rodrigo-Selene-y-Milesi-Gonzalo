@@ -55,55 +55,51 @@ class ControlaTemplates {
         $id_region= $_POST['F_id_region'];
         if (($id_region != "NADA") && ($id_tipo_elemental != "NADA"))
         {    
+            $pokeTotal = $this->model->countPokemonFilterAll($id_region,$id_tipo_elemental);
             $listaPokemones = $this->model->getAllFiltro($id_region,$id_tipo_elemental);
         }
         else
         {
             if ($id_region != "NADA")
+            {
+                $pokeTotal = $this->model->countPokemonFilterByRegion($id_region);
                 $listaPokemones = $this->model->getAllByRegion($id_region);
+            }
             else
             {
                 if ($id_tipo_elemental != "NADA")
+                {
+                    $pokeTotal = $this->model->countPokemonFilterByType($id_tipo_elemental);
                     $listaPokemones = $this->model->getAllByType($id_tipo_elemental);
+                }
                 else{
                         if (($id_region == "NADA") && ($id_tipo_elemental == "NADA"))
-                            header("Location: " . BASE_URL . 'dexter');
+                            header("Location: " . BASE_URL . 'dexter/1');
                     }
             }
             
         }
         $listaRegiones = $this->modelRegion->getAll();
         $listaTipos = $this->modelTipo->getAll();
-        $this->view->ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos);
+        $cantPaginas = ceil ($pokeTotal->total / ROWSPERPAGE) ;
+        $this->view->ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos,$cantPaginas);
     }
 
     public function paginationPokemon($pagina)
     {
         $pokeTotal = $this->model->countPokemon();
-         // number of rows to show per page
-         // find out total pages
-         $totalpages = ceil ($pokeTotal->total / ROWSPERPAGE) ;
-    //     // get the current page or set a default
+         $totalpages = ceil ($pokeTotal->total / ROWSPERPAGE);
          if (isset($pagina) && is_numeric($pagina)) {
-         // cast var as int
          $currentpage = (int) $pagina;
          } else {
-         // default page num
          $currentpage = 1;
-         } // end if
- 
-         // if current page is greater than total pages...
+         } 
          if ($currentpage > $totalpages) {
-         // set current page to last page
          $currentpage = $totalpages;
-         } // end if
-         // if current page is less than first page...
+         } 
          if ($currentpage < 1) {
-         // set current page to first page
          $currentpage = 1;
-         } // end if
- 
-         // the offset of the list, based on current page 
+         } 
          $offset = ($currentpage - 1) * ROWSPERPAGE ;
         
        $dexter = $this->model->paginationPokemon($offset, ROWSPERPAGE );
@@ -111,48 +107,3 @@ class ControlaTemplates {
 
     }
 }
-
-
-  /******  build the pagination links ******/
-        // range of num links to show
-/*       
-        $range = 3;
-
-        // if not on page 1, don't show back links
-        if ($currentpage > 1) {
-        // show << link to go back to page 1
-        echo " <a href='dexter/1'> << </a> ";
-        // get previous page num
-        $prevpage = $currentpage - 1;
-        // show < link to go back to 1 page
-        echo " <a href='dexter/$prevpage'><</a> ";
-        } // end if 
-
-        // loop to show links to range of pages around current page
-        for ($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++) {
-        // if it's a valid page number...
-        if (($x > 0) && ($x <= $totalpages)) {
-            // if we're on current page...
-            if ($x == $currentpage) {
-                // 'highlight' it but don't make a link
-                echo " [<b>$x</b>] ";
-            // if not current page...
-            } else {
-                // make it a link
-                echo " <a href='dexter/$x'>$x</a> ";
-            } // end else
-        } // end if 
-        } // end for
-                        
-        // if not on last page, show forward and last page links        
-        if ($currentpage != $totalpages) {
-        // get next page
-        $nextpage = $currentpage + 1;
-            // echo forward link for next page 
-        echo " <a href='dexter/$nextpage'>></a> ";
-        // echo forward link for lastpage
-        echo " <a href='dexter/$totalpages'>>></a> ";
-        } // end if
-        /****** end build pagination links ******/
-
-
