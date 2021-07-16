@@ -39,11 +39,11 @@
         </table>   
     </div>
 
-    <ul class="pagination">
+    <ul class="pagination pagination-lg">
     
   
     {for $pagina = 1 to $cantPaginas}
-        <li><a href="dexter/{$pagina}">{$pagina}</a></li>
+        <li class="active"><a href="dexter/{$pagina}">{$pagina}</a></li>
     {/for}
     </ul>
     {if ($userLogged['admin'])}

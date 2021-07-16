@@ -18,68 +18,93 @@ class TipoElementalController {
         $this->view->showTiposElemental($listaTipoElemental);
     }
     public function showCrearTipoElemental() {
-        $this->view->showCrearTipoElemental();
-    }
-
-    public function showActualizarTipoElemental($id_tipo_elemental) {
-        $tipo =  $this->model->getTipo_Elemental($id_tipo_elemental);
-        $this->view->showActualizarTipoElemental($tipo);
-    }
-
-    public function createTipoElemental() {
-        $name= $_POST['F_nombre'];
-        $image= $_FILES['F_imagen']['size'];
-         if ( ($name != '') && ($image > 0))
+        if (AuthHelper::isAdmin())
         {
-            if(
-                $_FILES['F_imagen']['type'] == "image/jpg" ||
-                $_FILES['F_imagen']['type'] == "image/jpeg" ||
-                $_FILES['F_imagen']['type'] == "image/png" ||
-                $_FILES['F_imagen']['type'] == "image/jpeg"
-                )
+                $this->view->showCrearTipoElemental();
+            }
+            else
+                header('Location: ' . BASE_URL . "home");
+        }
+
+        public function showActualizarTipoElemental($id_tipo_elemental) {
+            if (AuthHelper::isAdmin())
             {
-                $success = $this->model->newTipo_Elemental($name, $_FILES['F_imagen']['tmp_name']);
-                if ($success)
-                    header("Location: " . BASE_URL . 'tablatipos');
+                $tipo =  $this->model->getTipo_Elemental($id_tipo_elemental);
+                $this->view->showActualizarTipoElemental($tipo);
+            }
+            else
+                header('Location: ' . BASE_URL . "home");
+        }
+
+        public function createTipoElemental() {
+            if (AuthHelper::isAdmin())
+            {
+            $name= $_POST['F_nombre'];
+            $image= $_FILES['F_imagen']['size'];
+            if ( ($name != '') && ($image > 0))
+            {
+                if(
+                    $_FILES['F_imagen']['type'] == "image/jpg" ||
+                    $_FILES['F_imagen']['type'] == "image/jpeg" ||
+                    $_FILES['F_imagen']['type'] == "image/png" ||
+                    $_FILES['F_imagen']['type'] == "image/jpeg"
+                    )
+                {
+                    $success = $this->model->newTipo_Elemental($name, $_FILES['F_imagen']['tmp_name']);
+                    if ($success)
+                        header("Location: " . BASE_URL . 'tablatipos');
+                    else
+                        header("Location: " . BASE_URL . 'crearTipoElemental');
+                    }
                 else
                     header("Location: " . BASE_URL . 'crearTipoElemental');
-                }
+            }
             else
-                header("Location: " . BASE_URL . 'crearTipoElemental');
+                header("Location: " . BASE_URL . 'home');
         }
         else
-            header("Location: " . BASE_URL . 'home');
+            header('Location: ' . BASE_URL . "home");
     }
 
     public function editTipoElemental($id_tipo_elemental) {
-        $name= $_POST['F_nombre'];
-        $image= $_FILES['F_imagen']['size'];
-         if ( ($name != '') && ($image > 0))
+        if (AuthHelper::isAdmin())
         {
-            if(
-                $_FILES['F_imagen']['type'] == "image/jpg" ||
-                $_FILES['F_imagen']['type'] == "image/jpeg" ||
-                $_FILES['F_imagen']['type'] == "image/png" ||
-                $_FILES['F_imagen']['type'] == "image/jpeg"
-                )
+            $name= $_POST['F_nombre'];
+            $image= $_FILES['F_imagen']['size'];
+            if ( ($name != '') && ($image > 0))
             {
-                $success = $this->model->updateTipo_Elemental($name, $_FILES['F_imagen']['tmp_name'], $id_tipo_elemental);
-                if ($success)
-                    header("Location: " . BASE_URL . 'tablatipos');
+                if(
+                    $_FILES['F_imagen']['type'] == "image/jpg" ||
+                    $_FILES['F_imagen']['type'] == "image/jpeg" ||
+                    $_FILES['F_imagen']['type'] == "image/png" ||
+                    $_FILES['F_imagen']['type'] == "image/jpeg"
+                    )
+                {
+                    $success = $this->model->updateTipo_Elemental($name, $_FILES['F_imagen']['tmp_name'], $id_tipo_elemental);
+                    if ($success)
+                        header("Location: " . BASE_URL . 'tablatipos');
+                    else
+                        header("Location: " . BASE_URL . 'editarTipoElemental/'.$id_tipo_elemental);
+                    }
                 else
                     header("Location: " . BASE_URL . 'editarTipoElemental/'.$id_tipo_elemental);
-                }
+            }
             else
-                header("Location: " . BASE_URL . 'editarTipoElemental/'.$id_tipo_elemental);
+                header("Location: " . BASE_URL . 'home');
         }
         else
-            header("Location: " . BASE_URL . 'home');
+            header('Location: ' . BASE_URL . "home");
     }
 
     public function deleteTipo_Elemental($id_tipo_elemental) {
-        //PONER IF DE "ESTAS SEGURO?"
-        $this->model->deleteTipo_Elemental($id_tipo_elemental);
-        header("Location: " . BASE_URL . 'tablatipos');
+        if (AuthHelper::isAdmin())
+            {
+            //PONER IF DE "ESTAS SEGURO?"
+            $this->model->deleteTipo_Elemental($id_tipo_elemental);
+            header("Location: " . BASE_URL . 'tablatipos');
+        }
+        else
+            header('Location: ' . BASE_URL . "home");
     }
 
 }

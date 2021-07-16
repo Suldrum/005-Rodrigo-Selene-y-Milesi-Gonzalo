@@ -34,15 +34,7 @@ class ControlaTemplates {
         $this->view->ShowPokedexVista ($listaPokemones,$listaRegiones,$listaTipos,$cantPaginas);
     }
 
-    function showRegiones() {
-        $listaRegiones = $this->model->getAll();
-        $this->view->ShowRegionVista ($listaRegiones);
-    }
 
-    function showActualizarRegion($regionActual) {
-        $regionData = $this->model->getRegiongetRegion();
-        $this->view->ShowRegionVista($regionData);
-    } 
 
     function showTarjetaPokemon($idPokemon){
         

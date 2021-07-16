@@ -20,84 +20,110 @@ class PokemonController {
     }
 
     public function showCrearPokemon() {
-        $tipos= $this->modeloTipo->getAll();
-        $regiones = $this->modeloRegion->getAll();
-        $this->view->showCrearPokemon($regiones, $tipos);
+        if (AuthHelper::isAdmin())
+        { 
+            $tipos= $this->modeloTipo->getAll();
+            $regiones = $this->modeloRegion->getAll();
+            $this->view->showCrearPokemon($regiones, $tipos);
+        }
+        else
+            header('Location: ' . BASE_URL . "home");
     }
 
     public function showActualizarPokemon($id_pokemon) {
-        $tipos= $this->modeloTipo->getAll();
-        $regiones = $this->modeloRegion->getAll();
-        $pokemon =  $this->model->getPokemon($id_pokemon);
-        $this->view->showActualizarPokemon($pokemon,$regiones,$tipos);
+        if (AuthHelper::isAdmin())
+        { 
+            $tipos= $this->modeloTipo->getAll();
+            $regiones = $this->modeloRegion->getAll();
+            $pokemon =  $this->model->getPokemon($id_pokemon);
+            $this->view->showActualizarPokemon($pokemon,$regiones,$tipos);
+        }
+        else
+            header('Location: ' . BASE_URL . "home");
+        
     }    
 
     public function createPokemon() {
-        $id_pokemon= $_POST['F_id_pokemon'];
-        $name= $_POST['F_nombre'];
-        $image= $_FILES['F_imagen']['size'];
-        if ( ($name != '') && ($image > 0) && ($id_pokemon > 0 )) {
-            if (
-                $_FILES['F_imagen']['type'] == "image/jpg" ||
-                $_FILES['F_imagen']['type'] == "image/jpeg" ||
-                $_FILES['F_imagen']['type'] == "image/png" ||
-                $_FILES['F_imagen']['type'] == "image/jpeg"
-            )
-            {
-                $id_region= $_POST['F_id_region'];
-                $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
-                if ($_POST['F_id_tipo_elemental2'] != "NADA")
-                    $id_tipo_elemental2= $_POST['F_id_tipo_elemental2'];
-                else
-                    $id_tipo_elemental2= null;
-                $success = $this->model->newPokemon($id_pokemon, $id_region, $name, $_FILES['F_imagen']['tmp_name'], $id_tipo_elemental, $id_tipo_elemental2);
-                if ($success)
-                    header("Location: " . BASE_URL . 'dexter');
+        if (AuthHelper::isAdmin())
+        { 
+            $id_pokemon= $_POST['F_id_pokemon'];
+            $name= $_POST['F_nombre'];
+            $image= $_FILES['F_imagen']['size'];
+            if ( ($name != '') && ($image > 0) && ($id_pokemon > 0 )) {
+                if (
+                    $_FILES['F_imagen']['type'] == "image/jpg" ||
+                    $_FILES['F_imagen']['type'] == "image/jpeg" ||
+                    $_FILES['F_imagen']['type'] == "image/png" ||
+                    $_FILES['F_imagen']['type'] == "image/jpeg"
+                )
+                {
+                    $id_region= $_POST['F_id_region'];
+                    $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
+                    if ($_POST['F_id_tipo_elemental2'] != "NADA")
+                        $id_tipo_elemental2= $_POST['F_id_tipo_elemental2'];
                     else
+                        $id_tipo_elemental2= null;
+                    $success = $this->model->newPokemon($id_pokemon, $id_region, $name, $_FILES['F_imagen']['tmp_name'], $id_tipo_elemental, $id_tipo_elemental2);
+                    if ($success)
+                        header("Location: " . BASE_URL . 'dexter');
+                        else
+                        header("Location: " . BASE_URL . 'crearPokemon');
+                }
+                else
                     header("Location: " . BASE_URL . 'crearPokemon');
             }
             else
-                header("Location: " . BASE_URL . 'crearPokemon');
+                header("Location: " . BASE_URL . 'home');
         }
         else
-            header("Location: " . BASE_URL . 'home');
+            header('Location: ' . BASE_URL . "home");
     }
 
     public function editPokemon($id_pokemonViejo) {
-        $name= $_POST['F_nombre'];
-        $image= $_FILES['F_imagen']['size'];
-        if ( ($name != '') && ($image > 0)) {
+        if (AuthHelper::isAdmin())
+        { 
+            $name= $_POST['F_nombre'];
+            $image= $_FILES['F_imagen']['size'];
+            if ( ($name != '') && ($image > 0)) {
 
-            if (
-                $_FILES['F_imagen']['type'] == "image/jpg" ||
-                $_FILES['F_imagen']['type'] == "image/jpeg" ||
-                $_FILES['F_imagen']['type'] == "image/png" ||
-                $_FILES['F_imagen']['type'] == "image/jpeg"
-            )
-            {
-                $id_region= $_POST['F_id_region'];
-                $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
-                if ($_POST['F_id_tipo_elemental2'] != "NADA")
-                    $id_tipo_elemental2= $_POST['F_id_tipo_elemental2'];
+                if (
+                    $_FILES['F_imagen']['type'] == "image/jpg" ||
+                    $_FILES['F_imagen']['type'] == "image/jpeg" ||
+                    $_FILES['F_imagen']['type'] == "image/png" ||
+                    $_FILES['F_imagen']['type'] == "image/jpeg"
+                )
+                {
+                    $id_region= $_POST['F_id_region'];
+                    $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
+                    if ($_POST['F_id_tipo_elemental2'] != "NADA")
+                        $id_tipo_elemental2= $_POST['F_id_tipo_elemental2'];
+                    else
+                        $id_tipo_elemental2= null;
+                    $success =  $this->model->updatePokemon($id_region, $name, $_FILES['F_imagen']['tmp_name'], $id_tipo_elemental, $id_tipo_elemental2,$id_pokemonViejo);
+                    if ($success)
+                        header("Location: " . BASE_URL . 'dexter');
                 else
-                    $id_tipo_elemental2= null;
-                $success =  $this->model->updatePokemon($id_region, $name, $_FILES['F_imagen']['tmp_name'], $id_tipo_elemental, $id_tipo_elemental2,$id_pokemonViejo);
-                if ($success)
-                    header("Location: " . BASE_URL . 'dexter');
-               else
+                        header("Location: " . BASE_URL . 'editarPokemon/'.$id_pokemonViejo);
+                }
+                else
                     header("Location: " . BASE_URL . 'editarPokemon/'.$id_pokemonViejo);
             }
             else
-                header("Location: " . BASE_URL . 'editarPokemon/'.$id_pokemonViejo);
+                header("Location: " . BASE_URL . 'home');
         }
         else
-            header("Location: " . BASE_URL . 'home');
+            header('Location: ' . BASE_URL . "home");
         
     }
 
     public function deletePokemon($id_pokemon) {
-        //PONER IF DE "ESTAS SEGURO?"
-        $this->model->deletePokemon($id_pokemon);
-        header("Location: " . BASE_URL . 'dexter');
+        if (AuthHelper::isAdmin())
+        { 
+            //PONER IF DE "ESTAS SEGURO?"
+            $this->model->deletePokemon($id_pokemon);
+            header("Location: " . BASE_URL . 'dexter');
+        }
+        else
+            header('Location: ' . BASE_URL . "home");
     }
 }

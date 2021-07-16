@@ -18,66 +18,91 @@ class RegionController {
     }
 
     public function showCrearRegion() {
-        $this->view->showCrearRegion();
+        if (AuthHelper::isAdmin())
+        { 
+            $this->view->showCrearRegion();
+        }
+        else
+            header('Location: ' . BASE_URL . "home");
     }
 
     public function showActualizarRegion($id_region) {
-        $region =  $this->model->getRegion($id_region);
-        $this->view->showActualizarRegion($region);
+        if (AuthHelper::isAdmin())
+        { 
+            $region =  $this->model->getRegion($id_region);
+            $this->view->showActualizarRegion($region);
+        }
+        else
+            header('Location: ' . BASE_URL . "home");
     }
 
     public function createRegion() {
-        $name= $_POST['F_nombre'];
-        $image= $_FILES['F_imagen']['size'];
-        if ( ($name != '') && ($image > 0))
-        {
-            if (
-                $_FILES['F_imagen']['type'] == "image/jpg" ||
-                $_FILES['F_imagen']['type'] == "image/jpeg" ||
-                $_FILES['F_imagen']['type'] == "image/png" ||
-                $_FILES['F_imagen']['type'] == "image/jpeg"
-            )
+        if (AuthHelper::isAdmin())
+        { 
+            $name= $_POST['F_nombre'];
+            $image= $_FILES['F_imagen']['size'];
+            if ( ($name != '') && ($image > 0))
             {
-                $success = $this->model->newRegion($name, $_FILES['F_imagen']['tmp_name']);
-                if ($success)
-                    header("Location: " . BASE_URL . 'regiones');
-                else
+                if (
+                    $_FILES['F_imagen']['type'] == "image/jpg" ||
+                    $_FILES['F_imagen']['type'] == "image/jpeg" ||
+                    $_FILES['F_imagen']['type'] == "image/png" ||
+                    $_FILES['F_imagen']['type'] == "image/jpeg"
+                )
+                {
+                    $success = $this->model->newRegion($name, $_FILES['F_imagen']['tmp_name']);
+                    if ($success)
+                        header("Location: " . BASE_URL . 'regiones');
+                    else
+                        header("Location: " . BASE_URL . 'crearRegion');
+                }else
                     header("Location: " . BASE_URL . 'crearRegion');
-            }else
-                header("Location: " . BASE_URL . 'crearRegion');
+            }
+            else
+                header("Location: " . BASE_URL . 'home');
         }
         else
-            header("Location: " . BASE_URL . 'home');
+            header('Location: ' . BASE_URL . "home");
     }
 
     public function editRegion($id_region) {  
-        $name= $_POST['F_nombre'];
-        $image= $_FILES['F_imagen']['size'];
-        if ( ($name != '') && ($image > 0))
-        {
-            if (
-                $_FILES['F_imagen']['type'] == "image/jpg" ||
-                $_FILES['F_imagen']['type'] == "image/jpeg" ||
-                $_FILES['F_imagen']['type'] == "image/png" ||
-                $_FILES['F_imagen']['type'] == "image/jpeg"
-            )
+        if (AuthHelper::isAdmin())
+        { 
+            $name= $_POST['F_nombre'];
+            $image= $_FILES['F_imagen']['size'];
+            if ( ($name != '') && ($image > 0))
             {
-                $success = $this->model->updateRegion($name, $_FILES['F_imagen']['tmp_name'], $id_region);
-                if ($success)
-                    header("Location: " . BASE_URL . 'regiones');
-                else
+                if (
+                    $_FILES['F_imagen']['type'] == "image/jpg" ||
+                    $_FILES['F_imagen']['type'] == "image/jpeg" ||
+                    $_FILES['F_imagen']['type'] == "image/png" ||
+                    $_FILES['F_imagen']['type'] == "image/jpeg"
+                )
+                {
+                    $success = $this->model->updateRegion($name, $_FILES['F_imagen']['tmp_name'], $id_region);
+                    if ($success)
+                        header("Location: " . BASE_URL . 'regiones');
+                    else
+                        header("Location: " . BASE_URL . 'editarRegion/'.$id_region);
+                }else
                     header("Location: " . BASE_URL . 'editarRegion/'.$id_region);
-            }else
-                header("Location: " . BASE_URL . 'editarRegion/'.$id_region);
+            }
+            else
+                header("Location: " . BASE_URL . 'home');
         }
         else
-            header("Location: " . BASE_URL . 'home');
+            header('Location: ' . BASE_URL . "home");
         
     }
 
     public function deleteRegion($id_region) {
-        //PONER IF DE "ESTAS SEGURO?"
-        $this->model->deleteRegion($id_region);
-        header("Location: " . BASE_URL . 'regiones');
+        if (AuthHelper::isAdmin())
+        { 
+            //PONER IF DE "ESTAS SEGURO?"
+            $this->model->deleteRegion($id_region);
+            header("Location: " . BASE_URL . 'regiones');
+        }
+        else
+            header('Location: ' . BASE_URL . "home");
     }
 }
