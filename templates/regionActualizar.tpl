@@ -2,7 +2,7 @@
 <div class="container">
     <div id= "datosRegionActual">
         {$regionActual->nombre}
-        <img alt= "IMAGEN_REGION_ACTUAL"src="{$regionActual->imagen_region}">
+        <img class="img-fluid" height="100px" width="100px" alt= "IMAGEN_REGION_ACTUAL"src="{$regionActual->imagen_region}">
     </div>
     <br>
     <br>
