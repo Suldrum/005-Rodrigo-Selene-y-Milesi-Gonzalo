@@ -15,8 +15,10 @@ class ViewTemplates extends View {
         $this->getSmarty()->assign('listaRegiones',$listaRegiones);
         $this->getSmarty()->assign('listaTipos',$listaTipos);
         $this->getSmarty()->assign('cantPaginas',$cantPaginas);
-        $url = explode('/', $_SERVER["REQUEST_URI"]);
-        $this->getSmarty()->assign('url',$url[2]);
+        $url =str_replace('?', '/', $_SERVER["REQUEST_URI"]);
+        $urlParts = explode('/', $url);
+
+        $this->getSmarty()->assign('url',$urlParts);
         $this->getSmarty()->display('templates/tablaPokedex.tpl');
     }
 

@@ -41,10 +41,15 @@
 
     <ul class="pagination">
     
-  
-    {for $pagina = 1 to $cantPaginas}
-        <li class="page-item"><a class="page-link" href="{$url}/{$pagina}">{$pagina}</a></li>
-    {/for}
+    {if ($url[2] != "dexter")}
+        {for $pagina = 1 to $cantPaginas}
+            <li class="page-item"><a class="page-link" href="{$url[2]}/{$pagina}?{$url[4]}">{$pagina}</a></li>
+        {/for}
+    {else}
+        {for $pagina = 1 to $cantPaginas}
+            <li class="page-item"><a class="page-link" href="{$url[2]}/{$pagina}">{$pagina}</a></li>
+        {/for}
+    {/if}
     </ul>
     {if ($userLogged['admin'])}
         <button class="btn btn-outline-success" onclick="location.href='crearPokemon'">Crear Pokemon</button></td>

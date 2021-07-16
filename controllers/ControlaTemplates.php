@@ -51,8 +51,8 @@ class ControlaTemplates {
     }
 
     function showPokedexFilter($pagina){
-        $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
-        $id_region= $_POST['F_id_region'];
+        $id_tipo_elemental= $_GET['tipo_elemental'];
+        $id_region= $_GET['region'];
         if (($id_region != "NADA") && ($id_tipo_elemental != "NADA"))
         {    
             $pokeTotal = $this->model->countPokemonFilterAll($id_region,$id_tipo_elemental);
@@ -95,6 +95,7 @@ class ControlaTemplates {
 
     public function paginationPokemon($pagina)
     {
+        
         $pokeTotal = $this->model->countPokemon();
         $currentpage= $this->getPage($pagina,$pokeTotal->total);
         $offset = $this->getOffSet($currentpage) ;
