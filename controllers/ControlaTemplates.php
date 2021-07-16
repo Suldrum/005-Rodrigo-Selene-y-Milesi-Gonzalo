@@ -50,31 +50,39 @@ class ControlaTemplates {
         $this->view->ShowTarjetaVistaPokemon($pokemon,$region,$tipo1,$tipo2);
     }
 
-    function showPokedexFilter(){
+    function showPokedexFilter($pagina){
         $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
         $id_region= $_POST['F_id_region'];
         if (($id_region != "NADA") && ($id_tipo_elemental != "NADA"))
         {    
             $pokeTotal = $this->model->countPokemonFilterAll($id_region,$id_tipo_elemental);
-            $listaPokemones = $this->model->getAllFiltro($id_region,$id_tipo_elemental);
+            $currentpage = $this->getPage($pagina,$pokeTotal->total);
+            $offset = $this->getOffSet($currentpage);
+            $listaPokemones = $this->model->getAllFiltro($offset, ROWSPERPAGE, $id_region,$id_tipo_elemental);
+            
         }
         else
         {
             if ($id_region != "NADA")
             {
                 $pokeTotal = $this->model->countPokemonFilterByRegion($id_region);
-                $listaPokemones = $this->model->getAllByRegion($id_region);
+                $currentpage = $this->getPage($pagina,$pokeTotal->total);
+                $offset = $this->getOffSet($currentpage);
+                $listaPokemones = $this->model->getAllByRegion($offset, ROWSPERPAGE,$id_region);
             }
             else
             {
                 if ($id_tipo_elemental != "NADA")
                 {
                     $pokeTotal = $this->model->countPokemonFilterByType($id_tipo_elemental);
-                    $listaPokemones = $this->model->getAllByType($id_tipo_elemental);
+                    $currentpage = $this->getPage($pagina,$pokeTotal->total);
+                    $offset = $this->getOffSet($currentpage);
+                    $listaPokemones = $this->model->getAllByType($offset, ROWSPERPAGE,$id_tipo_elemental);
+                    
                 }
                 else{
                         if (($id_region == "NADA") && ($id_tipo_elemental == "NADA"))
-                            header("Location: " . BASE_URL . 'dexter/1');
+                            header("Location: " . BASE_URL . "dexter/1");
                     }
             }
             
@@ -88,22 +96,53 @@ class ControlaTemplates {
     public function paginationPokemon($pagina)
     {
         $pokeTotal = $this->model->countPokemon();
-         $totalpages = ceil ($pokeTotal->total / ROWSPERPAGE);
-         if (isset($pagina) && is_numeric($pagina)) {
-         $currentpage = (int) $pagina;
-         } else {
-         $currentpage = 1;
-         } 
-         if ($currentpage > $totalpages) {
-         $currentpage = $totalpages;
-         } 
-         if ($currentpage < 1) {
-         $currentpage = 1;
-         } 
-         $offset = ($currentpage - 1) * ROWSPERPAGE ;
-        
-       $dexter = $this->model->paginationPokemon($offset, ROWSPERPAGE );
-       return ($dexter);
+        $currentpage= $this->getPage($pagina,$pokeTotal->total);
+        $offset = $this->getOffSet($currentpage) ;
+        $dexter = $this->model->paginationPokemon($offset, ROWSPERPAGE );
+        return ($dexter);
+    }
+
+    function getPage($pagina,$totalRows)
+    {
+        $totalpages = ceil ($totalRows / ROWSPERPAGE);
+        if (isset($pagina) && is_numeric($pagina)) {
+            $currentpage = (int) $pagina;
+        } else {
+        $currentpage = 1;
+        } 
+        if ($currentpage > $totalpages) {
+            $currentpage = $totalpages;
+        } 
+        if ($currentpage < 1) {
+            $currentpage = 1;
+        } 
+       return ($currentpage);
 
     }
+
+    function getOffSet($currentpage)
+    {
+        return ($currentpage - 1) * ROWSPERPAGE ;
+    }
+/*
+    public function paginationPokemon($pagina)
+    {
+        $pokeTotal = $this->model->countPokemon();
+        $totalpages = ceil ($pokeTotal->total / ROWSPERPAGE);
+        if (isset($pagina) && is_numeric($pagina)) {
+            $currentpage = (int) $pagina;
+        } else {
+        $currentpage = 1;
+        } 
+        if ($currentpage > $totalpages) {
+            $currentpage = $totalpages;
+        } 
+        if ($currentpage < 1) {
+            $currentpage = 1;
+        } 
+            $offset = ($currentpage - 1) * ROWSPERPAGE ;
+       $dexter = $this->model->paginationPokemon($offset, ROWSPERPAGE );
+       return ($dexter);
+    }
+    */
 }

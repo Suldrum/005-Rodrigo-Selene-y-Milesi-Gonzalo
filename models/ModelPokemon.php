@@ -28,8 +28,10 @@ class ModelPokemon extends Model {
      * @return mixed
      * Retorna todos los pokemons en la tabla Pokemon que pertenezcan a una region pasada por parametro
      */
-    function getAllByRegion($id_region) {
-        $query = $this->getDb()->prepare('SELECT * FROM pokemon WHERE id_region = ? ORDER BY id_pokemon ASC');
+    function getAllByRegion($offset, $rowsPerPage,$id_region) {
+    //    $query = $this->getDb()->prepare('SELECT * FROM pokemon WHERE id_region = ? ORDER BY id_pokemon ASC');
+        $sql = "SELECT * FROM pokemon WHERE id_region = ?  LIMIT $offset, $rowsPerPage";
+        $query = $this->getDb()->prepare($sql);  
         $query->execute([$id_region]);
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
@@ -39,11 +41,15 @@ class ModelPokemon extends Model {
      * @return mixed
      * Retorna todos los pokemons en la tabla Pokemon que pertenezcan a sean de un tipo pasado por parametro
      */
-    function getAllByType($id_tipo_elemental) {
+    function getAllByType($offset, $rowsPerPage,$id_tipo_elemental) {
 
-        $query = $this->getDb()->prepare('SELECT * FROM pokemon WHERE (id_tipo_elemental = ? OR id_tipo_elemental2 = ? ) ORDER BY id_pokemon ASC');
+    //    $query = $this->getDb()->prepare('SELECT * FROM pokemon WHERE (id_tipo_elemental = ? OR id_tipo_elemental2 = ? ) ORDER BY id_pokemon ASC');
+        $sql = "SELECT * FROM pokemon WHERE (id_tipo_elemental = ? OR id_tipo_elemental2 = ?) LIMIT $offset, $rowsPerPage";
+        $query = $this->getDb()->prepare($sql);  
         $query->execute([$id_tipo_elemental,$id_tipo_elemental]);
         return $query->fetchAll(PDO::FETCH_OBJ);
+
+    
     }
 
     /**
@@ -51,9 +57,11 @@ class ModelPokemon extends Model {
      * @return mixed
      * Retorna todos los pokemons en la tabla Pokemon que sean de una region y de un tipo elemental pasados por parametro
      */
-    function getAllFiltro($id_region,$id_tipo_elemental) {
+    function getAllFiltro($offset, $rowsPerPage,$id_region,$id_tipo_elemental) {
 
-        $query = $this->getDb()->prepare('SELECT * FROM pokemon WHERE (id_region = ? AND (id_tipo_elemental = ? OR id_tipo_elemental2 = ? )) ORDER BY id_pokemon ASC');
+    //    $query = $this->getDb()->prepare('SELECT * FROM pokemon WHERE (id_region = ? AND (id_tipo_elemental = ? OR id_tipo_elemental2 = ? )) ORDER BY id_pokemon ASC');
+        $sql = "SELECT * FROM pokemon WHERE (id_region = ? AND (id_tipo_elemental = ? OR id_tipo_elemental2 = ? )) LIMIT $offset, $rowsPerPage";
+        $query = $this->getDb()->prepare($sql);  
         $query->execute([$id_region, $id_tipo_elemental,$id_tipo_elemental]);
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
@@ -114,21 +122,21 @@ class ModelPokemon extends Model {
 
     function countPokemonFilterByType($id_tipo_elemental)
     {
-        $query = $this->getDb()->prepare('SELECT COUNT(*) AS total FROM pokemon WHERE (id_tipo_elemental = ? OR id_tipo_elemental2 = ? )');
-        $query->execute([$id_tipo_elemental]);
+        $query = $this->getDb()->prepare('SELECT COUNT(*) AS total FROM pokemon WHERE (id_tipo_elemental = ? OR id_tipo_elemental2 = ? ) ORDER BY id_pokemon ASC');
+        $query->execute([$id_tipo_elemental,$id_tipo_elemental]);
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
     function countPokemonFilterByRegion($id_region)
     {
-        $query = $this->getDb()->prepare('SELECT COUNT(*) AS total FROM pokemon WHERE id_region = ?');
+        $query = $this->getDb()->prepare('SELECT COUNT(*) AS total FROM pokemon WHERE id_region = ? ORDER BY id_pokemon ASC');
         $query->execute([$id_region]);
         return $query->fetch(PDO::FETCH_OBJ);
     }
     function countPokemonFilterAll($id_region,$id_tipo_elemental)
     {
         $query = $this->getDb()->prepare('SELECT COUNT(*) AS total FROM pokemon WHERE (id_region = ? AND (id_tipo_elemental = ? OR id_tipo_elemental2 = ? )) ORDER BY id_pokemon ASC');
-        $query->execute([$id_region,$id_tipo_elemental]);
+        $query->execute([$id_region,$id_tipo_elemental,$id_tipo_elemental]);
         return $query->fetch(PDO::FETCH_OBJ);
     }
      /**

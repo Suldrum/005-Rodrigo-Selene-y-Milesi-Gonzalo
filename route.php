@@ -56,7 +56,7 @@ switch ($urlParts[0]) {
 		
 //ZONA DE FILTROS
 	case "filtro":
-		$ControlaTemplates->showPokedexFilter();
+		$ControlaTemplates->showPokedexFilter($urlParts[1]);
 	break;
 
 ////////////// ZONA DE ADMINISTRACION DE USUARIOS ////////
