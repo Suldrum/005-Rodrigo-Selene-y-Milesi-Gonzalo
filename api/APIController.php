@@ -81,14 +81,14 @@ class ApiController {
                     $this->view->response($result, 200);
                 }
                 else {
-                    $this->view->response('El comentario no existe :(', 404);
+                    $this->view->response('El comentario no existe :(', 200);
                 }
             }
             else {
                 $this->view->response(false, 404);
             }
         }else {
-            $this->view->response(false, 404);
+            $this->view->response(false, 500);
         }
     }
 

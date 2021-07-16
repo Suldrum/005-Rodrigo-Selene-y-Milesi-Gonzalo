@@ -100,7 +100,7 @@
             </div>
             </div>
                 <p>{{comentario.texto}}</p>
-                <button v-on:click="eliminarComentario(index)" v-show="visible" >Eliminar</button>    
+                <button v-on:click="eliminarComentario(comentario.id_comentario)" v-show="visible" >Eliminar</button>    
             </div>
         </div>
     </div>
