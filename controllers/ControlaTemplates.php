@@ -19,7 +19,6 @@ class ControlaTemplates {
         $this->view = new Viewtemplates();
     }
 
-    /*hay que seguir armandolo */
     function showHome() {
         $this->view->showHomeVista();
     }
@@ -27,7 +26,6 @@ class ControlaTemplates {
     function showPokedex($pagina){
         $listaRegiones = $this->modelRegion->getAll();
         $listaTipos = $this->modelTipo->getAll();
-    //    $listaPokemones = $this->model->getAll();
         $listaPokemones = $this->paginationPokemon($pagina);
         $pokeTotal = $this->model->countPokemon();
         $cantPaginas = ceil ($pokeTotal->total / ROWSPERPAGE) ;
@@ -125,25 +123,5 @@ class ControlaTemplates {
     {
         return ($currentpage - 1) * ROWSPERPAGE ;
     }
-/*
-    public function paginationPokemon($pagina)
-    {
-        $pokeTotal = $this->model->countPokemon();
-        $totalpages = ceil ($pokeTotal->total / ROWSPERPAGE);
-        if (isset($pagina) && is_numeric($pagina)) {
-            $currentpage = (int) $pagina;
-        } else {
-        $currentpage = 1;
-        } 
-        if ($currentpage > $totalpages) {
-            $currentpage = $totalpages;
-        } 
-        if ($currentpage < 1) {
-            $currentpage = 1;
-        } 
-            $offset = ($currentpage - 1) * ROWSPERPAGE ;
-       $dexter = $this->model->paginationPokemon($offset, ROWSPERPAGE );
-       return ($dexter);
-    }
-    */
+
 }

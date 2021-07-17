@@ -19,26 +19,6 @@ class ApiController {
         $this->modelUser =  new UserModel();
         $this->modelPokemon =  new ModelPokemon();
     }
-/*    
-
-    public function newComment($params = []) {
-        
-        $datos = $this->getData();
-        
-        $titulo = $datos->titulo;
-        $prioridad = $datos->prioridad;
-        $descripcion = $datos->descripcion;
-
-        if ($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" 
-            || $_FILES['input_name']['type'] == "image/png") {
-                $this->model->new($titulo, $prioridad, $descripcion, $_FILES['input_name']['tmp_name']);
-        } else {
-            $this->model->new($titulo, $prioridad, $descripcion);
-        }
-        $this->view->response('', 200);
-        
-    }
-  */
 
   /**
      *  obtener comentarios de un pokemon
@@ -98,13 +78,6 @@ class ApiController {
     public function newPokemonComment()
     {
         $params = json_decode(file_get_contents("php://input"));
-
-        // RECUPERA EL POKEMON
-        
-        /*
-        $urlParts = explode('/', $_SERVER['REQUEST_URI']);
-        $pokemon = $this->modelPokemon->getPokemon(parseInt($urlParts[$urlParts.length - 1])); //poner ID
-        */
         $pokemon = $this->modelPokemon->getPokemon($params->pokemon);
         
         // RECUPERA EL USUARIO ACTIVO

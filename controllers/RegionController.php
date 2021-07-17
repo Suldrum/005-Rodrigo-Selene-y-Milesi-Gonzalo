@@ -98,7 +98,6 @@ class RegionController {
     public function deleteRegion($id_region) {
         if (AuthHelper::isAdmin())
         { 
-            //PONER IF DE "ESTAS SEGURO?"
             $this->model->deleteRegion($id_region);
             header("Location: " . BASE_URL . 'regiones');
         }

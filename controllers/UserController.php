@@ -43,8 +43,6 @@ class UserController {
         }
         else{
             header("Location: " . BASE_URL . 'registro');
-            //el eco no anda pero si esta andando bien el else so me doy por satisfecha de momento
-            echo "El email ya existe, por favor ingrese otro";
         }
     }
 

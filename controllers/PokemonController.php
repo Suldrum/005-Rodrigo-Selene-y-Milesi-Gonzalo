@@ -119,7 +119,6 @@ class PokemonController {
     public function deletePokemon($id_pokemon) {
         if (AuthHelper::isAdmin())
         { 
-            //PONER IF DE "ESTAS SEGURO?"
             $this->model->deletePokemon($id_pokemon);
             header("Location: " . BASE_URL . 'dexter/1');
         }

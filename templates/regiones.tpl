@@ -19,7 +19,7 @@
                         <td>{$region->id_region}</td>
                         <td>{$region->nombre}</td>
                         <td><img class="img-fluid" height="100px" width="100px" src="{$region->imagen_region}"></td>
-                        <!--SI ES ADMINISTRADOR / ESTO ES PARA PROBAR -->
+                        <!--SI ES ADMINISTRADOR -->
                         {if ($userLogged['admin'])}
                             <td>
                                 <button id="botonActualizarRegion" onclick="location.href='editarRegion/{$region->id_region}'">Editar</button>

@@ -19,7 +19,7 @@
                         <td style="background-color: aqua;">{$tipo->id_tipo_elemental}</td>
                         <td style="background-color: aqua;">{$tipo->nombre}</td>
                         <td style="background-color: aqua;"><img class="img-fluid" height="100px" width="100px" src="{$tipo->imagen_tipo}"></td>
-                        <!--SI ES ADMINISTRADOR / ESTO ES PARA PROBAR -->
+                        <!--SI ES ADMINISTRADOR -->
                         {if ($userLogged['admin'])}
                             <td>
                                 <button id="botonActualizarTipo"

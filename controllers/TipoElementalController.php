@@ -99,7 +99,6 @@ class TipoElementalController {
     public function deleteTipo_Elemental($id_tipo_elemental) {
         if (AuthHelper::isAdmin())
             {
-            //PONER IF DE "ESTAS SEGURO?"
             $this->model->deleteTipo_Elemental($id_tipo_elemental);
             header("Location: " . BASE_URL . 'tablatipos');
         }

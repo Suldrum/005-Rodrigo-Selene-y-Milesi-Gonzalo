@@ -10,10 +10,8 @@
             <img class="img-fluid" height="100px" width="100px" src="{$tipoElemental2}">
     {/if}
     <a class='navegacion' href="dexter/1">Volver</a>
-    <!---- CAMBIAR TODO LO POSIBLE A PHP ------>
     <section id = seccionComentario visible= {$userLogged['admin']}>
     {if isset($userLogged) && $userLogged}
-        <!---- LA CONSOLA TIRA UN ERROR ACA PORQUE EL JS NO ENCUENTRA EL NEWCOMMENT ------>
         {include 'templates/vue/formComment.vue'}
     {/if}
         {include 'templates/vue/comments.vue'}

@@ -1,7 +1,11 @@
 # 005-Rodrigo-Selene-y-Milesi-Gonzalo
 TP Especial de Web II "Pokemon GO Battle"
 
+
+
 Errores comunes:
+Agregar carpetas Pokemon, Region y Tipo_Elemental dentro de la carpeta imagenes.
+
 
 Base de datos:
 La base de datos no esta la carpeta database del proyecto
