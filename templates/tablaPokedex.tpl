@@ -37,23 +37,12 @@
                         {/if}
                     </tr>
                 {/foreach}
-            
             </tbody>
         </table>   
     </div>
 </div>
     <!-- PAGINADO -->
-    <ul class="pagination justify-content-center">
-    {if ($url[2] != "dexter")}
-        {for $pagina = 1 to $cantPaginas}
-            <li class="page-item"><a class="page-link" href="{$url[2]}/{$pagina}?{$url[4]}">{$pagina}</a></li>
-        {/for}
-    {else}
-        {for $pagina = 1 to $cantPaginas}
-            <li class="page-item"><a class="page-link" href="{$url[2]}/{$pagina}">{$pagina}</a></li>
-        {/for}
-    {/if}
-    </ul>
+    {include 'templates/pagination.tpl'}
     {if ($userLogged['admin'])}
         <div class="d-grid gap-2 col-6 mx-auto">
             <button class="btn btn-outline-success" onclick="location.href='crearPokemon'">Crear Pokemon</button></td>
