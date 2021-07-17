@@ -1,5 +1,8 @@
 {include 'templates/header.tpl'}
 {include 'templates/filtro.tpl'}
+{if ($listaPokemons == null)}
+        <h1> ¡Vaya! No tenemos ningun pokemon asi, tendremos que salir a atraparlos a todos</h1>
+{else}
 <div class="m-0 row justify-content-center">
     <div class=" col-auto m-2 text-center" style="height: 540px; overflow: scroll;">
         <table class="table  table-dark">
@@ -34,13 +37,13 @@
                         {/if}
                     </tr>
                 {/foreach}
-                
+            
             </tbody>
         </table>   
     </div>
-
+</div>
+    <!-- PAGINADO -->
     <ul class="pagination justify-content-center">
-    
     {if ($url[2] != "dexter")}
         {for $pagina = 1 to $cantPaginas}
             <li class="page-item"><a class="page-link" href="{$url[2]}/{$pagina}?{$url[4]}">{$pagina}</a></li>
@@ -56,5 +59,5 @@
             <button class="btn btn-outline-success" onclick="location.href='crearPokemon'">Crear Pokemon</button></td>
         </div>
     {/if}
-</div>
+{/if}
 {include 'templates/footer.tpl'}

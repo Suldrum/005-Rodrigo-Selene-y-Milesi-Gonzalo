@@ -133,6 +133,7 @@ class ModelPokemon extends Model {
         $query->execute([$id_region]);
         return $query->fetch(PDO::FETCH_OBJ);
     }
+    
     function countPokemonFilterAll($id_region,$id_tipo_elemental)
     {
         $query = $this->getDb()->prepare('SELECT COUNT(*) AS total FROM pokemon WHERE (id_region = ? AND (id_tipo_elemental = ? OR id_tipo_elemental2 = ? )) ORDER BY id_pokemon ASC');
