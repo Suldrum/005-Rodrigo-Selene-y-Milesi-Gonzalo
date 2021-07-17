@@ -21,58 +21,44 @@
                 <div v-if="comentario.calificacion === '5'">
                     <input class="star-rating__input" id="star-rating-5" type="radio" :name="index" value="5" checked="true"  >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-5" title="5 out of 5 stars" ></label>
-
                     <input class="star-rating__input" id="star-rating-4" type="radio" :name="index" value="4"  >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-4" title="4 out of 5 stars"></label>
-                
                     <input class="star-rating__input" id="star-rating-3" type="radio" :name="index" value="3">
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-3" title="3 out of 5 stars"></label>
-                
                     <input class="star-rating__input" id="star-rating-2" type="radio" :name="index" value="2"  >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-2" title="2 out of 5 stars"></label>
-                    
                     <input class="star-rating__input" id="star-rating-1" type="radio" :name="index" value="1"  >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-1" title="1 out of 5 stars" ></label>
                 </div>
                 <div v-else-if="comentario.calificacion === '4'">
                     <input class="star-rating__input" id="star-rating-5" type="radio" :name="index" value="5"  >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-5" title="5 out of 5 stars" ></label>
-
                     <input class="star-rating__input" id="star-rating-4" type="radio"  :name="index" value="4" checked="true" >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-4" title="4 out of 5 stars"></label>
-
                     <input class="star-rating__input" id="star-rating-3" type="radio" :name="index" value="3">
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-3" title="3 out of 5 stars"></label>
-                
                     <input class="star-rating__input" id="star-rating-2" type="radio" :name="index" value="2"  >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-2" title="2 out of 5 stars"></label>
-                    
                     <input class="star-rating__input" id="star-rating-1" type="radio" :name="index" value="1"  >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-1" title="1 out of 5 stars" ></label>
                 </div>
                 <div v-else-if="comentario.calificacion === '3'">
                     <input class="star-rating__input" id="star-rating-5" type="radio" :name="index" value="5"  >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-5" title="5 out of 5 stars" ></label>
-
                     <input class="star-rating__input" id="star-rating-4" type="radio"  :name="index" value="4"  >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-4" title="4 out of 5 stars"></label>
-
                     <input class="star-rating__input" id="star-rating-3" type="radio" :name="index" value="3" checked="true">
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-3" title="3 out of 5 stars"></label>
-
                     <input class="star-rating__input" id="star-rating-2" type="radio" :name="index" value="2"  >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-2" title="2 out of 5 stars"></label>
-                    
                     <input class="star-rating__input" id="star-rating-1" type="radio" :name="index" value="1"  >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-1" title="1 out of 5 stars" ></label>
                 </div>
                 <div v-else-if="comentario.calificacion === '2'">
-                <input class="star-rating__input" id="star-rating-5" type="radio" :name="index" value="5"  >
+                    <input class="star-rating__input" id="star-rating-5" type="radio" :name="index" value="5"  >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-5" title="5 out of 5 stars" ></label>
-
                     <input class="star-rating__input" id="star-rating-4" type="radio"  :name="index" value="4"  >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-4" title="4 out of 5 stars"></label>
-                
                     <input class="star-rating__input" id="star-rating-3" type="radio" :name="index" value="3">
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-3" title="3 out of 5 stars"></label>
                     <input class="star-rating__input" id="star-rating-2" type="radio" :name="index" value="2" checked="true" >
@@ -83,13 +69,10 @@
                 <div v-else>
                     <input class="star-rating__input" id="star-rating-5" type="radio" :name="index" value="5"  >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-5" title="5 out of 5 stars" ></label>
-
                     <input class="star-rating__input" id="star-rating-4" type="radio"  :name="index" value="4"  >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-4" title="4 out of 5 stars"></label>
-                
                     <input class="star-rating__input" id="star-rating-3" type="radio" :name="index" value="3">
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-3" title="3 out of 5 stars"></label>
-                
                     <input class="star-rating__input" id="star-rating-2" type="radio" :name="index" value="2"  >
                     <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-2" title="2 out of 5 stars"></label>
                     <input class="star-rating__input" id="star-rating-1" type="radio" :name="index" value="1" checked="true" >

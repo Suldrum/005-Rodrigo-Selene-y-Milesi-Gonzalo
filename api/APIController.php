@@ -38,7 +38,7 @@ class ApiController {
                 $this->view->response("Sin comentarios", 200);     
         }
         else
-           $this->view->response(false, 404);
+           $this->view->response(null, 404);
 
     } 
 
@@ -63,10 +63,10 @@ class ApiController {
                 }
             }
             else {
-                $this->view->response(false, 404);
+                $this->view->response(null, 404);
             }
         }else {
-            $this->view->response(false, 500);
+            $this->view->response(false, 404);
         }
     }
 

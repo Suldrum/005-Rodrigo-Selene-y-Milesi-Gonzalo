@@ -2,7 +2,7 @@
 <div class="container">
     <div id= "datosRegionActual">
         <img class="img-fluid" height="100px" width="100px" alt= "IMAGEN_REGION_ACTUAL"src="{$pokemonActual->imagen_region}">
-        {$pokemonActual->nombre}
+    {$pokemonActual->nombre}
         <img class="img-fluid" height="150px" width="150px" alt= "IMAGEN_POKEMON_ACTUAL"src="{$pokemonActual->imagen_pokemon}">
         <img class="img-fluid" height="100px" width="100px" alt= "IMAGEN_TIPO1_ACTUAL"src="{$pokemonActual->imagen_tipo1}"> 
         {if {$pokemonActual->imagen_tipo2}!=NULL}  

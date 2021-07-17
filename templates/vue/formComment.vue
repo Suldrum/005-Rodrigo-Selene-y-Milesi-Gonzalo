@@ -1,5 +1,5 @@
 {literal}
-<section id="newComment">
+<section id="newComment" v-show="visible">
     <h3> ¿Quieres compartir lo que piensas de este pokemon? </h3>
     <br>
       <div class="star-rating">

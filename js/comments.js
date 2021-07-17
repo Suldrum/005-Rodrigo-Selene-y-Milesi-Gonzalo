@@ -1,74 +1,10 @@
 'use strict';
 
-//ELIMINAR LOS ALERTS / MOVERLOS AL CONTROLADOR
-
-
-/**
- *  Obtener el id del pokemon desde un atributo HTML.
- */
+//Obtiene el ID desde el url
  function getPokemonID() {
     let urlParts = window.location.href.split('/');
     return parseInt(urlParts[urlParts.length - 1]);
 }
-
-let listaComentarios = new Vue({
-    //nombre del div donde se carga
-    el: '#comments', 
-    data: {
-        error: false,
-        //lo pone en true ya que los metodos se encargaran de ponerlo en false cuando terminen
-        loading: true,
-        notComment: false, 
-        visible: document.querySelector("#seccionComentario").getAttribute('visible'),
-    //    visible: '<%= Session["admin"] %>',
-    //arreglo de recepcion de la informacion
-        pokemonComments: []
-    },
-    methods: {
-        /**
-         * Funcion de eliminar del boton en el template
-         */
-         eliminarComentario: function (commentID) {
-            deletePokemonComment(commentID); // CONTROLES EN EL VUE
-            
-        }
-    }
-});
-
-// ESTO DEBE EDITARSE DE MANERA QUE SOLO SE ENVIE EL TEXTO Y LA CALIFICACION, EL RESTO SE VERIFICA EN EL CONTROLADOR
-
-let nuevoComentario = new Vue({
-    //nombre del div donde se carga
-    el:'#newComment',
-    data: {
-        userComment: null,
-    },
-    methods: 
-    {
-        // Responde al botón en el formulario de Vue
-        guardarComentario: function(e) {
-           
-            // Previene la recarga automática de la página
-            e.preventDefault(e);
-            // Prepara un json
-            let comment = {
-                pokemon: getPokemonID(), 
-                calificacion: getStarValue(),
-                texto: userComment.value
-            }
-            // Envía el JSON al método para postear el comentario        
-            if ( comment.calificacion != 0)
-            {
-                newPokemonComment(comment);
-                // Limpia los campos en la pagina
-                resetData();
-            }
-            else{
-                alert('No olvides dar una nota ;-)');
-            }
-        },
-    },
-});
 
 // Recupera el valor de las estrellas, si todavia no se eligio ninguna devuelve 0
 function getStarValue()
@@ -80,6 +16,7 @@ function getStarValue()
         return 0;
 }
 
+//Limpia los datos del comentario
 function resetData()
 {
     //Limpia el textarea
@@ -89,11 +26,7 @@ function resetData()
 
 }
 
-// Pide cargar los comentarios ni bien se carga la página
-$(document).ready(function (){
-    getPokemonComments();
-    
-});
+//////////////////// ZONA DE API REST ////////////////////
 
 // Trae los comentarios de la API
 function getPokemonComments() {
@@ -138,7 +71,6 @@ function getPokemonComments() {
 
 // Permite postear un comentario con calificación
 function newPokemonComment(comment) {
-
     fetch('api/comment', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
@@ -177,3 +109,71 @@ function deletePokemonComment(commentID) {
     })
     .catch(exception => console.log(exception));
 }
+
+//////////////////// FIN ZONA DE API REST ////////////////////
+
+// Pide cargar los comentarios ni bien se carga la página
+$(document).ready(function (){
+    getPokemonComments();
+});
+
+
+//////////////////// ZONA DE VUE ////////////////////
+let listaComentarios = new Vue({
+    //nombre del div donde se carga
+    el: '#comments', 
+    data: {
+        error: false,
+        //lo pone en true ya que los metodos se encargaran de ponerlo en false cuando terminen
+        loading: true,
+        notComment: false,
+         // Muestra si la sesion es de un admin
+        visible: document.querySelector("#seccionComentario").getAttribute('visible') == 1,
+    //arreglo de recepcion de la informacion
+        pokemonComments: []
+    },
+    methods: {
+        /**
+         * Funcion de eliminar del boton en el template
+         */
+         eliminarComentario: function (commentID) {
+            deletePokemonComment(commentID);
+            
+        }
+    }
+});
+
+let nuevoComentario = new Vue({
+    //nombre del div donde se carga
+    el:'#newComment',
+    data: {
+        userComment: null,
+        //Oculta si no hay una sesion activa
+        visible: document.querySelector("#seccionComentario").getAttribute('visible')
+    },
+    methods: 
+    {
+        // Responde al botón en el formulario de Vue
+        guardarComentario: function(e) {
+            // Previene la recarga automática de la página
+            e.preventDefault(e);
+            // Prepara un json
+            let comment = {
+                pokemon: getPokemonID(), 
+                calificacion: getStarValue(),
+                texto: userComment.value
+            }
+            // Envía el JSON al método para postear el comentario asegurando que se puso una valoracion        
+            if ( comment.calificacion != 0)
+            {
+                newPokemonComment(comment);
+                // Limpia los campos en la pagina
+                resetData();
+            }
+            else{
+                alert('No olvides dar una nota ;-)');
+            }
+        },
+    },
+});
+//////////////////// FIN ZONA DE VUE ////////////////////

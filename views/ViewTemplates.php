@@ -17,7 +17,6 @@ class ViewTemplates extends View {
         $this->getSmarty()->assign('cantPaginas',$cantPaginas);
         $url =str_replace('?', '/', $_SERVER["REQUEST_URI"]);
         $urlParts = explode('/', $url);
-
         $this->getSmarty()->assign('url',$urlParts);
         $this->getSmarty()->display('templates/tablaPokedex.tpl');
     }
