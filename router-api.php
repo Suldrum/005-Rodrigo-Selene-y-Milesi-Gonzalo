@@ -6,11 +6,6 @@ require_once 'api/APIController.php';
 $router = new Router();
 
 // tabla de ruteo
-//$router->addRoute('recurso', 'verbo', 'controlador', 'funcion');
-/*
-$router->addRoute('dexter', 'GET', 'APIController', 'getAll');
-$router->addRoute('pokemon/:ID', 'GET', 'APIController', 'getPokemon');
-*/
 // obtener comentarios de un pokemon.
 $router->addRoute('comments/:ID', 'GET', 'APIController', 'getPokemonComments');
 // postear un comentario.
