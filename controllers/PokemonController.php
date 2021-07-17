@@ -59,7 +59,6 @@ class PokemonController {
                 {
                     $id_region= $_POST['F_id_region'];
                     $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
-                    $result = (strcmp($_POST['F_id_tipo_elemental2'], $id_tipo_elemental) === 0);
                     if ( ($_POST['F_id_tipo_elemental2'] == "NADA") || (strcmp($_POST['F_id_tipo_elemental2'], $id_tipo_elemental) === 0) )
                         $id_tipo_elemental2= null;
                     else
@@ -99,7 +98,7 @@ class PokemonController {
                     if ( ($_POST['F_id_tipo_elemental2'] == "NADA") || (strcmp($_POST['F_id_tipo_elemental2'], $id_tipo_elemental) === 0) )
                         $id_tipo_elemental2= null;
                     else
-                        $id_tipo_elemental2= null;
+                        $id_tipo_elemental2= $_POST['F_id_tipo_elemental2'];
                     $success =  $this->model->updatePokemon($id_region, $name, $_FILES['F_imagen']['tmp_name'], $id_tipo_elemental, $id_tipo_elemental2,$id_pokemonViejo);
                     if ($success)
                         header("Location: " . BASE_URL . 'dexter/1');
