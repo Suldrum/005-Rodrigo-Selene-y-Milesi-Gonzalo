@@ -2,7 +2,7 @@
 <div class="container">
     <form action="createPokemon" method="POST" enctype="multipart/form-data">
         <label for="numero_pokedex">Numero de Pokedex Nacional: </label>
-        <input type="number" name="F_id_pokemon" placeholder="" min="1" max="9999" maxlength="4"/>
+        <input type="number" name="F_id_pokemon" placeholder="" min="1" max="9999" maxlength="4" required />
        
         <select name="F_id_region">
         <label for="region"> Region </label>
