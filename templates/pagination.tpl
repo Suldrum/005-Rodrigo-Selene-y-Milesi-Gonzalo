@@ -5,7 +5,7 @@
     <li class="page-item"><a class="page-link" href="{$url[2]}/1?{$url[4]}"><<</a></li>
     <li class="page-item"><a class="page-link" href="{$url[2]}/{$previosly}?{$url[4]}">Previous</a></li>
     {for $pagina = 1 to $cantPaginas}
-        {if ($url[3] === $pagina)}
+        {if ($url[3] == $pagina)}
             <li class="page-item active"><a class="page-link" href="{$url[2]}/{$pagina}?{$url[4]}"> {$pagina} </a></li>
         {else}
             <li class="page-item"><a class="page-link" href="{$url[2]}/{$pagina}?{$url[4]}">{$pagina}</a></li>
