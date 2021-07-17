@@ -37,29 +37,12 @@
                         {/if}
                     </tr>
                 {/foreach}
-            
             </tbody>
         </table>   
     </div>
 </div>
     <!-- PAGINADO -->
-    <ul class="pagination justify-content-center">
-    {if (($url[3] - 1) < 1)}  {$previosly =  1} {else} {$previosly =  $url[3] - 1}{/if}
-    {if (($url[3] + 1) > $cantPaginas)}  {$next =  $cantPaginas} {else} {$next =  $url[3] + 1}{/if}
-    {if ($url[2] != "dexter")}
-        <li class="page-item"><a class="page-link" href="{$url[2]}/{$previosly}?{$url[4]}">Previous</a></li>
-        {for $pagina = 1 to $cantPaginas}
-            <li class="page-item"><a class="page-link" href="{$url[2]}/{$pagina}?{$url[4]}">{$pagina}</a></li>
-        {/for}
-        <li class="page-item"><a class="page-link" href="{$url[2]}/{$next}?{$url[4]}">Next</a></li>
-    {else}
-        <li class="page-item"><a class="page-link" href="{$url[2]}/{$previosly}">Previous</a></li>
-        {for $pagina = 1 to $cantPaginas}
-            <li class="page-item"><a class="page-link" href="{$url[2]}/{$pagina}">{$pagina}</a></li>
-        {/for}
-        <li class="page-item"><a class="page-link" href="{$url[2]}/{$next}">Next</a></li>
-    {/if}
-    </ul>
+    {include 'templates/pagination.tpl'}
     {if ($userLogged['admin'])}
         <div class="d-grid gap-2 col-6 mx-auto">
             <button class="btn btn-outline-success" onclick="location.href='crearPokemon'">Crear Pokemon</button></td>
