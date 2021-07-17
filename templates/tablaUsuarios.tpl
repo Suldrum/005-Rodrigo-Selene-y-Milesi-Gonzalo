@@ -17,7 +17,7 @@
             <td>{$user->nombre}</td>
             <td>{$user->apellido}</td>
             <td>{$user->email}</td>
-            <td>{$user->administrador}</td>
+            <td>{if {$user->administrador}==1} SI {else} NO {/if}</td>
             {if {$user->administrador}==1}
                 <td>
                 <button onclick="location.href='bajaAdmin/{$user->ID}'">Quitar Permisos</button>
