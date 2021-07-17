@@ -37,11 +37,9 @@ class ApiController {
             else
                 $this->view->response("Sin comentarios", 200);     
         }
-       /* 
         else
-        
-           $this->view->response(null, 404);
-        */
+           $this->view->response(false, 404);
+
     } 
 
     /**
@@ -61,7 +59,7 @@ class ApiController {
                     $this->view->response($result, 200);
                 }
                 else {
-                    $this->view->response('El comentario no existe :(', 200);
+                    $this->view->response(null, 500);
                 }
             }
             else {

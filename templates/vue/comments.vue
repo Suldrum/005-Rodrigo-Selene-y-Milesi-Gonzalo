@@ -1,23 +1,21 @@
 {literal}
 <section id="comments">
-<h3> COMENTARIOS</h3>
+<h3>COMENTARIOS</h3>
 
     <div v-if="error">
         <p>Lo sentimos, no es posible obtener la información en este momento, por favor intente nuevamente mas tarde</p>    
     </div>
 
 <div v-if="notComment">
-        <p> :( </p>    
+        <p> Se el primer comentario :D </p>    
     </div>
     <div v-if="loading">Cargando...</div>
 
     <div v-if="!loading">
-        CARGA DE COMENTARIOS 
-         
         <div v-for="(comentario,index) in pokemonComments" style="width: 18rem;">
             <div>
-                <h5>{{comentario.id_fk_usuario}}</h5>
-                <h6>Puntuacion: {{comentario.calificacion}} </h6>   
+                <h5>{{comentario.nombre}} {{comentario.apellido}}</h5>
+                <h6>Puntuacion: </h6>   
                 <div class="star-rating" >
                 <div class="star-rating__wrap" disabled="true">
                 <div v-if="comentario.calificacion === '5'">

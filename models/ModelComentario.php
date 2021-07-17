@@ -32,7 +32,7 @@ class ModelComentario extends Model {
      * Retorna todos los comentarios sobre un pokemon
      */
     function getPokemonComments($id){
-        $query = $this->getDb()->prepare('SELECT * FROM comentario WHERE id_fk_pokemon = ?');
+        $query = $this->getDb()->prepare('SELECT comentario.*, usuario.nombre, usuario.apellido FROM comentario JOIN usuario ON comentario.id_fk_usuario = usuario.ID WHERE id_fk_pokemon = ?');
         $query->execute([$id]);
         return $query->fetchAll(PDO::FETCH_OBJ);
     }

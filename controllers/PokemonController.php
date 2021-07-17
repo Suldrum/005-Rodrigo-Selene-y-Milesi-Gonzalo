@@ -59,7 +59,7 @@ class PokemonController {
                 {
                     $id_region= $_POST['F_id_region'];
                     $id_tipo_elemental= $_POST['F_id_tipo_elemental'];
-                    if ($_POST['F_id_tipo_elemental2'] != "NADA")
+                    if ( ($_POST['F_id_tipo_elemental2'] != "NADA") || ($_POST['F_id_tipo_elemental2'] != $_POST['F_id_tipo_elemental']))
                         $id_tipo_elemental2= $_POST['F_id_tipo_elemental2'];
                     else
                         $id_tipo_elemental2= null;

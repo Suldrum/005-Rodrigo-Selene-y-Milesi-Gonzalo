@@ -72,7 +72,7 @@ class ModelPokemon extends Model {
      * Retorna una tupla a partir de un id pasado por parámtro
      */
     function getPokemon($id){
-        $query = $this-> getDb()->prepare('SELECT * FROM pokemon WHERE id_pokemon = ?');
+        $query = $this-> getDb()->prepare('SELECT pokemon.*, region.imagen_region, primerTipo.imagen_tipo AS imagen_tipo1, segundoTipo.imagen_tipo AS imagen_tipo2 FROM pokemon JOIN region ON pokemon.id_region = region.id_region JOIN tipo_elemental AS primerTipo ON pokemon.id_tipo_elemental = primerTipo.id_tipo_elemental LEFT JOIN tipo_elemental AS segundoTipo ON pokemon.id_tipo_elemental2 = segundoTipo.id_tipo_elemental WHERE id_pokemon = ?');
         $query->execute([$id]);
         return $query->fetch(PDO::FETCH_OBJ);
     }
