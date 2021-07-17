@@ -65,7 +65,7 @@ class PokemonController {
                         $id_tipo_elemental2= null;
                     $success = $this->model->newPokemon($id_pokemon, $id_region, $name, $_FILES['F_imagen']['tmp_name'], $id_tipo_elemental, $id_tipo_elemental2);
                     if ($success)
-                        header("Location: " . BASE_URL . 'dexter');
+                        header("Location: " . BASE_URL . 'dexter/1');
                         else
                         header("Location: " . BASE_URL . 'crearPokemon');
                 }
@@ -101,7 +101,7 @@ class PokemonController {
                         $id_tipo_elemental2= null;
                     $success =  $this->model->updatePokemon($id_region, $name, $_FILES['F_imagen']['tmp_name'], $id_tipo_elemental, $id_tipo_elemental2,$id_pokemonViejo);
                     if ($success)
-                        header("Location: " . BASE_URL . 'dexter');
+                        header("Location: " . BASE_URL . 'dexter/1');
                 else
                         header("Location: " . BASE_URL . 'editarPokemon/'.$id_pokemonViejo);
                 }
@@ -121,7 +121,7 @@ class PokemonController {
         { 
             //PONER IF DE "ESTAS SEGURO?"
             $this->model->deletePokemon($id_pokemon);
-            header("Location: " . BASE_URL . 'dexter');
+            header("Location: " . BASE_URL . 'dexter/1');
         }
         else
             header('Location: ' . BASE_URL . "home");

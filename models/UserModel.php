@@ -9,6 +9,11 @@ class UserModel extends Model {
         $query->execute([$username]);
         return $query->fetch(PDO::FETCH_OBJ);
     }
+    public function getUserByID($id) {
+        $query = $this->getDb()->prepare('SELECT * FROM usuario WHERE ID = ?');
+        $query->execute([$id]);
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
 
     public function add($name, $lastName, $email, $pass) {
 

@@ -97,8 +97,20 @@ class UserController {
         header("Location: " . BASE_URL . 'usuarios');
     }
     function deleteUser($id)
-    {
-        $this->model->deleteUser($id);
-        header("Location: " . BASE_URL . 'usuarios');
+    {   
+        $usuarioABorrar = $this->model->getUserByID($id);
+        if ($usuarioABorrar->administrador == 0){
+            $this->model->deleteUser($id);
+            header("Location: " . BASE_URL . 'usuarios');
+        }else{
+                $admins = $this->model->countAdmin();
+                if ($admins->total > 1){
+                    $this->model->deleteUser($id);
+                    header("Location: " . BASE_URL . 'usuarios');
+                }else{
+                    header("Location: " . BASE_URL . 'usuarios');
+            }
+        }
+        
     }
 }
